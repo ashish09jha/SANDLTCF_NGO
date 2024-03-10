@@ -14,6 +14,15 @@ import Blog2 from './pages/blog/blogs/blog2/Blog2';
 import Blog3 from './pages/blog/blogs/blog3/Blog3';
 import Recent1 from './pages/event-blogs/first/Main';
 
+import AllVolunteer from "./pages/admin/volunteer/allVolunteer.jsx"
+import AllEvents from "./pages/admin/upcommingEvents/allEvents.jsx";
+import AllMedia from "./pages/admin/media/allMedia.jsx";
+import LandingPage from "./pages/admin/LandingPage/LandingPage.jsx";
+import AllGallery from "./pages/admin/editGallery/allGallery.jsx";
+import AllDonations from "./pages/admin/donation/allDonations.jsx";
+import AllAdmins from "./pages/admin/admin/allAdmins.jsx";
+
+
 const App = () => {
 
   return (
@@ -33,6 +42,15 @@ const App = () => {
         <Route path="/blog3" element={<Blog3 />} />
         <Route path="/inauguration" element={<Recent1 />} />
         <Route path="/gallery" element={<Gallery />} />
+
+        <Route path="/landingPage" element={<LandingPage />} />
+        <Route path="/admin" element={<AllAdmins />} />
+        <Route path="/donation" element={<AllDonations />} />
+        <Route path="/editGallery" element={<AllGallery />} />
+        <Route path="/media" element={<AllMedia />} />
+        <Route path="/events" element={<AllEvents />} />
+        <Route path="/volunteer" element={<AllVolunteer />} />
+        
       </Routes>
 
     </Router>

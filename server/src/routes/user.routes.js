@@ -1,7 +1,9 @@
 import { Router } from "express";
-import { instagram } from "../controllers/instagramPosts.controller.js";
+import { addVolunteer,fetchVolunteer,fetchVolunteerById } from "../controllers/volunteer.controller.js";
 
 const router=Router();
-router.route("/instagram").get(instagram);
+router.route("/Volunteer").post(addVolunteer);
+router.route("/Volunteer").get(fetchVolunteer);
+router.route("/Volunteer/c/:id").get(fetchVolunteerById);
 
 export default router;

@@ -2,17 +2,17 @@ import mongoose from 'mongoose'
 
 const volunteerSchema=new mongoose.Schema({
     name:{
-        type:string,
+        type:String,
         required:true,
     },
     email:{
-        type:string,
+        type:String,
         required:true,
     },
     description:{
-        type:string,
+        type:String,
         required:true,
     }
 },{timestamps:true})
 
-export const volunteer= mongoose.model(volunteer,volunteerSchema); 
+export const volunteer= mongoose.model('volunteer',volunteerSchema); 

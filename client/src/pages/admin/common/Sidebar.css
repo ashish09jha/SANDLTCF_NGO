@@ -1,0 +1,48 @@
+.sidebar {
+  width: 250px;
+  height: 100%;
+  background-color: #f8f9fa; /* Light background color */
+  color: #333; /* Dark text color */
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto; /* Enable scrolling if the content is too long */
+  z-index: 1000; /* Ensure the sidebar appears above other elements */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+}
+
+.logo-container {
+  margin-top: 20px;
+}
+
+.logo {
+  width: 100px; /* Adjust based on your logo dimensions */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: #e9ecef; /* Slightly darker background for header */
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  width: 100%; /* Set width to 100% of the sidebar */
+}
+
+.sidebar-nav li {
+  padding: 10px;
+  cursor: pointer; /* Add cursor pointer for better interaction */
+  transition: background-color .3s ease; /* Smooth hover effect */
+  width: 100%; /* Make list items full-width */
+  text-align: center; /* Center text horizontally */
+}
+
+.sidebar-nav li:hover {
+  background-color: #e9ecef; /* Slightly darker background on hover */
+}

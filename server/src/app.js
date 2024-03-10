@@ -16,5 +16,5 @@ app.use(cookieParser())
 
 import userRoutes from './routes/user.routes.js'
 
-app.use("/routes",userRoutes)
+app.use("/ngo",userRoutes)
 export {app}
