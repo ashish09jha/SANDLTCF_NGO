@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 function VolunteerInformation() {
     const [volunteer, setVolunteer] = useState([]);
@@ -8,23 +8,23 @@ function VolunteerInformation() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/ngo/Volunteer");
+                const response = await axios.get('http://localhost:8000/ngo/Volunteer');
                 const data = response.data.data;
-                console.log("Fetched volunteer data:", data);
+                console.log('Fetched volunteer data:', data);
                 setVolunteer(data);
             } catch (error) {
-                console.error("Error fetching volunteer data:", error);
+                console.error('Error fetching volunteer data:', error);
             }
         };
         fetchData();
     }, []);
 
     return (
-        <Container>
+        <Content>
             {volunteer.map((element, index) => (
                 <CardContainer key={index}>
                     <Card>
-                        <CardHeader>Sr.No: {index}</CardHeader>
+                        <CardHeader>Sr.No: {index+1}</CardHeader>
                         <CardBody>
                             <CardBodyItem>Name: {element.name}</CardBodyItem>
                             <CardBodyItem>Email: {element.email}</CardBodyItem>
@@ -33,28 +33,21 @@ function VolunteerInformation() {
                     </Card>
                 </CardContainer>
             ))}
-        </Container>
+        </Content>
     );
 }
 
-const Container = styled.div`
-    width: 100%;
-    height: 100vh;
+const Content = styled.div`
+    padding-top: 80px; /* Add padding to create space between navbar and content */
     display: flex;
     flex-wrap: wrap;
-    padding: 20px;
-    box-sizing: border-box;
 `;
 
 const CardContainer = styled.div`
     width: 50%;
-    margin-bottom: 40px;
     box-sizing: border-box;
-    padding: 0 20px;
-
-    &:hover{
-      background-color: #f0f0f0;
-    }
+    padding: 0 10px;
+    margin-bottom: 20px;
 `;
 
 const Card = styled.div`
@@ -85,7 +78,6 @@ const Description = styled.div`
     text-overflow: ellipsis;
     max-height: 50px;
     overflow-y: auto;
-    
 `;
 
 export default VolunteerInformation;
