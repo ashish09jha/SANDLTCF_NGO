@@ -4,6 +4,15 @@ import apiError from "../utils/apiError.js"
 import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import media from "../models/media.model.js"
 
+const fetchMediaPhoto=asyncHandler(async(req,res)=>{
+    try{
+        const data=await gallery.find();
+        res.status(200).json(new apiResponse(200,data,"data send successfully"))
+    }catch(error){
+        throw new apiError(400,`Error:${error}`);
+    }
+})
+
 const addGaleryPhoto=asyncHandler(async(req,res)=>{
     const {image}=req.file;
     if(!image){
@@ -29,5 +38,6 @@ const deletemediaPhoto=asyncHandler(async(req,res)=>{
 
 export{
     addGaleryPhoto,
-    deletemediaPhoto
+    deletemediaPhoto,
+    fetchMediaPhoto
 }
