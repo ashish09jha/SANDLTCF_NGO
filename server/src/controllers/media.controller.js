@@ -33,7 +33,6 @@ const addGaleryPhoto=asyncHandler(async(req,res)=>{
 })
 
 const deletemediaPhoto=asyncHandler(async(req,res)=>{
-    
 })
 
 export{
