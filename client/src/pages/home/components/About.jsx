@@ -23,7 +23,7 @@ const App = () => {
                     {/* Right Section */}
                     <div className="right-section">
                         <div className="lg:order-1 ml-8" >
-                            <div className=' border-l-4 border-green md:-ml-1 -ml-8 max-w-full'>
+                            <div className=' border-l-4 border-orange md:-ml-1 -ml-8 max-w-full'>
                                 <h1 className="mb-5 text-xl max-w-[95%] w-full lg:text-4xl ml-3 text-gray-600 font-semibold font-raleway">
                                     Learn About Us
                                 </h1>
@@ -42,7 +42,7 @@ const App = () => {
                                 confidence to succeed in their life.
 
                             </p>
-                            <div className='md:p-3 p-2 bg-green hover:bg-primary mt-8 md:ml-0 -ml-8 flex items-center text-white w-32 text-center hover:bg-blue hover:text-white rounded-md cursor-pointer '>
+                            <div className='md:p-3 p-2 bg-orange hover:bg-primary mt-8 md:ml-0 -ml-8 flex items-center text-white w-32 text-center hover:bg-blue hover:text-white rounded-md cursor-pointer '>
                                 <Link to="/about" className=" text-center">
                                     Read More
                                 </Link>

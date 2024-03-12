@@ -20,7 +20,7 @@ const About = () => {
                     {/* Right Section */}
                     <div className="right-section">
                         <div className="lg:order-1 ml-8 md:-mb-24" >
-                            <div className=' border-l-4 border-green md:-ml-1 -ml-8 max-w-full md:-mt-56'>
+                            <div className=' border-l-4 border-orange md:-ml-1 -ml-8 max-w-full md:-mt-56'>
                                 <h1 className="mb-5 text-xl max-w-[95%] w-full lg:text-2xl ml-3 text-gray-600 font-semibold font-raleway">
                                     About the Founder
                                 </h1>
@@ -30,11 +30,11 @@ const About = () => {
                             </h1>
 
                             <p className=" mb-4 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
-                                The Vision of establishing <span className='text-green font-medium'>Restoration Foundation International</span> was conceived by
-                                <span className='text-green font-semibold'> Mr. William Kojo Amoabeng</span>.
+                                The Vision of establishing <span className='text-orange font-medium'>Restoration Foundation International</span> was conceived by
+                                <span className='text-orange font-semibold'> Mr. William Kojo Amoabeng</span>.
                             </p>
                             <p className=" mb-4 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
-                                <span className='text-green font-semibold'> Mr. William Kojo Amoabeng</span> was involved in various children and youth initiatives in Ghana, Canada
+                                <span className='text-orange font-semibold'> Mr. William Kojo Amoabeng</span> was involved in various children and youth initiatives in Ghana, Canada
                                 and the USA for several years and as a result developed a strong passion to reach out to the un-reached children and youth especially those in critical conditions
                                 deprivation , poverty and neglect.
                             </p>

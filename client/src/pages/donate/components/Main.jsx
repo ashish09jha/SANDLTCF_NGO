@@ -109,8 +109,8 @@ const Donate = () => {
             <div className="mx-auto flex flex-wrap items-center ml-12">
                 {/* Left Column */}
                 <div className="w-full lg:w-1/2 lg:pr-10 md:mt-4 -mt-2">
-                    <div className="border-l-4 border-green pl-2">
-                        <h2 className='text-2xl font-quicksand text-green font-medium ml-2'>Donate Now</h2>
+                    <div className="border-l-4 border-orange pl-2">
+                        <h2 className='text-2xl font-quicksand text-orange font-medium ml-2'>Donate Now</h2>
                     </div>
                     <h2 className=' md:text-5xl text-3xl md:p-0 pr-1 font-quicksand mt-6 font-bold'>
                         Let us donate to needy people for better lives
@@ -126,14 +126,14 @@ const Donate = () => {
                         <div className="flex justify-center gap-4 mb-6 mt-4">
                             <button
                                 onClick={() => setActiveForm("donate")}
-                                className={`px-8 py-2 ${activeForm === "donate" ? "bg-green text-white rounded-sm font-quicksand" : "bg-gray-300 rounded-sm font-quicksand"
+                                className={`px-8 py-2 ${activeForm === "donate" ? "bg-orange text-white rounded-sm font-quicksand" : "bg-gray-300 rounded-sm font-quicksand"
                                     }`}
                             >
                                 Donate
                             </button>
                             <button
                                 onClick={() => setActiveForm("contact")}
-                                className={`px-8 py-2 ${activeForm === "contact" ? "bg-green text-white rounded-sm font-quicksand" : "bg-gray-300 rounded-sm font-quicksand"
+                                className={`px-8 py-2 ${activeForm === "contact" ? "bg-orange text-white rounded-sm font-quicksand" : "bg-gray-300 rounded-sm font-quicksand"
                                     }`}
                             >
                                 Contact
@@ -228,10 +228,10 @@ const Donate = () => {
                                 </div>
 
                                 <div className="justify-center text-center flex items-center md:gap-4 mt-4 mb-4">
-                                    <FaPrayingHands className="md:h-6 md:w-6 h-8 w-8 text-green" />
+                                    <FaPrayingHands className="md:h-6 md:w-6 h-8 w-8 text-orange" />
                                     <p className="font-quicksand text-md">
                                         Thank you for your {''}
-                                        <span className="font-semibold text-green" ref={typingRef}></span>
+                                        <span className="font-semibold text-orange" ref={typingRef}></span>
                                     </p>
                                 </div>
                             </form>
@@ -284,7 +284,7 @@ const Donate = () => {
                                     </div>
                                     <button
                                         type="submit"
-                                        className="bg-green w-full text-white font-medium rounded-sm font-quicksand md:mt-6 mt-4 px-4 py-2 hover:bg-primary mb-6"
+                                        className="bg-orange w-full text-white font-medium rounded-sm font-quicksand md:mt-6 mt-4 px-4 py-2 hover:bg-primary mb-6"
                                     >
                                         {!loading ? (
                                             "Submit"

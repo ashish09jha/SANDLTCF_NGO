@@ -84,7 +84,7 @@ const Causes = () => {
         <div className='justify-center align-center md:mt-6 -mt-4'>
             <div className=''>
                 <div className='text-center mx-auto mb-4 mt-8'>
-                    <p className="font-quicksand items-center font-bold text-2xl text-green mb-2 ">
+                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
                         Projects
                     </p>
                 </div>
@@ -104,22 +104,22 @@ const Causes = () => {
                                 />
                             </div>
 
-                            <h3 className="text-sm md:text-lg hover:text-green cursor-pointer text-center font-medium font-quicksand mt-4 mb-2">{cause.title}</h3>
+                            <h3 className="text-sm md:text-lg hover:text-orange cursor-pointer text-center font-medium font-quicksand mt-4 mb-2">{cause.title}</h3>
                             {/* <div className="text-sm text-gray-500 mb-4 mt-4 flex gap-4 justify-center">
                                 <Progress percent={cause.progress} />
                             </div> */}
                             <div className='flex gap-16 mt-4 justify-center mb-4'>
-                                <p className='font-quicksand'> No of Centres : <span className='font-quicksand font-bold text-green'>{cause.goal}</span></p>
-                                <p className='font-quicksand'> Students Enrolled : <span className='font-quicksand font-bold text-green'>{cause.raise}</span> </p>
+                                <p className='font-quicksand'> No of Centres : <span className='font-quicksand font-bold text-orange'>{cause.goal}</span></p>
+                                <p className='font-quicksand'> Students Enrolled : <span className='font-quicksand font-bold text-orange'>{cause.raise}</span> </p>
                             </div>
 
                             <p className="text-gray-900 mb-4 text-sm font-quicksand">{cause.description}</p>
                             <div className='justify-center items-center flex md:mt-2'>
-                                <Link to={cause.join} className='flex items-center border-b-4 font-semibold border border-green hover:border-primary p-2 text-gray-600 font-quicksand rounded-md m-2 cursor-pointer'>
+                                <Link to={cause.join} className='flex items-center border-b-4 font-semibold border border-orange hover:border-primary p-2 text-gray-600 font-quicksand rounded-md m-2 cursor-pointer'>
                                     Lean More
                                     <GoArrowRight className="ml-2 mr-2" />
                                 </Link>
-                                <Link to={cause.link} className='flex items-center border-b-4 font-semibold border border-green hover:border-primary p-2 text-gray-600 font-quicksand rounded-md m-2 cursor-pointer'>
+                                <Link to={cause.link} className='flex items-center border-b-4 font-semibold border border-orange hover:border-primary p-2 text-gray-600 font-quicksand rounded-md m-2 cursor-pointer'>
                                     Donate
                                     <GoArrowRight className="ml-2 mr-2" />
                                 </Link>

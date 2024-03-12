@@ -30,7 +30,7 @@ const ScrollToTop = () => {
         <div className={`fixed bottom-8 right-8 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
             <button
                 onClick={scrollToTop}
-                className=" p-2 rounded-full text-white bg-green md:hover:bg-purple hover:bg-gray-500 hover:text-white focus:outline-none"
+                className=" p-2 rounded-full text-white bg-orange md:hover:bg-purple hover:bg-gray-500 hover:text-white focus:outline-none"
             >
                 <IoIosArrowUp className="h-6 w-6" />
             </button>

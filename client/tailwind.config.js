@@ -16,9 +16,10 @@ export default {
         sea: "#4c8373",
         purple: "#7826e5",
         black: "#000000",
-        green: "#85ba51",
+        orange: "#85ba51",
         red: "#d41418",
-        blue: "#2b159b"
+        blue: "#2b159b",
+        orange: "#fd6b1c"
       },
     },
   },

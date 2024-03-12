@@ -56,16 +56,16 @@ const Volunteer = () => {
             // Check if the response is successful
             if (res.ok) {
                 // Use SweetAlert to show success message
-                swal("Restoration Foundation International", "Information Submitted", "success");
+                swal("S&L Trehan Charitable Foundation", "Information Submitted", "success");
                 // Optionally, you can handle other actions after a successful submission here
             } else {
                 // Handle errors if the response is not successful
-                swal("Restoration Foundation International", "Error Sending Information", "error");
+                swal("S&L Trehan Charitable Foundation", "Error Sending Information", "error");
             }
         } catch (error) {
             // Handle errors in the fetch or other unexpected errors
             console.log(error);
-            swal("Restoration Foundation International", "Error Sending Information", "error");
+            swal("S&L Trehan Charitable Foundation", "Error Sending Information", "error");
         }
 
         setLoading(false);
@@ -95,8 +95,8 @@ const Volunteer = () => {
             <div className="mx-auto flex flex-wrap items-center md:ml-12 p-4">
                 {/* Second Component (Will appear first on mobile) */}
                 <div className="w-full lg:w-1/2 lg:pr-10 mt-4 order-1 lg:order-2 mb-8">
-                    <div className="border-l-4 border-green pl-2">
-                        <h2 className='text-2xl font-quicksand text-green ml-2 font-medium'>Become A Volunteer</h2>
+                    <div className="border-l-4 border-orange pl-2">
+                        <h2 className='text-2xl font-quicksand text-orange ml-2 font-medium'>Become A Volunteer</h2>
                     </div>
                     <h2 className='text-white md:text-5xl text-3xl md:p-0 pr-1  font-quicksand mt-6 font-bold'>
                         Let us make a difference in the lives of others
@@ -145,7 +145,7 @@ const Volunteer = () => {
                                 rows="3"
                             />
 
-                            <Button type="submit" className="p-3 mt-2 justify-center bg-green text-white border border-b-2 border-green flex items-center font-quicksand hover:bg-primary hover:border-primary">
+                            <Button type="submit" className="p-3 mt-2 justify-center bg-orange text-white border border-b-2 border-orange flex items-center font-quicksand hover:bg-primary hover:border-primary">
                                 {!loading ? (
                                     "Become a volunteer"
                                 ) : (

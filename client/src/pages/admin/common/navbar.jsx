@@ -22,7 +22,6 @@ const Container = styled.div`
   background-color: rgb(41, 43, 44);
   width: 100%;
   height: 60px;
-  z-index: 1000; /* Ensure the navbar is above other content */
   div {
     margin-right: 50px;
   }

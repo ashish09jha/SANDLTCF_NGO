@@ -48,7 +48,7 @@ const Main = () => {
         <div className='justify-center align-center md:mt-8 -mt-4'>
             <div className=''>
                 <div className='text-center mx-auto mb-4 mt-24'>
-                    <p className="font-quicksand items-center font-bold text-2xl text-green mb-2 ">
+                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
                         Popular Causes
                     </p>
                     <h2 className=" font-quicksand font-bold md:text-5xl text-3xl text-gray-600 mb-4 md:max-w-[700px] md:ml-[25%] mt-6 md:p-0 p-2">

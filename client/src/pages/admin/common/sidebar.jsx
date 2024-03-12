@@ -26,6 +26,7 @@ function Sidebar() {
 const SidebarContainer = styled.div`
   width: 250px;
   height: 100%;
+  z-index: 1000;
   top:0;
   background-color: #f8f9fa; 
   color: #333;

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BiSolidDollarCircle } from 'react-icons/bi';
+import { FaRupeeSign } from "react-icons/fa";
 import Logo from '../../assets/logo.png';
 import {
     Navbar,
@@ -59,7 +59,7 @@ const Navigation = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <NavLink to="/" className="flex items-center font-medium md:text-lg text-md text-gray-500 hover:text-green lg:hover:border-b-2 hover:border-green font-quicksand">
+                <NavLink to="/" className="flex items-center font-medium md:text-lg text-md text-gray-500 hover:text-orange lg:hover:border-b-2 hover:border-orange font-quicksand">
                     Home
                 </NavLink>
             </Typography>
@@ -75,27 +75,27 @@ const Navigation = () => {
                     className={`p-1 font-normal font-quicksand ${aboutDropdownOpen ? "text-gray-500" : "text-gray-500"
                         }`}
                 >
-                    <div className="flex items-center md:text-lg hover:text-green justify-between font-medium text-md cursor-pointer">
+                    <div className="flex items-center md:text-lg hover:text-orange justify-between font-medium text-md cursor-pointer">
                         About
                         <span
-                            className="ml-3 text-green-600 cursor-pointer"
+                            className="ml-3 text-orange-600 cursor-pointer"
                             onClick={() => setAboutDropdownOpen(!aboutDropdownOpen)}
                         >
                             {aboutDropdownOpen ? (
-                                <IoIosArrowDown className="hover:text-green" />
+                                <IoIosArrowDown className="hover:text-orange" />
 
                             ) : (
-                                <IoIosArrowDown className="hover:text-green" />
+                                <IoIosArrowDown className="hover:text-orange" />
 
                             )}
                         </span>
                     </div>
                     {aboutDropdownOpen && (
-                        <ul className={`absolute top-8 left-0 z-10 bg-white justify-center items-center text-gray-600 md:border-green p-4 w-[10rem] md:border-b-4  rounded-md`}>
+                        <ul className={`absolute top-8 left-0 z-10 bg-white justify-center items-center text-gray-600 md:border-orange p-4 w-[10rem] md:border-b-4  rounded-md`}>
                             <li>
                                 <NavLink
                                     to="/about"
-                                    className={`block p-2 hover:bg-white rounded-md md:text-md border-green font-medium text-md mt-4 hover:text-green`}
+                                    className={`block p-2 hover:bg-white rounded-md md:text-md border-orange font-medium text-md mt-4 hover:text-orange`}
                                 >
                                     About Us
                                 </NavLink>
@@ -103,7 +103,7 @@ const Navigation = () => {
                             <li>
                                 <NavLink
                                     to="/founder"
-                                    className={`block p-2 hover:bg-white md:text-md rounded-md border-green font-medium text-md mt-4 hover:text-green`}
+                                    className={`block p-2 hover:bg-white md:text-md rounded-md border-orange font-medium text-md mt-4 hover:text-orange`}
                                 >
                                     About Founder
                                 </NavLink>
@@ -118,7 +118,7 @@ const Navigation = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <NavLink to="/causes" className="flex text-16 items-center font-medium md:text-lg text-md text-gray-500 lg:hover:text-green lg:hover:border-b-2 lg:hover:border-green font-quicksand">
+                <NavLink to="/causes" className="flex text-16 items-center font-medium md:text-lg text-md text-gray-500 lg:hover:text-orange lg:hover:border-b-2 lg:hover:border-orange font-quicksand">
 
                     Causes
                 </NavLink>
@@ -135,27 +135,27 @@ const Navigation = () => {
                     color="blue-gray"
                     className={`p-1 font-normal font-quicksand ${eventDropdownOpen ? 'text-gray-500' : 'text-gray-500'}`}
                 >
-                    <div className="flex items-center justify-between hover:text-green font-medium md:text-lg text-md cursor-pointer">
+                    <div className="flex items-center justify-between hover:text-orange font-medium md:text-lg text-md cursor-pointer">
                         Events
                         <span
-                            className="ml-3 text-green-600 cursor-pointer"
+                            className="ml-3 text-orange-600 cursor-pointer"
                             onClick={() => setEventDropdownOpen(!eventDropdownOpen)}
                         >
                             {eventDropdownOpen ? (
-                                <IoIosArrowDown className="hover:text-green" />
+                                <IoIosArrowDown className="hover:text-orange" />
 
                             ) : (
-                                <IoIosArrowDown className="hover:text-green" />
+                                <IoIosArrowDown className="hover:text-orange" />
 
                             )}
                         </span>
                     </div>
                     {eventDropdownOpen && (
-                        <ul className={`absolute top-full left-0 z-10 bg-white justify-center items-center text-gray-600 md:border-green p-4 w-[10rem] md:border-b-4 rounded-md mt-2`}>
+                        <ul className={`absolute top-full left-0 z-10 bg-white justify-center items-center text-gray-600 md:border-orange p-4 w-[10rem] md:border-b-4 rounded-md mt-2`}>
                             <li>
                                 <NavLink
                                     to="/recent"
-                                    className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-green`}
+                                    className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
                                 >
                                     Recent
                                 </NavLink>
@@ -163,7 +163,7 @@ const Navigation = () => {
                             <li>
                                 <NavLink
                                     to="/upcoming"
-                                    className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-green`}
+                                    className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
                                 >
                                     Upcoming
                                 </NavLink>
@@ -178,7 +178,7 @@ const Navigation = () => {
                 color="blue-gray"
                 className="p-1 font-normal"
             >
-                <NavLink to="/gallery" className="flex text-16 items-center font-medium md:text-lg text-md text-gray-500 lg:hover:text-green lg:hover:border-b-2 lg:hover:border-green font-quicksand">
+                <NavLink to="/gallery" className="flex text-16 items-center font-medium md:text-lg text-md text-gray-500 lg:hover:text-orange lg:hover:border-b-2 lg:hover:border-orange font-quicksand">
 
                     Gallery
                 </NavLink>
@@ -189,7 +189,7 @@ const Navigation = () => {
                 color="blue-gray"
                 className="p-1 font-normal font-quicksand"
             >
-                <NavLink to="/contact" className="flex text-16 items-center font-medium md:text-lg text-md text-gray-500 lg:hover:text-green lg:hover:border-b-2 lg:hover:border-green font-quicksand">
+                <NavLink to="/contact" className="flex text-16 items-center font-medium md:text-lg text-md text-gray-500 lg:hover:text-orange lg:hover:border-b-2 lg:hover:border-orange font-quicksand">
                     Contact
                 </NavLink>
             </Typography>
@@ -215,8 +215,8 @@ const Navigation = () => {
 
                     {showDonateButton && (
                         <Link to='/donate'>
-                            <Button variant="gradient" size="sm" className="mb-2 mt-2 mr-12 flex items-center text-gray-600 bg-green text-white rounded-sm hover:bg-primary ">
-                                <BiSolidDollarCircle className="mr-2" />
+                            <Button variant="gradient" size="sm" className="mb-2 mt-2 mr-12 flex items-center text-gray-600 bg-orange text-white rounded-sm hover:bg-primary ">
+                                <FaRupeeSign className="mr-2" />
                                 <span className="mr-1 font-quicksand text-sm font-medium capitalize">Donate</span>
                             </Button>
                         </Link>
@@ -232,7 +232,7 @@ const Navigation = () => {
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
-                                className="h-6 w-6 text-green"
+                                className="h-6 w-6 text-orange"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 strokeWidth={2}
@@ -246,7 +246,7 @@ const Navigation = () => {
                         ) : (
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6 text-green "
+                                className="h-6 w-6 text-orange "
                                 fill="none"
                                 stroke="currentColor"
                                 strokeWidth={2}
@@ -264,8 +264,8 @@ const Navigation = () => {
                     <div className="container mx-auto pb-4">
                         {navList}
                         <Link to="/donate">
-                            <Button variant="gradient" size="sm" className="flex items-center rounded-sm capitalize  bg-green hover:bg-primary">
-                                <BiSolidDollarCircle className="mr-2" />
+                            <Button variant="gradient" size="sm" className="flex items-center rounded-sm capitalize  bg-orange hover:bg-primary">
+                                <FaRupeeSign className="mr-2" />
                                 <span className="mr-1">Donate</span>
                             </Button>
                         </Link>

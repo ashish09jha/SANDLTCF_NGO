@@ -19,7 +19,7 @@ const Inauguration = () => {
                 <div className="lg:order-2">
                     <div className="right-section">
                         <div className="lg:order-1 ml-8" >
-                            <div className=' border-l-4 border-green md:-ml-1 -ml-8 max-w-full'>
+                            <div className=' border-l-4 border-orange md:-ml-1 -ml-8 max-w-full'>
                                 <h1 className="mb-5 text-xl max-w-[99%] w-full lg:text-3xl ml-3 text-gray-800 font-bold font-raleway">
                                     Unveiling New Beginnings: Our Inauguration Ceremony at Sky-Plus Hotel
                                 </h1>
@@ -29,7 +29,7 @@ const Inauguration = () => {
                             </h1>
 
                             <p className=" mb-4 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
-                                On December 30, 2023, we had the privilege of hosting our  <span className='text-green font-semibold'>Inauguration Ceremony</span> at the prestigious Sky-Plus Hotel. It was a momentous occasion that marked the beginning of a new chapter for our organization.
+                                On December 30, 2023, we had the privilege of hosting our  <span className='text-orange font-semibold'>Inauguration Ceremony</span> at the prestigious Sky-Plus Hotel. It was a momentous occasion that marked the beginning of a new chapter for our organization.
                             </p>
                             <p className=" mb-4 mt-3 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
                                 The ceremony was a grand affair, attended by esteemed guests, dignitaries, and
@@ -45,7 +45,7 @@ const Inauguration = () => {
             {/* Main Content */}
             <div className='md:p-8 md:mb-8 -mb-2 md:-mt-4 -mt-12 p-10 md:ml-0 ml-8'>
                 <p className=" mb-4 mt-3 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
-                    The event kicked off with a warm welcome address by our CEO <span className='text-green font-semibold'> Mr. William Kojo Amoabeng</span>., who expressed gratitude to everyone present and highlighted the significance of the occasion. This was followed by inspiring speeches from key members of our organization, who shared their vision for the future and the goals we aim to achieve.
+                    The event kicked off with a warm welcome address by our CEO <span className='text-orange font-semibold'> Mr. William Kojo Amoabeng</span>., who expressed gratitude to everyone present and highlighted the significance of the occasion. This was followed by inspiring speeches from key members of our organization, who shared their vision for the future and the goals we aim to achieve.
                 </p>
                 <p className=" mb-4 mt-3 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
                     One of the highlights of the ceremony was the unveiling of our new logo and brand identity. The design represents our commitment to innovation, growth, and excellence. It was met with great enthusiasm and applause from the audience.

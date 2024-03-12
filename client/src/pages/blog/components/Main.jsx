@@ -57,24 +57,24 @@ const Main = () => {
                                     alt="Blog Image"
                                     className="object-center object-cover"
                                 />
-                                <div className="top-left-text bg-green text-white text-center text-sm font-semibold font-quicksand absolute top-4 md:pt-2 md:pb-2 md:pr-8 md:pl-8 pl-4  pr-4 pb-2 pt-2 rounded-sm">
+                                <div className="top-left-text bg-orange text-white text-center text-sm font-semibold font-quicksand absolute top-4 md:pt-2 md:pb-2 md:pr-8 md:pl-8 pl-4  pr-4 pb-2 pt-2 rounded-sm">
                                     {post.category}
                                 </div>
                             </div>
 
-                            <h3 className="text-sm md:text-lg hover:text-green cursor-pointer font-medium font-quicksand mt-4 mb-2">{post.title}</h3>
+                            <h3 className="text-sm md:text-lg hover:text-orange cursor-pointer font-medium font-quicksand mt-4 mb-2">{post.title}</h3>
                             <div className="text-sm text-gray-500 mb-4 mt-4 flex gap-4">
                                 <div className="flex items-center">
-                                    <FaCalendarAlt className="mr-1 md:h-4 md:w-4 text-green cursor-pointer hover:text-purple" />
+                                    <FaCalendarAlt className="mr-1 md:h-4 md:w-4 text-orange cursor-pointer hover:text-purple" />
                                     <p className="font-quicksand">{post.date}</p>
                                 </div>
                                 <div className="flex items-center">
-                                    <IoPersonCircleOutline className="mr-1 md:h-6 md:w-6 text-green cursor-pointer hover:text-purple" />
+                                    <IoPersonCircleOutline className="mr-1 md:h-6 md:w-6 text-orange cursor-pointer hover:text-purple" />
                                     <p className="font-quicksand md:text-sm"> {post.author}</p>
                                 </div>
                             </div>
                             <p className="text-gray-900 mb-4 text-sm font-quicksand">{post.content}</p>
-                            <div className='md:p-2 p-2 md:mb-4 mb-3 bg-green hover:bg-primary mt-8 flex items-center text-white w-32 text-center hover:bg-blue hover:text-white rounded-md cursor-pointer '>
+                            <div className='md:p-2 p-2 md:mb-4 mb-3 bg-orange hover:bg-primary mt-8 flex items-center text-white w-32 text-center hover:bg-blue hover:text-white rounded-md cursor-pointer '>
                                 <Link to={post.link} className="text-center flex items-center">
                                     Read More
                                     <IoIosArrowForward className='ml-2' />

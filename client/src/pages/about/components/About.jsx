@@ -50,7 +50,7 @@ const About = () => {
                     {/* Right Section */}
                     <div className="right-section">
                         <div className="lg:order-1 ml-8" >
-                            <div className=' border-l-4 border-green md:-ml-1 -ml-8 max-w-full'>
+                            <div className=' border-l-4 border-orange md:-ml-1 -ml-8 max-w-full'>
                                 <h1 className="mb-5 text-xl  max-w-[95%] w-full lg:text-2xl ml-3 text-gray-600 font-semibold font-raleway">
                                     Learn About Us
                                 </h1>
@@ -69,7 +69,7 @@ const About = () => {
                                     className="rounded-none border-b border-blue-gray-50 bg-transparent p-0 mt-4"
                                     indicatorProps={{
                                         className:
-                                            "bg-transparent border-b-2 border-green shadow-none rounded-none",
+                                            "bg-transparent border-b-2 border-orange shadow-none rounded-none",
                                     }}
                                 >
                                     {data.map(({ label, value }) => (
@@ -77,7 +77,7 @@ const About = () => {
                                             key={value}
                                             value={value}
                                             onClick={() => setActiveTab(value)}
-                                            className={activeTab === value ? "text-gray-900 md:text-lg text-lg font-quicksand font-semibold text-green" : "font-quicksand text-lg font-semibold"}
+                                            className={activeTab === value ? "text-gray-900 md:text-lg text-lg font-quicksand font-semibold text-orange" : "font-quicksand text-lg font-semibold"}
                                         >
                                             {label}
                                         </Tab>

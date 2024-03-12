@@ -47,7 +47,7 @@ const Recent = () => {
         <div className='justify-center align-center md:mb-10 '>
             <div className=''>
                 <div className='text-center mx-auto mb-4 mt-24'>
-                    <p className="font-quicksand items-center font-bold text-2xl text-green mb-2 ">
+                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
                         Recent Events
                     </p>
                     <h2 className=" font-quicksand font-bold md:text-5xl text-3xl text-gray-600 mb-4 md:max-w-[700px] md:ml-[25%] mt-6 md:p-0 p-2">
@@ -66,24 +66,24 @@ const Recent = () => {
                                 className="object-center object-cover transition-transform duration-300 transform hover:scale-110"
                             />
                         </div>
-                        <h3 className="text-sm md:text-lg hover:text-green cursor-pointer text-center capitalize font-semibold font-quicksand mt-4 mb-2">{event.title}</h3>
+                        <h3 className="text-sm md:text-lg hover:text-orange cursor-pointer text-center capitalize font-semibold font-quicksand mt-4 mb-2">{event.title}</h3>
                         <div className="container mx-auto mt-8 pl-4 mb-4 flex flex-wrap items-center">
                             {/* Left Content */}
                             <div className="w-full lg:w-1/2 lg:pr-10 ">
                                 <p className='flex items-center gap-2 font-quicksand font-xs pb-1'>
-                                    <FaCalendarAlt className='text-green mr-2 h-4 w-4' />{event.date}
+                                    <FaCalendarAlt className='text-orange mr-2 h-4 w-4' />{event.date}
                                 </p>
                                 <p className='flex items-center gap-2 mt-3 font-quicksand font-xs pb-1'>
-                                    <BsClock className='text-green mr-2 h-4 w-4' />{event.time}
+                                    <BsClock className='text-orange mr-2 h-4 w-4' />{event.time}
                                 </p>
                                 <p className='flex items-center gap-2 mt-3 font-quicksand font-sm pb-1 '>
-                                    <IoLocationSharp className='text-green mr-2 h-6 w-6 -ml-1' />{event.location}
+                                    <IoLocationSharp className='text-orange mr-2 h-6 w-6 -ml-1' />{event.location}
                                 </p>
                             </div>
                             {/* Right Content */}
-                            <div className="w-full lg:w-1/2 md:border-l-4 border-green pl-4 md:mt-0 mt-4 md:ml-0 -ml-4">
+                            <div className="w-full lg:w-1/2 md:border-l-4 border-orange pl-4 md:mt-0 mt-4 md:ml-0 -ml-4">
                                 <p className=' text-xs font-quicksand'>{event.description}</p>
-                                <Link to={event.link} className='mt-4 border border-green border-b-4 md:ml-0  pl-2 pb-1 pt-1 pr-2 rounded-md flex items-center font-quicksand font-medium -ml-1 hover:border-primary'>
+                                <Link to={event.link} className='mt-4 border border-orange border-b-4 md:ml-0  pl-2 pb-1 pt-1 pr-2 rounded-md flex items-center font-quicksand font-medium -ml-1 hover:border-primary'>
                                     {event.buttonText}
                                     <GoArrowRight className='ml-2 mr-2' />
                                 </Link>

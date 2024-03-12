@@ -9,7 +9,7 @@ function AllVolunteer() {
     <Container>
       <Navbar />
       <Container1>
-        {/* <Sidebar /> */}
+        <Sidebar />
         <VolunteerInformation />
       </Container1>
     </Container>
@@ -23,7 +23,7 @@ const Container = styled.div`
 
 const Container1 = styled.div`
   display: flex;
-  flex-direction:column;
+  flex-direction:row;
 `;
 
 export default AllVolunteer;

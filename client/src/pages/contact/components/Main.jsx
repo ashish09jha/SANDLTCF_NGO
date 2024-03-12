@@ -76,8 +76,8 @@ const Main = () => {
             <div className="mx-auto flex flex-wrap items-center ml-12">
                 {/* Left Column */}
                 <div className="w-full lg:w-1/2 lg:pr-10 md:mt-16 -mt-2">
-                    <div className="border-l-4 border-green pl-2">
-                        <h2 className=' text-2xl font-quicksand text-green font-medium ml-2'>Get In Touch</h2>
+                    <div className="border-l-4 border-orange pl-2">
+                        <h2 className=' text-2xl font-quicksand text-orange font-medium ml-2'>Get In Touch</h2>
                     </div>
                     <h2 className=' md:text-5xl text-3xl md:p-0 pr-1 font-quicksand mt-6 font-bold'>
                         Contact for any query
@@ -131,7 +131,7 @@ const Main = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="bg-green hover:bg-purple w-full text-white font-medium rounded-sm md:mt-6 mt-4 font-quicksand px-4 py-2 hover:bg-primary"
+                                className="bg-orange hover:bg-purple w-full text-white font-medium rounded-sm md:mt-6 mt-4 font-quicksand px-4 py-2 hover:bg-primary"
                             >
 
                                 {!loading ? (
