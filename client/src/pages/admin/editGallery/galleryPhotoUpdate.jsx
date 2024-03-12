@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 function GalleryPhotoUpdate() {
     const [images, setImages] = useState([]);
+    const [newImage, setNewImage] = useState(null); 
 
     useEffect(() => {
         fetchData();
@@ -11,26 +12,49 @@ function GalleryPhotoUpdate() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("URL");
+            const response = await axios.get("http://localhost:8000/ngo/Gallery");
             const data = response.data;
-            setImages(data);
+            setImages(data.data);
         } catch (error) {
             console.error("Error fetching images:", error);
         }
     };
 
     const handleAddPhoto = async () => {
-        // Logic to add photo goes here
+        try {
+            const formData = new FormData();
+            formData.append('image', newImage);
+            await axios.post("http://localhost:8000/ngo/Gallery", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            fetchData();
+            setNewImage(null);
+        } catch (error) {
+            console.error("Error adding photo:", error);
+        }
     };
 
     const handleDeletePhoto = async (index) => {
-        // Logic to delete photo goes here
+        try {
+            await axios.delete(`http://localhost:8000/ngo/Gallery/${index}`);
+            fetchData();
+        } catch (error) {
+            console.error("Error deleting photo:", error);
+        }
     };
+
+    const handleChange = (event) => {
+        const imageFile = event.target.files[0];
+        setNewImage(imageFile);
+    }
 
     return (
         <Container>
             <ButtonContainer>
                 <Button onClick={handleAddPhoto}>Add Photo</Button>
+                <input type="file" onChange={handleChange} />
             </ButtonContainer>
             <Gallery>
                 {images.map((image, index) => (
@@ -45,15 +69,16 @@ function GalleryPhotoUpdate() {
 }
 
 const Container = styled.div`
-    margin-top: 20px;
+    margin-top: 50px;
+    padding: 20px;
 `;
 
 const ButtonContainer = styled.div`
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 `;
 
 const Button = styled.button`
-    padding: 8px 16px;
+    padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -88,9 +113,9 @@ const Image = styled.img`
 
 const DeleteButton = styled.button`
     position: absolute;
-    top: 5px;
-    right: 5px;
-    padding: 4px 8px;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
     background-color: #dc3545;
     color: #fff;
     border: none;
