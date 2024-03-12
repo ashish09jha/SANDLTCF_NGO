@@ -120,7 +120,7 @@ const Navigation = () => {
             >
                 <NavLink to="/causes" className="flex text-16 items-center font-medium md:text-lg text-md text-gray-500 lg:hover:text-orange lg:hover:border-b-2 lg:hover:border-orange font-quicksand">
 
-                    Causes
+                    Projects
                 </NavLink>
             </Typography>
 
@@ -136,7 +136,7 @@ const Navigation = () => {
                     className={`p-1 font-normal font-quicksand ${eventDropdownOpen ? 'text-gray-500' : 'text-gray-500'}`}
                 >
                     <div className="flex items-center justify-between hover:text-orange font-medium md:text-lg text-md cursor-pointer">
-                        Events
+                        Media
                         <span
                             className="ml-3 text-orange-600 cursor-pointer"
                             onClick={() => setEventDropdownOpen(!eventDropdownOpen)}
@@ -157,7 +157,7 @@ const Navigation = () => {
                                     to="/recent"
                                     className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
                                 >
-                                    Recent
+                                    News Clippings
                                 </NavLink>
                             </li>
                             <li>
@@ -165,7 +165,31 @@ const Navigation = () => {
                                     to="/upcoming"
                                     className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
                                 >
-                                    Upcoming
+                                    Certificates
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/upcoming"
+                                    className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
+                                >
+                                    Visitor Reviews
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/upcoming"
+                                    className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
+                                >
+                                    Testimonials
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/upcoming"
+                                    className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
+                                >
+                                    Events
                                 </NavLink>
                             </li>
                         </ul>

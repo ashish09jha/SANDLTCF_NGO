@@ -19,7 +19,7 @@ const causesData = [
         raise: "750",
         description: 'With a firm initiative to help these children of the labour class, S & L Trehan Charitable Foundation, has launched Mobile School with afull-fledged mobile buses in National Capital Territory Region after conducting a baseline survey mainly aimed at bringing basic education to underprivileged children. Mobile school has basic facilities like any normal school in Buses. The mobile school will target 2000 migrant children.',
         link: "/donate",
-        join: "/recent"
+        join: "/about"
     },
     {
         image: Img2,
@@ -108,10 +108,7 @@ const Causes = () => {
                             {/* <div className="text-sm text-gray-500 mb-4 mt-4 flex gap-4 justify-center">
                                 <Progress percent={cause.progress} />
                             </div> */}
-                            <div className='flex gap-16 mt-4 justify-center mb-4'>
-                                <p className='font-quicksand'> No of Centres : <span className='font-quicksand font-bold text-orange'>{cause.goal}</span></p>
-                                <p className='font-quicksand'> Students Enrolled : <span className='font-quicksand font-bold text-orange'>{cause.raise}</span> </p>
-                            </div>
+                            
 
                             <p className="text-gray-900 mb-4 text-sm font-quicksand">{cause.description}</p>
                             <div className='justify-center items-center flex md:mt-2'>

@@ -26,18 +26,24 @@ const About = () => {
                                 </h1>
                             </div>
                             <h1 className="mb-4 md:p-0 md:mb-8 text-2xl lg:text-3xl font-semibold md:ml-0 -ml-8 font-quicksand ">
-                                Setting Sail on an Extraordinary Voyage: Uncovering the Inspirational Path of the Founder
+                                Mr. S.K.Trehan
                             </h1>
 
                             <p className=" mb-4 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
-                                The Vision of establishing <span className='text-orange font-medium'>Restoration Foundation International</span> was conceived by
-                                <span className='text-orange font-semibold'> Mr. William Kojo Amoabeng</span>.
+                                <span className='text-orange font-semibold'> Mr. S.K. Trehan</span> is the Founder Trustee & Chairman of S & L Trehan Charitable Foundation. He is one of the renowned philanthropists who left USA only to serve the nation. He worked for more than 35 years in US and came to India for a visit. While he was walking near a construction where he saw a young child whose mother tied him in a rope to a brick so that mother can work and child can’t go anywhere. His heart melted due to a mother labour problem. He decided to work for welfare of these underprivileged children through education and providing them nutritious meal so that they can focus better.
                             </p>
-                            <p className=" mb-4 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
-                                <span className='text-orange font-semibold'> Mr. William Kojo Amoabeng</span> was involved in various children and youth initiatives in Ghana, Canada
-                                and the USA for several years and as a result developed a strong passion to reach out to the un-reached children and youth especially those in critical conditions
-                                deprivation , poverty and neglect.
+                            <p class="mb-4 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
+                               According to him, the three fundamental mantras for success are:<br></br><br></br>
+
+                                <ul class="list-disc mb-4 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand">
+                                    <li><b>Solid Concept</b>: Mr. Trehan emphasizes the importance of staying true to each concept and avoiding mere replication.</li>
+                                    <li><b>Hard Work, Smart Work, Passion</b>: A successful venture requires a balanced blend of diligent effort, intelligent strategies, and unwavering passion.</li>
+                                    <li><b>Engage with Stakeholders</b>:  Paying attention to all aspects during the implementation of plans is crucial to achieving the desired outcomes.</li>
+                                </ul>
+
+
                             </p>
+
                         </div>
                     </div>
                 </div>

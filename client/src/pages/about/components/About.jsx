@@ -16,18 +16,34 @@ const About = () => {
         {
             label: "Mission",
             value: "mission",
-            desc: `Ministering to the needs of the young person and restoring them to their divine destiny`,
+            desc: `Helping the underprivileged community towards development through education and skills training to help them to earn their livelihood with dignity and economic empowerment by networking with other groups and direct intervention for transforming their lives and develop confidence to succeed in their life.`,
         },
         {
             label: "Vision",
             value: "vision",
-            desc: `To develop a community of friendship, personal fulfillment and recreation for all participants`,
+            desc: [
+                "To bring out the divinity in mankind and seeks a world where people live in peace and prosperity and they have dignity, respect and equal opportunity.",
+                "A happy, healthy and creative child whose rights are protected and honored in a society that is built on respect for dignity and justice for all.",
+                "Economic empowerment by networking with other groups and direct intervention for transforming their lives and develop confidence to succeed in their life.",
+                "Using latest technologies and knowledge in its activities at ground level, the grass root level and effective functioning in surroundings of construction sites of Millennium City.",
+                "To contribute to the enhancement of a feeling of pride in being a responsible citizen to empower community and relevance to today's world.",
+                "To make S&L TCF a reputed nonprofit organization that ensure lasting change for unprivileged children and restored their basic rights to education, healthcare, nutrition and holistic improvement .",
+                "To ensure restoring the rights of underprivileged children ranges from making Mobile Schools function better, ensuring healthcare becomes a reality , addressing the issue of child labour , preventing child from trafficking and giving girls equal opportunities.",
+                "Working towards achieving basic and lively hood literacy. Imparting free education and all possible assistance to the down trodden",
+                "Launching programs for physical, mental and spiritual health as the reality of childhood is very different .",
+                "Helping the underprivileged community towards development through education and skills training to help them to earn their livelihood with dignity."
+
+            ].map((point, index) => <li key={index}>{point}</li>).reduce((acc, curr) => [acc, <br key={`br_${Math.random()}`} />, curr])
         },
         {
             label: "Values",
             value: "core-values",
-            desc: `We are divinely Chosen to Share and Share. Donors, Board, Staff, Volunteers and Beneficiaries are set for social development
-            and re-orientation. We respect each individual's dignity and uniqueness`,
+            desc: [
+
+                "Providing free basic education to Economically Weaker Sections / underprivileged / Differently Abled / Divyang / migrant children.",
+                "Providing opportunity to  dropouts children and further connect them to skill development programmes so that they can come into the mainstream of the society.",
+                "Preventing them from social ills such as; child marriage, drug addition, begging, rag-picking, etc."
+            ].map((point, index) => <li key={index}>{point}</li>).reduce((acc, curr) => [acc, <br key={`br_${Math.random()}`} />, curr])
         },
     ];
 
@@ -56,13 +72,15 @@ const About = () => {
                                 </h1>
                             </div>
                             <h1 className="mb-4 md:p-0 md:mb-8 text-3xl lg:text-5xl font-semibold md:ml-0 -ml-8 font-quicksand">
-                                Worldwide non-profit charity organization
+                                S&L Trehan Charitable Foundation
                             </h1>
 
-                            <p className=" mb-4 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand ">
-                                Our mandate is to train, educate, entertain, develop and nurture (TEEN) the youth in the areas of Health, Environment, Education, Construction,
-                                Water and Sanitaion to make them conscious and responsible leaders in their respective communities.
-                            </p>
+                            <blockquote class="relative mb-4 text-md md:p-0 md:text-md md:ml-0 -ml-8 font-quicksand">
+                                <p>&ldquo;All the resources over and above our needs should be spent on the needy and underprivileged children of God&rdquo;</p>
+                                <footer class="text-right">- Surinder K. Trehan</footer>
+                            </blockquote>
+
+
 
                             <Tabs value={activeTab} className='md:ml-0 -ml-8 md:mb-0 -mb-14'>
                                 <TabsHeader

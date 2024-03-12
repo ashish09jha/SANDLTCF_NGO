@@ -45,8 +45,8 @@ const Home = () => {
                     <Impact />
                     <Causes />
                     <Events />
-                    <Volunteer />
                     <Blog />
+                    <Volunteer />
                     <Footer />
                     <ScrollToTop />
                 </div>

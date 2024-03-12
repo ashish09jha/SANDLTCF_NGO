@@ -38,9 +38,13 @@ const Blog = () => {
 
     return (
         <section className="p-6 md:mt-24">
-            <div className="container mx-auto pb-8">
-                <h2 className="md:text-4xl font-bold text-gray-600 text-2xl font-raleway mb-6 text-center md:mb-12">Our Success Stories</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className='text-center mx-auto mb-4 mt-8'>
+                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
+                        Testimonials
+                    </p>
+                </div>
+            
+                {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {blogData.map((post, index) => (
                         <div
                             key={index}
@@ -73,8 +77,7 @@ const Blog = () => {
 
                         </div>
                     ))}
-                </div>
-            </div>
+                </div> */}
         </section>
     );
 };
