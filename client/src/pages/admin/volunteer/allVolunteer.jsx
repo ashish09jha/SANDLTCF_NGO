@@ -19,12 +19,12 @@ function AllVolunteer() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Ensure the container takes full height of the viewport */
+  height: 100vh; 
 `;
 
 const MainContent = styled.div`
-  flex: 1; /* Allow the main content to grow and fill the remaining space */
-  overflow-y: auto; /* Enable vertical scrolling for the content */
+  flex: 1; 
+  overflow-y: auto; 
 `;
 
 export default AllVolunteer;

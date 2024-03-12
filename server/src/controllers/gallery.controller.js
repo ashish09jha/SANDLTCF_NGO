@@ -20,6 +20,7 @@ const addGaleryPhoto=asyncHandler(async(req,res)=>{
         throw new apiError(400,"image is required");
     }
     const resp1=await uploadOnCloudinary(image.path);
+    console.log(resp1);
     const resp2={image:resp1.url}
 
     try{
@@ -32,6 +33,7 @@ const addGaleryPhoto=asyncHandler(async(req,res)=>{
 })
 
 const deleteGalleryPhoto=asyncHandler(async(req,res)=>{
+
 })
 
 export{
