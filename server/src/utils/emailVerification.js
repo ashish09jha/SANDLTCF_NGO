@@ -1,30 +1,43 @@
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 
-function mailVerification(Email, Message) {
-    const transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false,
-        auth: {
-            user: "maddison53@ethereal.email",
-            pass: "jn7jnAPss4f63QBp6D",
-        },
-    });
+const verification = (Email,message) => {
+  dotenv.config({
+    path: "./.env",
+  });
 
-    // async..await is not allowed in global scope, must use a wrapper
-    async function main() {
-        const info = await transporter.sendMail({
-            from: '<maddison53@ethereal.email>', 
-            to: Email,
-            subject: "OTP for verification",
-            text: Message, 
-            html: `<b>${Message}</b>`,
-        });
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.USER,
+      pass: process.env.PASSWORD,
+    },
+  });
 
-        console.log("Message sent: %s", info.messageId);
+  const mailOptions = {
+    from: {
+      name: "Devesh Kumar Srivastav",
+      address: process.env.USER,
+    },
+    to: [`${Email}`],
+    subject: "OTP VERIFICATION",
+    text: `${message}`,
+    html:`<b>${message}</b>`,
+  };
+
+  const sendMail = async (transporter, mailOptions) => {
+    try {
+      await transporter.sendMail(mailOptions);
+      console.log("mail send successfully");
+    } catch (error) {
+      console.log("Error:", error);
     }
+  };
 
-    main().catch(console.error);
-}
+  sendMail(transporter, mailOptions);
+};
 
-export { mailVerification };
+export  {verification};

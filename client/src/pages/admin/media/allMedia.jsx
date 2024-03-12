@@ -20,11 +20,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh; 
+  position:relative;
 `;
 
 const MainContent = styled.div`
   flex: 1;
   overflow-y: auto; 
+  margin-left:250px;
+  position:relative;
+  z-index:2;
 `;
 
 export default AllMedia;
