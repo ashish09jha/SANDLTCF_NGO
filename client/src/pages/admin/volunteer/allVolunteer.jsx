@@ -8,10 +8,10 @@ function AllVolunteer() {
   return (
     <Container>
       <Navbar />
-      <Container1>
-        <Sidebar />
+      <Sidebar />
+      <MainContent>
         <VolunteerInformation />
-      </Container1>
+      </MainContent>
     </Container>
   );
 }
@@ -19,11 +19,12 @@ function AllVolunteer() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh; /* Ensure the container takes full height of the viewport */
 `;
 
-const Container1 = styled.div`
-  display: flex;
-  flex-direction:row;
+const MainContent = styled.div`
+  flex: 1; /* Allow the main content to grow and fill the remaining space */
+  overflow-y: auto; /* Enable vertical scrolling for the content */
 `;
 
 export default AllVolunteer;

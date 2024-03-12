@@ -21,63 +21,52 @@ function VolunteerInformation() {
 
     return (
         <Content>
-            {volunteer.map((element, index) => (
-                <CardContainer key={index}>
-                    <Card>
-                        <CardHeader>Sr.No: {index+1}</CardHeader>
-                        <CardBody>
-                            <CardBodyItem>Name: {element.name}</CardBodyItem>
-                            <CardBodyItem>Email: {element.email}</CardBodyItem>
-                            <Description>Description: {element.description}</Description>
-                        </CardBody>
-                    </Card>
-                </CardContainer>
-            ))}
+            <TableWrapper>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volunteer.map((element, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{element.name}</td>
+                                <td>{element.email}</td>
+                                <td>{element.description}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </TableWrapper>
         </Content>
     );
 }
 
 const Content = styled.div`
     padding-top: 80px; /* Add padding to create space between navbar and content */
-    display: flex;
-    flex-wrap: wrap;
+    overflow: auto; /* Enable scrolling if content overflows */
 `;
 
-const CardContainer = styled.div`
-    width: 50%;
-    box-sizing: border-box;
-    padding: 0 10px;
-    margin-bottom: 20px;
-`;
-
-const Card = styled.div`
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-`;
-
-const CardHeader = styled.div`
-    font-weight: bold;
-    margin-bottom: 10px;
-`;
-
-const CardBody = styled.div`
-    flex: 1;
-`;
-
-const CardBodyItem = styled.div`
-    margin-bottom: 5px;
-`;
-
-const Description = styled.div`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 50px;
-    overflow-y: auto;
+const TableWrapper = styled.div`
+    margin-left: 250px; /* Adjust as per Sidebar width */
+    overflow-x: auto; /* Enable horizontal scrolling if table content overflows */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
 `;
 
 export default VolunteerInformation;
