@@ -1,6 +1,9 @@
 import Img1 from '../../../assets/causes-1.jpg';
 import Img2 from '../../../assets/causes-2.jpg';
 import Img3 from '../../../assets/causes-3.jpg';
+import Img4 from '../../../assets/causes-4.jpg';
+import Img5 from '../../../assets/causes-5.jpg';
+import Img6 from '../../../assets/causes-6.jpg';
 import { GoArrowRight } from 'react-icons/go';
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
@@ -8,52 +11,82 @@ import { Link } from 'react-router-dom';
 
 const causesData = [
     {
-        category: "Arts",
+        category: "Mobile School",
         image: Img1,
-        title: 'Providing Education for All',
+        title: 'Mobile School',
         progress: 2.54,
-        goal: "Ghc 65,000",
-        raise: "Ghc 1,650",
-        description: 'We aim to ensure that every child has access to quality education, regardless of their background. Your support helps us reach this goal.',
+        goal: "5",
+        raise: "750",
+        description: 'With a firm initiative to help these children of the labour class, S & L Trehan Charitable Foundation, has launched Mobile School with afull-fledged mobile buses in National Capital Territory Region after conducting a baseline survey mainly aimed at bringing basic education to underprivileged children. Mobile school has basic facilities like any normal school in Buses. The mobile school will target 2000 migrant children.',
         link: "/donate",
         join: "/about"
     },
     {
         image: Img2,
         category: "Article",
-        title: 'Clean Water for Communities',
+        title: 'Skill Development & Training',
         progress: 3.75,
-        goal: "Ghc 40,000",
-        raise: "Ghc 1,500",
-        description: 'Our mission is to bring clean and safe drinking water to underserved communities. Join us in making a significant impact.',
+        goal: "3",
+        raise: "500",
+        description: 'Surinder & Lalita Trehan Charitable Foundation has set up Skill Development & Vocational Education Centre, near Sultanpur Sanctuary, Farrukhnagar, Gurgaon wherein 1500 rural boys/ girls / women will be trained for various skill oriented programmes.Survey has been done in 5 selected villages in the vicinity.Helping the underprivileged community towards development through education and skills training, livelihoods.',
         link: "/donate",
         join: "/about"
     },
     {
         image: Img3,
         category: "Announcement",
-        title: 'Fighting Hunger Together',
+        title: 'Balsthal Programme',
         progress: 5,
-        goal: "Ghc 40,000",
-        raise: "Ghc 2,000",
-        description: 'Together, we can combat hunger in our local neighborhoods and communities. Your contribution helps feed those in need.',
+        goal: "2",
+        raise: "350",
+        description: '"Balsthal" is one of our flagship programme imparting free education to underprivileged/migrant children. We have established "Balsthal" centre especially for children of construction workers at L-Block,Cassia Marg, DLF City Phase-II wherein daily classes are held by trained teachers. Providing Free mid-day meal, study material and uniform, covering underprivilidged children of the labourers.',
+        link: "/donate",
+        join: "/about"
+    },
+    {
+        image: Img4,
+        category: "Announcement",
+        title: ' Food Prog.',
+        progress: 5,
+        goal: "2",
+        raise: "350",
+        description: 'S&L Foundation has been providing free nutritious food 1000 needy people including children studying at Mobile School camps.S&L Foundation has been working for Covid affected people since first lockdown and supported more than 3000 familes in providing free ration covid relief material kits and cooked food and water to Covid patients and their attendants in Lockdown 1 and lockdown 2.',
+        link: "/donate",
+        join: "/about"
+    },
+    {
+        image: Img5,
+        category: "Announcement",
+        title: 'Medical Assistance to Migrant Labour',
+        progress: 5,
+        goal: "2",
+        raise: "350",
+        description: '"Balsthal" is one of our flagship programme imparting free education to underprivileged/migrant children. We have established "Balsthal" centre especially for children of construction workers at L-Block,Cassia Marg, DLF City Phase-II wherein daily classes are held by trained teachers. Providing Free mid-day meal, study material and uniform, covering underprivilidged children of the labourers.',
+        link: "/donate",
+        join: "/about"
+    },
+    {
+        image: Img6,
+        category: "Vocational Training to Women",
+        title: 'Vocational Training Prog. for Women',
+        progress: 5,
+        goal: "2",
+        raise: "350",
+        description: 'Surinder & Lalita Trehan Charitable Foundation has set up Skill Development & Vocational Education Centre, near Sultanpur Sanctuary, Farrukhnagar, Gurgaon wherein 1500 rural boys/ girls/women will be trained for various skill oriented programmes. Survey has been done in 5 selected villages in the vicinity. Helping the underprivileged community towards development through education and skills training, livelihoods.',
         link: "/donate",
         join: "/about"
     },
 ];
 
 
-const Main = () => {
+const Causes = () => {
     return (
-        <div className='justify-center align-center md:mt-8 -mt-4'>
+        <div className='justify-center align-center md:mt-6 -mt-4'>
             <div className=''>
-                <div className='text-center mx-auto mb-4 mt-24'>
+                <div className='text-center mx-auto mb-4 mt-8'>
                     <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
-                        Popular Causes
+                        Projects
                     </p>
-                    <h2 className=" font-quicksand font-bold md:text-5xl text-3xl text-gray-600 mb-4 md:max-w-[700px] md:ml-[25%] mt-6 md:p-0 p-2">
-                        Let us know about charity causes around the world
-                    </h2>
                 </div>
             </div>
             <div className="flex justify-center gap-4 mt-8 md:p-6 p-6 ">
@@ -71,22 +104,19 @@ const Main = () => {
                                 />
                             </div>
 
-                            <h3 className="text-sm md:text-lg hover:text-green cursor-pointer text-center font-medium font-quicksand mt-4 mb-2">{cause.title}</h3>
-                            <div className="text-sm text-gray-500 mb-4 mt-4 flex gap-4 justify-center">
+                            <h3 className="text-sm md:text-lg hover:text-orange cursor-pointer text-center font-medium font-quicksand mt-4 mb-2">{cause.title}</h3>
+                            {/* <div className="text-sm text-gray-500 mb-4 mt-4 flex gap-4 justify-center">
                                 <Progress percent={cause.progress} />
-                            </div>
-                            <div className='flex gap-16 mt-4 justify-center mb-4'>
-                                <p className='font-quicksand'> Goal : <span className='font-quicksand font-bold text-green'>{cause.goal}</span></p>
-                                <p className='font-quicksand'> Raised : <span className='font-quicksand font-bold text-green'>{cause.raise}</span> </p>
-                            </div>
+                            </div> */}
+                            
 
                             <p className="text-gray-900 mb-4 text-sm font-quicksand">{cause.description}</p>
                             <div className='justify-center items-center flex md:mt-2'>
-                                <Link to={cause.join} className='flex items-center border-b-4 font-semibold border border-green hover:border-primary p-2 text-gray-600 font-quicksand rounded-md m-2 cursor-pointer'>
+                                <Link to={cause.join} className='flex items-center border-b-4 font-semibold border border-orange hover:border-primary p-2 text-gray-600 font-quicksand rounded-md m-2 cursor-pointer'>
                                     Lean More
                                     <GoArrowRight className="ml-2 mr-2" />
                                 </Link>
-                                <Link to={cause.link} className='flex items-center border-b-4 font-semibold border border-green hover:border-primary p-2 text-gray-600 font-quicksand rounded-md m-2 cursor-pointer'>
+                                <Link to={cause.link} className='flex items-center border-b-4 font-semibold border border-orange hover:border-primary p-2 text-gray-600 font-quicksand rounded-md m-2 cursor-pointer'>
                                     Donate
                                     <GoArrowRight className="ml-2 mr-2" />
                                 </Link>
@@ -99,4 +129,4 @@ const Main = () => {
         </div>
     )
 }
-export default Main;
+export default Causes;

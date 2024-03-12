@@ -45,7 +45,7 @@ const Service = () => {
                         What We Do?
                     </p>
                     <h2 className=" font-quicksand font-bold md:text-5xl text-3xl md:-p-0 p-4 text-gray-600 mb-4 md:-mb-6 md:max-w-[700px] md:ml-[32%] md:mt-6 mt-4">
-                        We believe that we can save more lives with you
+                    God is formless, serve god through children of God
                     </h2>
                 </div>
                 <div className="services mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mt-10 md:mt-24 md:p-7 p-6 md:ml-24 ">

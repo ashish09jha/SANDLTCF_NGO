@@ -1,98 +1,82 @@
-import Img2 from '../../../assets/event-1.jpg';
-import Img3 from '../../../assets/event-2.jpg';
-import { GoArrowRight } from 'react-icons/go';
-import { BsClock } from 'react-icons/bs';
-import { IoLocationSharp } from 'react-icons/io5';
+import card1 from "../../../assets/blog-1.jpg";
+import card2 from "../../../assets/blog-2.jpg";
+import card6 from "../../../assets/blog-3.jpg";
 import { FaCalendarAlt } from 'react-icons/fa';
+import { IoPersonCircleOutline } from 'react-icons/io5';
+import { IoIosArrowForward } from 'react-icons/io';
 import { Link } from 'react-router-dom';
-import Inauguration from '../../../assets/inauguration/3.jpg';
 
-const eventsData = [
-    {
-        title: 'Inauguration Ceremony',
-        date: "30-Dec-23",
-        time: "16:00 - 18:00",
-        location: "Sky-Plus Hotel",
-        buttonText: "Read More!",
-        description: 'Our Inauguration Ceremony on December 30, 2023, at Sky-Plus Hotel was a memorable celebration of new beginnings!',
-        image: Inauguration,
-        link: "/inauguration",
+const Blog = () => {
 
-    },
-    {
-        title: 'Lorem ipsum dolor ',
-        date: "22-Jun-23",
-        time: "8:00 - 10:00",
-        location: "Volta Region",
-        buttonText: "Join Now!",
-        description: 'Lorem Ipsum is simply dummy text of the industry',
-        image: Img2,
-        link: "#",
+    const blogData = [
+        {
+            category: "Community Outreach",
+            image: card6,
+            title: 'Empowering Local Communities through Education Initiatives',
+            content: 'Discover how our organization is making education accessible and empowering local communities. Learn about our initiatives starting October 1, 2023.',
+            date: 'October 10, 2023',
+            link: "/blog1",
+        },
+        {
+            image: card1,
+            category: "Impact Stories",
+            title: 'Changing Lives: A Year in Review of our Philanthropic Journey',
+            content: 'As we step into a new year, let us reflect on the positive impact we made in the past 12 months. Join us on this journey and explore the stories of lives transformed.',
+            date: 'October 15, 2023',
+            link: "/blog2",
+        },
+        {
+            image: card2,
+            category: "Announcement",
+            title: 'Building Hope: Our Latest Project for Shelter and Support',
+            content: 'Learn more about our ongoing project focused on providing shelter and support to those in need. Discover the reasons behind our mission.',
+            date: 'October 20, 2023',
+            link: "/blog3",
 
-    },
-    {
-        title: 'Lorem ipsum dolor ',
-        date: "22-Jun-23",
-        time: "8:00 - 10:00",
-        location: "Volta Region",
-        buttonText: "Join Now!",
-        description: 'Lorem Ipsum is simply dummy text of the industry',
-        image: Img3,
-        link: "#",
-    },
-];
+        },
+    ];
 
-const Recent = () => {
     return (
-        <div className='justify-center align-center md:mb-10 '>
-            <div className=''>
-                <div className='text-center mx-auto mb-4 mt-24'>
-                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
-                        Recent Events
-                    </p>
-                    <h2 className=" font-quicksand font-bold md:text-5xl text-3xl text-gray-600 mb-4 md:max-w-[700px] md:ml-[25%] mt-6 md:p-0 p-2">
-                        Be ready to be updated on our recent charity events
-                    </h2>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 md:p-6">
-                {eventsData.map((event, index) => (
-                    <div key={index} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
-                        <div className="image-container relative cursor-pointer overflow-hidden">
-                            <img
-                                src={event.image}
-                                alt="Recent Events"
-                                className="object-center object-cover transition-transform duration-300 transform hover:scale-110"
-                            />
-                        </div>
-                        <h3 className="text-sm md:text-lg hover:text-orange cursor-pointer text-center capitalize font-semibold font-quicksand mt-4 mb-2">{event.title}</h3>
-                        <div className="container mx-auto mt-8 pl-4 mb-4 flex flex-wrap items-center">
-                            {/* Left Content */}
-                            <div className="w-full lg:w-1/2 lg:pr-10 ">
-                                <p className='flex items-center gap-2 font-quicksand font-xs pb-1'>
-                                    <FaCalendarAlt className='text-orange mr-2 h-4 w-4' />{event.date}
-                                </p>
-                                <p className='flex items-center gap-2 mt-3 font-quicksand font-xs pb-1'>
-                                    <BsClock className='text-orange mr-2 h-4 w-4' />{event.time}
-                                </p>
-                                <p className='flex items-center gap-2 mt-3 font-quicksand font-sm pb-1 '>
-                                    <IoLocationSharp className='text-orange mr-2 h-6 w-6 -ml-1' />{event.location}
-                                </p>
+        <section className="p-6 md:mt-24">
+            <div className="container mx-auto pb-8">
+                <h2 className="md:text-4xl font-bold text-gray-600 text-2xl font-raleway mb-6 text-center md:mb-12">Our Success Stories</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    {blogData.map((post, index) => (
+                        <div
+                            key={index}
+                            className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
+                            <div className="image-container relative cursor-pointer">
+                                <div className="image-overlay absolute inset-0 bg-black opacity-0 transition-opacity duration-300 hover:opacity-70"></div>
+                                <img
+                                    src={post.image}
+                                    alt="Blog Image"
+                                    className="object-center object-cover"
+                                />
+                                <div className="top-left-text bg-orange text-white text-center text-sm font-semibold font-quicksand absolute top-4 md:pt-2 md:pb-2 md:pr-8 md:pl-8 pl-4  pr-4 pb-2 pt-2 rounded-sm">
+                                    {post.category}
+                                </div>
                             </div>
-                            {/* Right Content */}
-                            <div className="w-full lg:w-1/2 md:border-l-4 border-orange pl-4 md:mt-0 mt-4 md:ml-0 -ml-4">
-                                <p className=' text-xs font-quicksand'>{event.description}</p>
-                                <Link to={event.link} className='mt-4 border border-orange border-b-4 md:ml-0  pl-2 pb-1 pt-1 pr-2 rounded-md flex items-center font-quicksand font-medium -ml-1 hover:border-primary'>
-                                    {event.buttonText}
-                                    <GoArrowRight className='ml-2 mr-2' />
+                            <h3 className="text-sm md:text-lg hover:text-orange cursor-pointer font-medium font-quicksand mt-4 mb-2">{post.title}</h3>
+                            <div className="text-sm text-gray-500 mb-4 mt-4 flex gap-4">
+                                <div className="flex items-center">
+                                    <FaCalendarAlt className="mr-1 md:h-4 md:w-4 text-orange cursor-pointer hover:text-purple" />
+                                    <p className="font-quicksand">{post.date}</p>
+                                </div>
+                            </div>
+                            <p className="text-gray-900 mb-4 text-sm font-quicksand">{post.content}</p>
+                            <div className='md:p-2 p-2 md:mb-4 mb-3 bg-orange hover:bg-primary md:mt-8 mt-4 flex items-center text-white w-32 text-center hover:bg-blue hover:text-white rounded-md cursor-pointer '>
+                                <Link to={post.link} className="text-center flex items-center md:mb-0 -mb-1">
+                                    Read More
+                                    <IoIosArrowForward className='ml-2' />
                                 </Link>
                             </div>
+
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
-    )
-}
-export default Recent;
+        </section>
+    );
+};
+
+export default Blog;
