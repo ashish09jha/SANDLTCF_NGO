@@ -54,16 +54,16 @@ const Main = () => {
             // Check if the response is successful
             if (res.ok) {
                 // Use SweetAlert to show success message
-                swal("Restoration Foundation International", "Information Submitted", "success");
+                swal("S&L Trehan Charitable Foundation", "Information Submitted", "success");
                 // Optionally, you can handle other actions after a successful submission here
             } else {
                 // Handle errors if the response is not successful
-                swal("Restoration Foundation International", "Error Sending Information", "error");
+                swal("S&L Trehan Charitable Foundation", "Error Sending Information", "error");
             }
         } catch (error) {
             // Handle errors in the fetch or other unexpected errors
             console.log(error);
-            swal("Restoration Foundation International", "Error Sending Information", "error");
+            swal("S&L Trehan Charitable Foundation", "Error Sending Information", "error");
         }
 
         setLoading(false);

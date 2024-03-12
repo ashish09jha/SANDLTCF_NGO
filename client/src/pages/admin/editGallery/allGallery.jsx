@@ -10,7 +10,7 @@ function AllGallery() {
       <Navbar />
       <Sidebar />
       <MainContent>
-        <GalleryPhotoUpdate/>
+        <GalleryPhotoUpdate />
       </MainContent>
     </Container>
   );
@@ -18,15 +18,16 @@ function AllGallery() {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  height: 100vh; 
+  height: 100vh;
+  position: relative; /* Ensure the container is relatively positioned */
 `;
 
 const MainContent = styled.div`
   flex: 1;
-  overflow-y: auto; 
+  overflow-y: auto;
+  margin-left: 250px; /* Adjust this value according to your sidebar width */
+  position: relative; /* Ensure the main content is relatively positioned */
+  z-index: 2; /* Set z-index higher than the sidebar */
 `;
 
 export default AllGallery;
-
- 
