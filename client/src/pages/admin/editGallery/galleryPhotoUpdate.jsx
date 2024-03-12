@@ -13,8 +13,9 @@ function GalleryPhotoUpdate() {
     const fetchData = async () => {
         try {
             const response = await axios.get("http://localhost:8000/ngo/Gallery");
-            const data = response.data;
-            setImages(data.data);
+            const data1 = response.data;
+            const data = data1.data
+            setImages(data);
         } catch (error) {
             console.error("Error fetching images:", error);
         }
@@ -53,13 +54,13 @@ function GalleryPhotoUpdate() {
     return (
         <Container>
             <ButtonContainer>
-                <Button onClick={handleAddPhoto}>Add Photo</Button>
                 <input type="file" onChange={handleChange} />
+                <Button onClick={handleAddPhoto}>Add Photo</Button>
             </ButtonContainer>
             <Gallery>
                 {images.map((image, index) => (
                     <ImageContainer key={index}>
-                        <Image src={image.url} alt={`Image ${index}`} />
+                        <Image src={image.image} alt={`Image ${index}`} />
                         <DeleteButton onClick={() => handleDeletePhoto(index)}>Delete</DeleteButton>
                     </ImageContainer>
                 ))}
@@ -75,6 +76,10 @@ const Container = styled.div`
 
 const ButtonContainer = styled.div`
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
 `;
 
 const Button = styled.button`
@@ -88,6 +93,7 @@ const Button = styled.button`
     &:hover {
         background-color: #0056b3;
     }
+    margin-left: 10px;
 `;
 
 const Gallery = styled.div`

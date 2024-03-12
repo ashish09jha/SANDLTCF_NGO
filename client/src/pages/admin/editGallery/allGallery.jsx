@@ -7,8 +7,8 @@ import styled from 'styled-components';
 function AllGallery() {
   return (
     <Container>
-      {/* <Navbar /> */}
-      {/* <Sidebar /> */}
+      <Navbar />
+      <Sidebar />
       <MainContent>
         <GalleryPhotoUpdate/>
       </MainContent>
