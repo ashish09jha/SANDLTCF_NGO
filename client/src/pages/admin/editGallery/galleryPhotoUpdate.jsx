@@ -42,9 +42,11 @@ function GalleryPhotoUpdate() {
     };
 
     const handleDeletePhoto = async (id) => {
+
         const deleteData = async () => {
             try {
                 await axios.delete(`http://localhost:8000/ngo/Gallery/C/${id}`);
+                setImages(prevImages => prevImages.filter(image => image._id !== id));
             } catch (error) {
                 console.error("Error deleting photo:", error);
             }
