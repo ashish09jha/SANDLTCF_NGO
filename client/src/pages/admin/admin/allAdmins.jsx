@@ -1,14 +1,30 @@
-import React from "react";
-import Navbar from "../common/navbar.jsx";
-import  Sidebar  from "../common/sidebar.jsx";
+import React from 'react';
+import Navbar from '../common/navbar.jsx';
+import Sidebar from '../common/sidebar.jsx';
+import AdminInformation from './addAdmin.jsx';
+import styled from 'styled-components';
 
-function AllAdmins() {
+function AllAdmin() {
   return (
-    <div>
-        <Navbar/>
-        <Sidebar/>
-    </div>
+    <Container>
+      <Navbar />
+      <Sidebar />
+      <MainContent>
+        <AdminInformation />
+      </MainContent>
+    </Container>
   );
 }
 
-export default AllAdmins;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh; 
+`;
+ 
+const MainContent = styled.div`
+  flex: 1; 
+  overflow-y: auto; 
+`;
+
+export default AllAdmin;
