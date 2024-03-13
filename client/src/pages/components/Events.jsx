@@ -6,7 +6,7 @@ import { BsClock } from 'react-icons/bs';
 import { IoLocationSharp } from 'react-icons/io5';
 import { FaCalendarAlt } from 'react-icons/fa';
 
-const eventsData = [
+const GalleryData = [
     {
         title: 'Trip to Sultanpur Bird Sanctuary',
         date: "02-March-24",
@@ -42,7 +42,7 @@ const eventsData = [
     },
 ];
 
-const Events = () => {
+const Gallery = () => {
     return (
         <div className='justify-center align-center md:mb-10'>
             <div className=''>
@@ -55,4 +55,4 @@ const Events = () => {
         </div>
     )
 }
-export default Events;
+export default Gallery;

@@ -189,7 +189,7 @@ const Navigation = () => {
                                     to="/upcoming"
                                     className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
                                 >
-                                    Events
+                                    Testimonials
                                 </NavLink>
                             </li>
                         </ul>
@@ -239,7 +239,7 @@ const Navigation = () => {
 
                     {showDonateButton && (
                         <Link to='/donate'>
-                            <Button variant="gradient" size="sm" className="mb-2 mt-2 mr-12 flex items-center text-gray-600 bg-orange text-white rounded-sm hover:bg-primary ">
+                            <Button variant="gradient" size="sm" className="mb-2 mt-2 mr-12 flex items-center text-gray-600 bg-orange text-white rounded-xl hover:bg-primary ">
                                 <FaRupeeSign className="mr-2" />
                                 <span className="mr-1 font-quicksand text-sm font-medium capitalize">Donate</span>
                             </Button>
@@ -287,12 +287,14 @@ const Navigation = () => {
                 <MobileNav open={openNav}>
                     <div className="container mx-auto pb-4">
                         {navList}
-                        <Link to="/donate">
-                            <Button variant="gradient" size="sm" className="flex items-center rounded-sm capitalize  bg-orange hover:bg-primary">
+                        <Link to='/donate'>
+                            <Button variant="gradient" size="sm" className="mb-2 mt-2 mr-12 flex items-center text-gray-600 bg-orange text-white rounded-xl hover:bg-primary px-8 py-3 text-base">
                                 <FaRupeeSign className="mr-2" />
-                                <span className="mr-1">Donate</span>
+                                <span className="mr-1 font-quicksand capitalize">Donate</span>
                             </Button>
                         </Link>
+
+
                     </div>
                 </MobileNav>
             </Navbar>
