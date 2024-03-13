@@ -1,58 +1,76 @@
-import Img2 from '../../assets/event-1.jpg';
-import Img3 from '../../assets/event-2.jpg';
-import Img7 from '../../assets/event-7.jpg';
-import { GoArrowRight } from 'react-icons/go';
-import { BsClock } from 'react-icons/bs';
-import { IoLocationSharp } from 'react-icons/io5';
-import { FaCalendarAlt } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
 
-const eventsData = [
-    {
-        title: 'Trip to Sultanpur Bird Sanctuary',
-        date: "02-March-24",
-        time: "8:00 - 10:00",
-        location: "Sultanpur, Haryana",
-        buttonText: "Read More!",
-        description: 'An educational trip for sec-29, Mobile school students to Sultanpur Bird Sanctuary.',
-        image: Img2,
-        link: "#",
+function Main() {
+  const [gallery, setGallery] = useState([]);
 
-    },
-    {
-        title: 'Certificate Distribution',
-        date: "1-March-24",
-        time: "8:00 - 10:00",
-        location: "Gurgaon, Haryana",
-        buttonText: "Join Now!",
-        description: 'Certificate Distribution to Mobile School Students',
-        image: Img7,
-        link: "#",
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resp = await axios.get("http://localhost:8000/ngo/Gallery");
+        const resp1 = resp.data;
+        const data = resp1.data;
+        const filterData = data.filter((element) => element.status);
+        setGallery(filterData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
-
-    },
-    {
-        title: 'Birthday Celebration',
-        date: "22-Mar-24",
-        time: "8:00 - 10:00",
-        location: "Gurgaon, Haryana",
-        buttonText: "Join Now!",
-        description: 'Birthday Celebration with Mobile School students',
-        image: Img3,
-        link: "#",
-    },
-];
-
-const Events = () => {
-    return (
-        <div className='justify-center align-center md:mb-10'>
-            <div className=''>
-                <div className='text-center mx-auto mb-4 mt-24'>
-                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
-                        Gallery
-                    </p>
-                </div>
-            </div>
-        </div>
-    )
+  return (
+    <>
+      <div className="text-center mx-auto mb-4">
+        <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
+          Gallery
+        </p>
+      </div>
+      {!gallery.length ? (
+        <Container1>Coming Soon...</Container1>
+      ) : (
+        <Container>
+          {gallery.map((element, index) => (
+            <ImageContainer key={index}>
+              <img src={element.image} alt={`Image ${index}`} />
+            </ImageContainer>
+          ))}
+        </Container>
+      )}
+    </>
+  );
 }
-export default Events;
+
+const Container1 = styled.div`
+  height: 100px;
+  display: flex;
+  font-size: 30px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
+const ImageContainer = styled.div`
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  overflow: hidden;
+  border-radius: 8px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export default Main;
