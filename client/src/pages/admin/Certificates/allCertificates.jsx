@@ -1,16 +1,16 @@
 import React from 'react';
 import Navbar from '../common/navbar.jsx';
 import Sidebar from '../common/sidebar.jsx';
-import GalleryPhotoUpdate from './galleryPhotoUpdate.jsx';
+import CertificatesPhotoUpdate from './certificatesUpdate.jsx';
 import styled from 'styled-components';
 
-function AllGallery() {
+function AllCertificates() {
   return (
     <Container> 
       <Navbar />
       <Sidebar />
       <MainContent>
-        <GalleryPhotoUpdate />
+        <CertificatesPhotoUpdate />
       </MainContent> 
     </Container>
   );
@@ -30,4 +30,4 @@ const MainContent = styled.div`
   z-index: 2; /* Set z-index higher than the sidebar */
 `;
 
-export default AllGallery;
+export default AllCertificates;

@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/logo.png';
 import styled from 'styled-components';
-
+import {Link } from 'react-router-dom';
 
 function Sidebar() {
   return (
@@ -13,12 +13,14 @@ function Sidebar() {
         SANDLTCF
       </SidebarHeader>
       <SidebarNav>
-        <SidebarNavItem><a>Events</a></SidebarNavItem>
-        <SidebarNavItem>Volunteer</SidebarNavItem>
-        <SidebarNavItem>Media</SidebarNavItem>
-        <SidebarNavItem>Gallery</SidebarNavItem>
-        <SidebarNavItem>Donation</SidebarNavItem>
-        <SidebarNavItem>Admin</SidebarNavItem>
+        <SidebarNavItem><Link to="/events">Events</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/volunteer">Volunteer</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/media">Media</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/editGallery">Gallery</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="">Donation</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/admin">Admin</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/certificates">Certificates</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/newsClippings">News Clippings</Link></SidebarNavItem>
       </SidebarNav>
     </SidebarContainer>
   );
@@ -34,6 +36,7 @@ const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow:auto;
 `;
 
 const LogoContainer = styled.div`

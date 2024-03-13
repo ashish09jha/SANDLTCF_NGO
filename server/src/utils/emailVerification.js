@@ -13,7 +13,7 @@ const verification = (Email,message) => {
     secure: false,
     auth: {
       user: process.env.USER,
-      pass: process.env.PASSWORD,
+      pass: process.env.PASSWORD, 
     },
   });
 

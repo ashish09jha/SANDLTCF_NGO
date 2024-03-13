@@ -7,14 +7,14 @@ function GalleryPhotoUpdate() {
     const [newImage, setNewImage] = useState(null); 
 
     useEffect(() => {
-        fetchData();
+        fetchData(); 
     }, []);
 
     const fetchData = async () => {
         try {
             const response = await axios.get("http://localhost:8000/ngo/Gallery");
             const data1 = response.data;
-            const data = data1.data
+            const data = data1.data;
             setImages(data);
         } catch (error) {
             console.error("Error fetching images:", error);
@@ -23,6 +23,10 @@ function GalleryPhotoUpdate() {
 
     const handleAddPhoto = async () => {
         try {
+            if(!newImage){
+                alert('Choose an image ')
+                return;
+            }
             const formData = new FormData();
             formData.append('image', newImage);
             await axios.post("http://localhost:8000/ngo/Gallery", formData, {
@@ -37,19 +41,43 @@ function GalleryPhotoUpdate() {
         }
     };
 
-    const handleDeletePhoto = async (index) => {
-        try {
-            await axios.delete(`http://localhost:8000/ngo/Gallery/${index}`);
-            fetchData();
-        } catch (error) {
-            console.error("Error deleting photo:", error);
+    const handleDeletePhoto = async (id) => {
+
+        const deleteData = async () => {
+            try {
+                await axios.delete(`http://localhost:8000/ngo/Gallery/C/${id}`);
+                setImages(prevImages => prevImages.filter(image => image._id !== id));
+            } catch (error) {
+                console.error("Error deleting photo:", error);
+            }
+        };
+        
+        deleteData();
+        
+    };
+
+    const handleSelectImage = (index,id,status) => {
+        const updatedImages = [...images];
+        updatedImages[index].status = !updatedImages[index].status;
+        setImages(updatedImages);
+        const fetchData=async()=>{
+            try{
+                const data={
+                    id:id,
+                    status:status,
+                }
+                await axios.patch("http://localhost:8000/ngo/Gallery",data);
+            }catch(error){
+                console.log(`ERROR:${error}`)
+            }
         }
+        fetchData();
     };
 
     const handleChange = (event) => {
         const imageFile = event.target.files[0];
         setNewImage(imageFile);
-    }
+    };
 
     return (
         <Container>
@@ -58,10 +86,15 @@ function GalleryPhotoUpdate() {
                 <Button onClick={handleAddPhoto}>Add Photo</Button>
             </ButtonContainer>
             <Gallery>
-                {images.map((image, index) => (
-                    <ImageContainer key={index}>
+                {images.map((image, index) => ( 
+                    <ImageContainer key={index} selected={image.status}>
                         <Image src={image.image} alt={`Image ${index}`} />
-                        <DeleteButton onClick={() => handleDeletePhoto(index)}>Delete</DeleteButton>
+                        <ImageOverlay>
+                            <SelectButton onClick={() => handleSelectImage(index,image._id,!image.status)}>
+                                {image.status ? "Deselect" : "Select"}
+                            </SelectButton>
+                            <DeleteButton onClick={() => handleDeletePhoto(image._id)}>Delete</DeleteButton>
+                        </ImageOverlay>
                     </ImageContainer>
                 ))}
             </Gallery>
@@ -108,7 +141,10 @@ const ImageContainer = styled.div`
     margin: 10px;
     overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: ${(props) => (props.selected ? '0 0 20px rgba(0, 0, 0, 0.3)' : '0 0 10px rgba(0, 0, 0, 0.1)')};
+    transform: ${(props) => (props.selected ? 'translateY(-5px)' : 'none')}; /* Added */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Added */
+    border: ${(props) => (props.selected ? '2px solid #007bff' : 'none')};
 `;
 
 const Image = styled.img`
@@ -117,10 +153,38 @@ const Image = styled.img`
     object-fit: cover;
 `;
 
-const DeleteButton = styled.button`
+const ImageOverlay = styled.div`
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between; /* Adjusted */
+    align-items: flex-start; /* Adjusted */
+    padding: 10px; /* Adjusted */
+    box-sizing: border-box; /* Adjusted */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    ${ImageContainer}:hover & {
+        opacity: 1;
+    }
+`;
+
+const SelectButton = styled.button`
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #0056b3;
+    }
+`;
+
+const DeleteButton = styled.button`
     padding: 6px 12px;
     background-color: #dc3545;
     color: #fff;

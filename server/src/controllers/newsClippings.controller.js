@@ -2,19 +2,19 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import { apiError } from "../utils/apiError.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
-import { media } from "../models/media.model.js";
+import { newsClippings } from "../models/newsClippings.model.js";
 import {v2 as cloudinary} from 'cloudinary';
 
-const fetchMediaPhoto = asyncHandler(async (req, res) => {
+const fetchNewsClippingsPhoto = asyncHandler(async (req, res) => {
   try {
-    const data = await media.find();
+    const data = await newsClippings.find();
     res.status(200).json(new apiResponse(200, data, "data send successfully"));
   } catch (error) {
     throw new apiError(400, `Error:${error}`);
   }
 });
 
-const addMediaPhoto = asyncHandler(async (req, res) => {
+const addNewsClippingsPhoto = asyncHandler(async (req, res) => {
   const image = req.file;
   if (!image) {
     throw new apiError(400, "image is required");
@@ -26,7 +26,7 @@ const addMediaPhoto = asyncHandler(async (req, res) => {
   };
 
   try {
-    const data = new media(resp2);
+    const data = new newsClippings(resp2);
     const resp = data.save();
     res
       .status(200)
@@ -36,13 +36,13 @@ const addMediaPhoto = asyncHandler(async (req, res) => {
   }
 });
 
-const changeMediaStatus = asyncHandler(async (req, res) => {
+const changeNewsClippingsStatus = asyncHandler(async (req, res) => {
   const { id, status } = req.body;
   if (!id) {
     throw new apiError(400, "ID is required");
   }
   try {
-    const data = await media.findByIdAndUpdate(
+    const data = await gallery.findByIdAndUpdate(
       id,
       {
         $set: {
@@ -61,19 +61,19 @@ const changeMediaStatus = asyncHandler(async (req, res) => {
   }
 });
 
-const deleteMediaPhoto = asyncHandler(async (req, res) => {
+const deleteNewsClippingsPhoto = asyncHandler(async (req, res) => {
     const { id } = req.params; 
     if (!id) {
       throw new apiError(400, "ID is required");
     }
     try {
-      const data = await media.findById(id);
+      const data = await newsClippings.findById(id);
       const public_id = data.public_id;
   
       try {
         const response = await cloudinary.uploader.destroy(public_id);
         if (response.result === "ok") {
-          await media.deleteOne({ _id: id });
+          await newsClippings.deleteOne({ _id: id });
           res.status(200).json(new apiResponse(200, "Image deleted successfully"));
         } else {
           throw new apiError(400, "Failed to delete an image");
@@ -87,8 +87,8 @@ const deleteMediaPhoto = asyncHandler(async (req, res) => {
 });
 
 export {
-  addMediaPhoto,
-  deleteMediaPhoto,
-  fetchMediaPhoto,
-  changeMediaStatus,
+  addNewsClippingsPhoto,
+  deleteNewsClippingsPhoto,
+  fetchNewsClippingsPhoto,
+  changeNewsClippingsStatus,
 };

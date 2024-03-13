@@ -11,7 +11,7 @@ const Gallery = () => {
     const location = useLocation();
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0); 
     }, [location])
 
     const [isLoading, setIsLoading] = useState(true);

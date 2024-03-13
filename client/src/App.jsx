@@ -21,7 +21,8 @@ import LandingPage from "./pages/admin/LandingPage/LandingPage.jsx";
 import AllGallery from "./pages/admin/editGallery/allGallery.jsx";
 import AllDonations from "./pages/admin/donation/allDonations.jsx";
 import AllAdmins from "./pages/admin/admin/allAdmins.jsx";
-
+import AllCertificates from "./pages/admin/Certificates/allCertificates.jsx";
+import AllNewsClippings from "./pages/admin/newsClippings/allNewsClippings.jsx";
 
 const App = () => {
 
@@ -50,11 +51,13 @@ const App = () => {
         <Route path="/media" element={<AllMedia />} />
         <Route path="/events" element={<AllEvents />} />
         <Route path="/volunteer" element={<AllVolunteer />} />
-        
+        <Route path="/certificates" element={<AllCertificates />} />
+        <Route path="/newsClippings" element={<AllNewsClippings />} />
+
       </Routes>
 
     </Router>
   );
 };
-
+ 
 export default App;

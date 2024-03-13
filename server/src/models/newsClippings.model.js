@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const gallerySchema=new mongoose.Schema({
+const newsClippingsSchema=new mongoose.Schema({
     image:{
         type:String,
         required:true,
@@ -15,4 +15,4 @@ const gallerySchema=new mongoose.Schema({
     }
 },{timestamps:true})
 
-export const gallery=mongoose.model('gallery',gallerySchema);
+export const newsClippings=mongoose.model('newsClippings',newsClippingsSchema);
