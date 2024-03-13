@@ -24,6 +24,7 @@ import AllAdmins from "./pages/admin/admin/allAdmins.jsx";
 import AllCertificates from "./pages/admin/Certificates/allCertificates.jsx";
 import AllNewsClippings from "./pages/admin/newsClippings/allNewsClippings.jsx";
 
+
 const App = () => {
 
   return (
@@ -50,14 +51,13 @@ const App = () => {
         <Route path="/editGallery" element={<AllGallery />} />
         <Route path="/media" element={<AllMedia />} />
         <Route path="/events" element={<AllEvents />} />
-        <Route path="/volunteer" element={<AllVolunteer />} />
+        <Route path="/volunteer" element={<AllVolunteer/>}/>        
         <Route path="/certificates" element={<AllCertificates />} />
         <Route path="/newsClippings" element={<AllNewsClippings />} />
-
       </Routes>
 
     </Router>
   );
 };
- 
+
 export default App;

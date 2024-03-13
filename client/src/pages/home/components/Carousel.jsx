@@ -64,7 +64,7 @@ const Hero = () => {
                             <p className="text-white font-quicksand md:text-2xl mb-4">
                                 {item.description}
                             </p>
-                            <Link to={item.link} className="p-2 text-sm md:text-md flex items-center text-center md:items-center md:text-center bg-orange hover:bg-primary md:p-3 text-white font-quicksand mb-2 rounded-md cursor-pointer ">
+                            <Link to={item.link} className="p-2 text-sm md:text-md flex items-center text-center md:items-center md:text-center bg-green hover:bg-primary md:p-3 text-white font-quicksand mb-2 rounded-md cursor-pointer ">
                                 {item.buttonText}
                                 <GoArrowRight className="ml-2" />
                             </Link>

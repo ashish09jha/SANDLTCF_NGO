@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../components/Scroll';
 import Impact from '../components/Impacts';
 import Service from '../components/Service';
-import Events from '../components/Events';
+import Gallery from '../components/Events';
 import Team from '../components/Team';
 import Volunteer from './components/Volunteer';
 import Causes from '../components/Causes';
@@ -44,7 +44,7 @@ const Home = () => {
                     <Service />
                     <Impact />
                     <Causes />
-                    <Events />
+                    <Gallery />
                     <Blog />
                     <Volunteer />
                     <Footer />
