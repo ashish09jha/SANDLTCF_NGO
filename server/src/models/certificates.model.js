@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const gallerySchema=new mongoose.Schema({
+const certificatesSchema=new mongoose.Schema({
     image:{
         type:String,
         required:true,
@@ -8,11 +8,7 @@ const gallerySchema=new mongoose.Schema({
     status:{
         type:Boolean,
         default:0,
-    },
-    public_id:{
-        type:String,
-        required:true,
     }
 },{timestamps:true})
 
-export const gallery=mongoose.model('gallery',gallerySchema);
+export const certificates=mongoose.model('certificates',certificatesSchema);
