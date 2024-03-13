@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <Container>
-      <div><Link to="/">Home</Link></div>
-      <div><Link to="/about">About</Link></div>
-      <div><Link to="/contact">Contact</Link></div>
+      <div><StyledLink to="/">Home</StyledLink></div>
+      <div><StyledLink to="/about">About</StyledLink></div>
+      <div><StyledLink to="/contact">Contact</StyledLink></div>
     </Container>
   );
 };
@@ -25,6 +25,16 @@ const Container = styled.div`
   height: 60px;
   div {
     margin-right: 50px;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    color: lightgray;
   }
 `;
 

@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 function Main() {
   const [gallery, setGallery] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,14 +13,37 @@ function Main() {
         const resp = await axios.get("http://localhost:8000/ngo/Gallery");
         const resp1 = resp.data;
         const data = resp1.data;
-        const filterData = data.filter((element) => element.status);
-        setGallery(filterData);
+        const filteredData = data.filter((element) => element.status);
+        setFilterData(filteredData);
+        updateGallery(filteredData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (filterData.length > 8 && !hovered) {
+      const interval = setInterval(() => {
+        updateGallery(filterData);
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [filterData, hovered]);
+
+  const updateGallery = (data) => {
+    const showImage = [];
+    for (let i = 0; i < 8; i++) {
+      const x = Math.floor(Math.random() * data.length);
+      showImage.push(data[x]);
+    }
+    setGallery(showImage);
+  };
+
+  const handleHover = () => {
+    setHovered(!hovered);
+  };
 
   return (
     <>
@@ -31,11 +56,20 @@ function Main() {
         <Container1>Coming Soon...</Container1>
       ) : (
         <Container>
-          {gallery.map((element, index) => (
-            <ImageContainer key={index}>
-              <img src={element.image} alt={`Image ${index}`} />
-            </ImageContainer>
-          ))}
+          <Row>
+            {gallery.slice(0, 4).map((element, index) => (
+              <ImageContainer key={index} onMouseEnter={handleHover} onMouseLeave={handleHover}>
+                <img src={element.image} alt={`Image ${index}`} />
+              </ImageContainer>
+            ))}
+          </Row>
+          <Row>
+            {gallery.slice(4, 8).map((element, index) => (
+              <ImageContainer key={index} onMouseEnter={handleHover} onMouseLeave={handleHover}>
+                <img src={element.image} alt={`Image ${index}`} />
+              </ImageContainer>
+            ))}
+          </Row>
         </Container>
       )}
     </>
@@ -53,10 +87,18 @@ const Container1 = styled.div`
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  max-width: 1000px; /* Set your desired maximum width */
+  margin: 0 auto; /* Center the container horizontally */
+`;
+
+const Row = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
 const ImageContainer = styled.div`
@@ -65,6 +107,7 @@ const ImageContainer = styled.div`
   margin: 10px;
   overflow: hidden;
   border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 
   img {
     width: 100%;
