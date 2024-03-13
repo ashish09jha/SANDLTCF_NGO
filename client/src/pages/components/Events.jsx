@@ -142,7 +142,6 @@ const ImageContainer = styled.div`
   }
 `;
 
-<<<<<<< HEAD
 const Overlay = styled.div`
   position: absolute;
   top: 0;
@@ -165,6 +164,4 @@ const FiPlusStyled = styled(FiPlus)`
 `;
 
 export default Main;
-=======
-export default Main;
->>>>>>> 56d99e69bd13676b36373e0cc1d89c788f1b7807
+
