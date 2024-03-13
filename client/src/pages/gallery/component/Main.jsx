@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 function Main() {
-  const [Gallery, setGallery] = useState([]);
+  const [gallery, setGallery] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,7 +11,7 @@ function Main() {
         const resp = await axios.get("http://localhost:8000/ngo/Gallery");
         const resp1 = resp.data;
         const data = resp1.data;
-        const filterData=await data.filter((element)=>{return element.status})
+        const filterData = data.filter((element) => element.status);
         setGallery(filterData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -22,45 +22,50 @@ function Main() {
 
   return (
     <>
-      {!Gallery.length ? (
-        <Container1>Comming Soon...</Container1>
+      {!gallery.length ? (
+        <Container1>Coming Soon...</Container1>
       ) : (
         <Container>
-          {Gallery.map((element, index) => (
-                <ImageContainer>
-                  <img key={index} src={element.image} alt={`Image ${index}`} />
-                </ImageContainer>
-           )
-          )}
+          {gallery.map((element, index) => (
+            <ImageContainer key={index}>
+              <img src={element.image} alt={`Image ${index}`} />
+            </ImageContainer>
+          ))}
         </Container>
       )}
     </>
   );
 }
 
-const Container1=styled.div`
+const Container1 = styled.div`
   height: 100px;
   display: flex;
-  font-size:30px;
+  font-size: 30px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 const ImageContainer = styled.div`
-  position: relative;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   margin: 10px;
   overflow: hidden;
-  //   border-radius: 8px;
+  border-radius: 8px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export default Main;

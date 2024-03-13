@@ -6,12 +6,12 @@ import styled from 'styled-components';
 
 function AllGallery() {
   return (
-    <Container> 
+    <Container>
       <Navbar />
       <Sidebar />
       <MainContent>
         <GalleryPhotoUpdate />
-      </MainContent> 
+      </MainContent>
     </Container>
   );
 }
