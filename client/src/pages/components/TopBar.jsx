@@ -9,25 +9,35 @@ const TopBar = () => {
     };
 
     return (
-        <div className="absolute bg-gray-100 md:h-16 w-full top-0 left-0 z-3 border-b border-opacity-30">
+        <div className="absolute bg-gray-300 md:h-16 w-full top-0 left-0 z-3 border-b border-opacity-30">
             <div className="container md:mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     {/* Contact Information */}
                     <div className="flex flex-col md:flex-row gap-2 items-center">
-                        <div className="flex items-center md:pt-0 pt-2 align-center md:justify-center md:flex-row md:h-16 -mb-2 px-10 text-center gap-2 md:first:-ml-8">
+                        <div className="flex items-center">
+                            <div className="rounded-md bg-gray-400 h-12 w-px"></div> {/* Vertical Border */}
+                        </div>
+                        <div className="contact-box flex items-center md:pt-0 pt-2 align-center md:justify-center md:flex-row md:h-16 -mb-2 px-10 text-center gap-2 md:first:-ml-8">
                             <FaPhone className="text-orange md:h-4 md:w-4 h-3 w-3 mr-1" />
-                            <a href="tel:+919899801561" className="text-sm md:my-0 font-quicksand cursor-pointer hover:text-orange">
-                                011-23721201
-                            </a>
+                            <div className="contact-info">
+                                <a href="tel:+919899801561" className="text-sm md:my-0 font-quicksand cursor-pointer hover:text-orange">
+                                    011-23721201
+                                </a>
+                            </div>
                         </div>
                         <div className="flex items-center">
-                            <div className="border-l border-gray-400 h-12"></div> {/* Vertical Border */}
+                            <div className="rounded-md bg-gray-400 h-12 w-px"></div> {/* Vertical Border */}
                         </div>
-                        <div className="text flex items-center md:pt-2 pt-1 justify-center flex-row md:h-16 px-10 text-center gap-2 last:border-l-0">
+                        <div className="contact-box text flex items-center md:pt-2 pt-1 justify-center flex-row md:h-16 px-10 text-center gap-2 last:border-l-0">
                             <MdEmail className="text-orange md:h-4 md:w-4 w-3 h-3 mr-1" />
-                            <a href="mailto:sandltcf@gmail.com" className="text-sm md:my-0 font-quicksand cursor-pointer hover:text-orange ">
-                                sandltcf@gmail.com
-                            </a>
+                            <div className="contact-info">
+                                <a href="mailto:sandltcf@gmail.com" className="text-sm md:my-0 font-quicksand cursor-pointer hover:text-orange ">
+                                    sandltcf@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        <div className="flex items-center">
+                            <div className="rounded-md bg-gray-400 h-12 w-px"></div> {/* Vertical Border */}
                         </div>
                     </div>
 
@@ -37,7 +47,7 @@ const TopBar = () => {
                         <FaTwitter className="text-lg md:text-2xl text-gray-500 hover:text-blue-500 cursor-pointer" />
                         <FaInstagram className="text-lg md:text-2xl text-gray-500 hover:text-blue-500 cursor-pointer mr-2" />
                         {/* Add margin-right to add spacing */}
-                        <IoLocationSharp className="text-lg md:text-2xl text-orange hover:text-blue-500 cursor-pointer" onClick={openGoogleMaps}/>
+                        <IoLocationSharp className="text-lg md:text-2xl text-orange hover:text-blue-500 cursor-pointer" onClick={openGoogleMaps} />
                     </div>
                 </div>
             </div>

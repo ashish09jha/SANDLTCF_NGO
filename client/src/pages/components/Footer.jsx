@@ -11,9 +11,9 @@ const Footer = () => {
     const linkData = [
         { text: "Home", href: "/", color: "red" },
         { text: "About Us", href: "/about", color: "white" },
-        { text: "Events", href: "/recent", color: "red" },
+        { text: "Projects", href: "/recent", color: "red" },
         { text: "Gallery", href: "/gallery", color: "white" },
-        { text: "Blog", href: "/blog", color: "red" },
+        { text: "Contact", href: "/about", color: "red" },
     ];
 
     // Function to get the current year
@@ -30,7 +30,7 @@ const Footer = () => {
                     {/* Center Section */}
                     <div className="md:w-1/3 ">
                         <div className='border-l-4 pl-3 border-white md:pl-4 md:mt-0 mt-6'>
-                            <h2 className='text-2xl font-yeseva mb-8 font-yeseva tracking-wide text-white'>About Us</h2>
+                            <h2 className='text-2xl font-yeseva mb-8 font-yeseva tracking-wide text-white'>ABOUT US</h2>
                         </div>
                         <div >
                             <p className=" font-quicksand md:text-md text-sm pb-4 p-2 text-white">
@@ -44,7 +44,7 @@ const Footer = () => {
                     {/* Center Section */}
                     <div className="md:w-1/3 text-center">
                         <div className='border-l-4 pl-3 border-white md:mt-0 mt-6 md:pl-4'>
-                            <h2 className='text-2xl font-yeseva mb-8 font-yeseva text-white tracking-wide text-left'>Popular Links</h2>
+                            <h2 className='text-2xl font-yeseva mb-8 font-yeseva text-white tracking-wide text-left'>POPULAR LINKS</h2>
                         </div>
                         <div className="grid md:grid-cols-1 grid-cols-2 gap-4 md:text-md text-sm md:ml-8">
                             {linkData.map((data, index) => (
@@ -59,7 +59,7 @@ const Footer = () => {
                     {/* Left Section */}
                     <div className="md:w-1/3 ">
                         <div className='border-l-4 pl-3 border-white md:pl-4 md:mt-0 mt-10'>
-                            <h2 className='text-2xl font-yeseva md:mb-8 mb-6 font-yeseva text-white tracking-wide'>Our Head Office</h2>
+                            <h2 className='text-2xl font-yeseva md:mb-8 mb-6 font-yeseva text-white tracking-wide'>OUR HEAD OFFICE</h2>
                         </div>
                         <div className='block items-center md:text-md text-sm'>
                             <p className=" flex items-center font-quicksand md:pb-5 pb-4 text-white">

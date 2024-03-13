@@ -90,8 +90,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 1000px; /* Set your desired maximum width */
-  margin: 0 auto; /* Center the container horizontally */
+  max-width: 1000px; 
+  margin: 0 auto;
 `;
 
 const Row = styled.div`

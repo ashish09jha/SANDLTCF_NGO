@@ -4,10 +4,11 @@ import styled from 'styled-components';
 
 function GalleryPhotoUpdate() {
     const [images, setImages] = useState([]);
-    const [newImage, setNewImage] = useState(null); 
+    const [newImage, setNewImage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false); // Add isLoading state
 
     useEffect(() => {
-        fetchData(); 
+        fetchData();
     }, []);
 
     const fetchData = async () => {
@@ -23,8 +24,10 @@ function GalleryPhotoUpdate() {
 
     const handleAddPhoto = async () => {
         try {
-            if(!newImage){
+            setIsLoading(true); // Start loader
+            if (!newImage) {
                 alert('Choose an image ')
+                setIsLoading(false); // Stop loader if no image is chosen
                 return;
             }
             const formData = new FormData();
@@ -36,8 +39,10 @@ function GalleryPhotoUpdate() {
             });
             fetchData();
             setNewImage(null);
+            setIsLoading(false); // Stop loader after image is successfully added
         } catch (error) {
             console.error("Error adding photo:", error);
+            setIsLoading(false); // Stop loader on error
         }
     };
 
@@ -51,23 +56,23 @@ function GalleryPhotoUpdate() {
                 console.error("Error deleting photo:", error);
             }
         };
-        
+
         deleteData();
-        
+
     };
 
-    const handleSelectImage = (index,id,status) => {
+    const handleSelectImage = (index, id, status) => {
         const updatedImages = [...images];
         updatedImages[index].status = !updatedImages[index].status;
         setImages(updatedImages);
-        const fetchData=async()=>{
-            try{
-                const data={
-                    id:id,
-                    status:status,
+        const fetchData = async () => {
+            try {
+                const data = {
+                    id: id,
+                    status: status,
                 }
-                await axios.patch("http://localhost:8000/ngo/Gallery",data);
-            }catch(error){
+                await axios.patch("http://localhost:8000/ngo/Gallery", data);
+            } catch (error) {
                 console.log(`ERROR:${error}`)
             }
         }
@@ -86,11 +91,12 @@ function GalleryPhotoUpdate() {
                 <Button onClick={handleAddPhoto}>Add Photo</Button>
             </ButtonContainer>
             <Gallery>
-                {images.map((image, index) => ( 
+                {images.map((image, index) => (
                     <ImageContainer key={index} selected={image.status}>
-                        <Image src={image.image} alt={`Image ${index}`} />
+                        <Image src={image.image} alt={`Image ${index}`} onLoad={() => setIsLoading(false)} /> {/* Call setIsLoading(false) when image is loaded */}
+                        {isLoading && <Loader>Loading...</Loader>} {/* Display loader */}
                         <ImageOverlay>
-                            <SelectButton onClick={() => handleSelectImage(index,image._id,!image.status)}>
+                            <SelectButton onClick={() => handleSelectImage(index, image._id, !image.status)}>
                                 {image.status ? "Deselect" : "Select"}
                             </SelectButton>
                             <DeleteButton onClick={() => handleDeletePhoto(image._id)}>Delete</DeleteButton>
@@ -195,6 +201,17 @@ const DeleteButton = styled.button`
     &:hover {
         background-color: #c82333;
     }
+`;
+
+const Loader = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 999;
 `;
 
 export default GalleryPhotoUpdate;
