@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-function MediaPhotoUpdate() {
+function NewsClippingsPhotoUpdate() {
     const [images, setImages] = useState([]);
     const [newImage, setNewImage] = useState(null); 
 
@@ -12,7 +12,7 @@ function MediaPhotoUpdate() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/ngo/Media");
+            const response = await axios.get("http://localhost:8000/ngo/NewsClippings");
             const data1 = response.data;
             const data = data1.data;
             setImages(data);
@@ -29,7 +29,7 @@ function MediaPhotoUpdate() {
             }
             const formData = new FormData();
             formData.append('image', newImage);
-            await axios.post("http://localhost:8000/ngo/Media", formData, {
+            await axios.post("http://localhost:8000/ngo/NewsClippings", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -45,7 +45,7 @@ function MediaPhotoUpdate() {
 
         const deleteData = async () => {
             try {
-                await axios.delete(`http://localhost:8000/ngo/Media/C/${id}`);
+                await axios.delete(`http://localhost:8000/ngo/NewsClippings/C/${id}`);
                 setImages(prevImages => prevImages.filter(image => image._id !== id));
             } catch (error) {
                 console.error("Error deleting photo:", error);
@@ -66,7 +66,7 @@ function MediaPhotoUpdate() {
                     id:id,
                     status:status,
                 }
-                await axios.patch("http://localhost:8000/ngo/Media",data);
+                await axios.patch("http://localhost:8000/ngo/NewsClippings",data);
             }catch(error){
                 console.log(`ERROR:${error}`)
             }
@@ -85,7 +85,7 @@ function MediaPhotoUpdate() {
                 <input type="file" onChange={handleChange} />
                 <Button onClick={handleAddPhoto}>Add Photo</Button>
             </ButtonContainer>
-            <Media>
+            <NewsClippings>
                 {images.map((image, index) => ( 
                     <ImageContainer key={index} selected={image.status}>
                         <Image src={image.image} alt={`Image ${index}`} />
@@ -97,7 +97,7 @@ function MediaPhotoUpdate() {
                         </ImageOverlay>
                     </ImageContainer>
                 ))}
-            </Media>
+            </NewsClippings>
         </Container>
     );
 }
@@ -129,7 +129,7 @@ const Button = styled.button`
     margin-left: 10px;
 `;
 
-const Media = styled.div`
+const NewsClippings = styled.div`
     display: flex;
     flex-wrap: wrap;
 `;
@@ -197,4 +197,4 @@ const DeleteButton = styled.button`
     }
 `;
 
-export default MediaPhotoUpdate;
+export default NewsClippingsPhotoUpdate;

@@ -8,6 +8,10 @@ const mediaSchema=new mongoose.Schema({
     status:{
         type:Boolean,
         default:0,
+    },
+    public_id:{
+        type:String,
+        required:true,
     }
 },{timestamps:true})
 

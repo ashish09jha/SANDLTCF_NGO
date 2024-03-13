@@ -86,7 +86,7 @@ function GalleryPhotoUpdate() {
                 <Button onClick={handleAddPhoto}>Add Photo</Button>
             </ButtonContainer>
             <Gallery>
-                {images.map((image, index) => (
+                {images.map((image, index) => ( 
                     <ImageContainer key={index} selected={image.status}>
                         <Image src={image.image} alt={`Image ${index}`} />
                         <ImageOverlay>

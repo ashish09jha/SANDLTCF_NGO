@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const newsClippingSchema=new mongoose.Schema({
+const newsClippingsSchema=new mongoose.Schema({
     image:{
         type:String,
         required:true,
@@ -8,7 +8,11 @@ const newsClippingSchema=new mongoose.Schema({
     status:{
         type:Boolean,
         default:0,
+    },
+    public_id:{
+        type:String,
+        required:true,
     }
 },{timestamps:true})
 
-export const newsClipping=mongoose.model('newsClipping',newsClippingSchema);
+export const newsClippings=mongoose.model('newsClippings',newsClippingsSchema);

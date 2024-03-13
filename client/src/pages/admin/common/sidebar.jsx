@@ -36,6 +36,7 @@ const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow:auto;
 `;
 
 const LogoContainer = styled.div`

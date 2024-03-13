@@ -71,7 +71,6 @@ const deleteGalleryPhoto = asyncHandler(async (req, res) => {
   
       try {
         const response = await cloudinary.uploader.destroy(public_id);
-        console.log(response);
         if (response.result === "ok") {
           await gallery.deleteOne({ _id: id });
           res.status(200).json(new apiResponse(200, "Image deleted successfully"));
@@ -84,7 +83,7 @@ const deleteGalleryPhoto = asyncHandler(async (req, res) => {
     } catch (error) {
       throw new apiError(400, `Error: ${error}`);
     }
-  });
+});
 
 export {
   addGaleryPhoto,
