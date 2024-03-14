@@ -5,7 +5,8 @@ import styled from 'styled-components';
 function GalleryPhotoUpdate() {
     const [images, setImages] = useState([]);
     const [newImage, setNewImage] = useState(null);
-    const [isLoading, setIsLoading] = useState(false); // Add isLoading state
+    const [isLoading, setIsLoading] = useState(false);
+    const [addingNewImage, setAddingNewImage] = useState(false); // Track whether a new photo is being added
 
     useEffect(() => {
         fetchData();
@@ -22,61 +23,54 @@ function GalleryPhotoUpdate() {
         }
     };
 
+
     const handleAddPhoto = async () => {
         try {
-            setIsLoading(true); // Start loader
+            setIsLoading(true);
             if (!newImage) {
                 alert('Choose an image ')
-                setIsLoading(false); // Stop loader if no image is chosen
+                setIsLoading(false);
                 return;
             }
             const formData = new FormData();
             formData.append('image', newImage);
-            await axios.post("http://localhost:8000/ngo/Gallery", formData, {
+            setAddingNewImage(true);await axios.post("http://localhost:8000/ngo/Gallery", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            fetchData();
+            setImages(prevImages => [...prevImages, { _id: 'new', image: URL.createObjectURL(newImage), status: false }]);
+            setIsLoading(false);
+            setAddingNewImage(false);
             setNewImage(null);
-            setIsLoading(false); // Stop loader after image is successfully added
         } catch (error) {
             console.error("Error adding photo:", error);
-            setIsLoading(false); // Stop loader on error
         }
     };
+    
 
     const handleDeletePhoto = async (id) => {
-
-        const deleteData = async () => {
-            try {
-                await axios.delete(`http://localhost:8000/ngo/Gallery/C/${id}`);
-                setImages(prevImages => prevImages.filter(image => image._id !== id));
-            } catch (error) {
-                console.error("Error deleting photo:", error);
-            }
-        };
-
-        deleteData();
-
+        try {
+            await axios.delete(`http://localhost:8000/ngo/Gallery/C/${id}`);
+            setImages(prevImages => prevImages.filter(image => image._id !== id));
+        } catch (error) {
+            console.error("Error deleting photo:", error);
+        }
     };
 
-    const handleSelectImage = (index, id, status) => {
-        const updatedImages = [...images];
-        updatedImages[index].status = !updatedImages[index].status;
-        setImages(updatedImages);
-        const fetchData = async () => {
-            try {
-                const data = {
-                    id: id,
-                    status: status,
-                }
-                await axios.patch("http://localhost:8000/ngo/Gallery", data);
-            } catch (error) {
-                console.log(`ERROR:${error}`)
+    const handleSelectImage = async (index, id, status) => {
+        try {
+            const updatedImages = [...images];
+            updatedImages[index].status = !updatedImages[index].status;
+            setImages(updatedImages);
+            const data = {
+                id: id,
+                status: status,
             }
+            await axios.patch("http://localhost:8000/ngo/Gallery", data);
+        } catch (error) {
+            console.log(`ERROR:${error}`)
         }
-        fetchData();
     };
 
     const handleChange = (event) => {
@@ -93,8 +87,7 @@ function GalleryPhotoUpdate() {
             <Gallery>
                 {images.map((image, index) => (
                     <ImageContainer key={index} selected={image.status}>
-                        <Image src={image.image} alt={`Image ${index}`} onLoad={() => setIsLoading(false)} /> {/* Call setIsLoading(false) when image is loaded */}
-                        {isLoading && <Loader>Loading...</Loader>} {/* Display loader */}
+                        <Image src={image.image} alt={`Image ${index}`} />
                         <ImageOverlay>
                             <SelectButton onClick={() => handleSelectImage(index, image._id, !image.status)}>
                                 {image.status ? "Deselect" : "Select"}
@@ -103,6 +96,11 @@ function GalleryPhotoUpdate() {
                         </ImageOverlay>
                     </ImageContainer>
                 ))}
+                {addingNewImage && (
+                    <ImageContainer key="newImage" selected={true}>
+                        <Loader>Loading...</Loader>
+                    </ImageContainer>
+                )}
             </Gallery>
         </Container>
     );
@@ -148,8 +146,8 @@ const ImageContainer = styled.div`
     overflow: hidden;
     border-radius: 8px;
     box-shadow: ${(props) => (props.selected ? '0 0 20px rgba(0, 0, 0, 0.3)' : '0 0 10px rgba(0, 0, 0, 0.1)')};
-    transform: ${(props) => (props.selected ? 'translateY(-5px)' : 'none')}; /* Added */
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Added */
+    transform: ${(props) => (props.selected ? 'translateY(-5px)' : 'none')};
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
     border: ${(props) => (props.selected ? '2px solid #007bff' : 'none')};
 `;
 
@@ -166,10 +164,10 @@ const ImageOverlay = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: space-between; /* Adjusted */
-    align-items: flex-start; /* Adjusted */
-    padding: 10px; /* Adjusted */
-    box-sizing: border-box; /* Adjusted */
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
     opacity: 0;
     transition: opacity 0.3s ease;
     ${ImageContainer}:hover & {
