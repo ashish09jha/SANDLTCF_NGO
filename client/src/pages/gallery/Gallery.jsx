@@ -33,7 +33,6 @@ const Gallery = () => {
                 :
                 <div>
                     <Navigation />
-                    {/* <Header /> */}
                     <Main />
                     <Footer />
                     <ScrollToTop />

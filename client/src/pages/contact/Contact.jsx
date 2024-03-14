@@ -34,7 +34,6 @@ const Upcoming = () => {
                 <div>
                     <Navigation />
                     <section style={{ marginTop: "-40px" }}>
-                        <Header />
                         <Main />
                         <Footer />
                         <ScrollToTop />

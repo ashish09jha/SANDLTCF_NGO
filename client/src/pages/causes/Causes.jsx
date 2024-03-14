@@ -35,7 +35,6 @@ const Founder = () => {
                 <div>
                     <Navigation />
                     <section style={{ marginTop: "-40px" }}>
-                        <Header />
                         <Services />
                         <Main />
                         <Footer />

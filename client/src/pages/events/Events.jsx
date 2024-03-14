@@ -34,7 +34,6 @@ const Recent = () => {
                 <div>
                     <Navigation />
                     <section style={{ marginTop: "-40px" }}>
-                        <Header />
                         <Recent_Event />
                         <Footer />
                         <ScrollToTop />
