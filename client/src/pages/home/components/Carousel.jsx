@@ -19,8 +19,8 @@ const carouselItems = [
         image: Image2,
         title: "Discover Our Initiatives",
         description: "Supporting those in need",
-        buttonText: "Learn More",
-        link: "/about"
+        buttonText: "Donate now",
+        link: "/donate"
     },
     {
         image: Image3,
@@ -34,7 +34,7 @@ const carouselItems = [
         title: "Spread Kindness",
         description: "Touching lives, one act at a time",
         buttonText: "Volunteer Today",
-        link: "/donate"
+        link: "/volunteers"
     },
 ];
 

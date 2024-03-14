@@ -42,7 +42,7 @@ const Service = () => {
                 <div className="text-center mx-auto mb-4 mt-16">
 
                     <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 md:ml-[15%]">
-                        What We Do?
+                        Our Charitable Activities
                     </p>
                     <h2 className=" font-quicksand font-bold md:text-5xl text-3xl md:-p-0 p-4 text-gray-600 mb-4 md:-mb-6 md:max-w-[700px] md:ml-[32%] md:mt-6 mt-4">
                     God is formless, serve god through children of God
