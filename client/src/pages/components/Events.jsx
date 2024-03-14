@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { FiPlus } from "react-icons/fi";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Main() {
   const [gallery, setGallery] = useState([]);
@@ -27,20 +27,8 @@ function Main() {
   }, []);
 
   const updateGallery = (data) => {
-    const showImage = [];
-    for (let i = 0; i < 8; i++) {
-      const x = Math.floor(Math.random() * data.length);
-      showImage.push(data[x]);
-    }
+    const showImage = data.slice(0, 8);
     setGallery(showImage);
-  };
-
-  const handleMouseEnter = (index) => {
-    setHoveredIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
   };
 
   return (
@@ -56,14 +44,8 @@ function Main() {
         <Container>
           <Row>
             {gallery.slice(0, 4).map((element, index) => (
-              <ImageContainer
-                key={index}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
-              >
+              <ImageContainer key={index}>
                 <img src={element.image} alt={`Image ${index}`} />
-                {hoveredIndex === index && <Overlay />}
-                {hoveredIndex === index && <FiPlusStyled />}
               </ImageContainer>
             ))}
           </Row>
@@ -71,18 +53,20 @@ function Main() {
             {gallery.slice(4, 8).map((element, index) => (
               <ImageContainer
                 key={index + 4}
-                onMouseEnter={() => handleMouseEnter(index + 4)}
-                onMouseLeave={handleMouseLeave}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <img src={element.image} alt={`Image ${index}`} />
-                {hoveredIndex === index + 4 && <Overlay />}
-                {hoveredIndex === index + 4 && <FiPlusStyled />}
+                {index === 3 && (
+                  <Link to="/gallery">
+                    <Overlay />
+                    <FiPlusStyled />
+                    {hoveredIndex === 3 && <ViewMoreLink>View More</ViewMoreLink>}
+                  </Link>
+                )}
               </ImageContainer>
             ))}
           </Row>
-          <ViewMoreRow>
-            <ViewMoreLink ><Link to="/gallery">View More</Link></ViewMoreLink>
-          </ViewMoreRow>
         </Container>
       )}
     </>
@@ -156,17 +140,16 @@ const FiPlusStyled = styled(FiPlus)`
   z-index: 1;
 `;
 
-const ViewMoreRow = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-`;
-
-const ViewMoreLink = styled.a`
-  font-size: 18px;
-  color: #007bff;
-  text-decoration: underline;
-  cursor: pointer;
+const ViewMoreLink = styled.span`
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  border-radius: 5px;
 `;
 
 export default Main;
