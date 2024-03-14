@@ -34,7 +34,7 @@ router.route("/NewsClippings/C/:id").delete(deleteNewsClippingsPhoto);
 
 router.route("/Media").get(fetchMediaPhoto);
 router.route("/Media").post(upload.single("image"),addMediaPhoto);
-router.route("/Media").patch(changeMediaStatus);
+router.route("/Media").patch(changeMediaStatus); 
 router.route("/Media/C/:id").delete(deleteMediaPhoto);
 
 router.route("/Certificates").get(fetchCertificatesPhoto);
@@ -46,5 +46,5 @@ router.route("/event").get(fetchEvent)
 router.route("/event").post(addEvent)
 router.route("/event").patch(changeEventStatus)
 router.route("/event").delete(deleteEvent)
-
+ 
 export default router;

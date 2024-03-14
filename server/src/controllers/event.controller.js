@@ -47,8 +47,9 @@ const changeEventStatus=asyncHandler(async(req,res)=>{
         throw new apiError(400,`Error:${error}`);
     }
 })
-
+ 
 const fetchEvent=asyncHandler(async(req,res)=>{
+    console.log("called");
     try{
         const data=await event.find();
         res.status(200).json(new apiResponse(200,data,"data send successfully"));
