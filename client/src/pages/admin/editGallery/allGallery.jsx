@@ -7,8 +7,12 @@ import styled from 'styled-components';
 function AllGallery() {
   return (
     <Container> 
-      <Navbar />
-      <Sidebar />
+      <NavbarWrapper>
+        <Navbar />
+      </NavbarWrapper>
+      <SidebarWrapper>
+        <Sidebar />
+      </SidebarWrapper>
       <MainContent>
         <GalleryPhotoUpdate />
       </MainContent> 
@@ -20,6 +24,16 @@ const Container = styled.div`
   display: flex;
   height: 100vh;
   position: relative; /* Ensure the container is relatively positioned */
+`;
+
+const NavbarWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 3;
+`;
+
+const SidebarWrapper = styled.div`
+  z-index: 4; /* Ensure the sidebar is above the navbar */
 `;
 
 const MainContent = styled.div`
