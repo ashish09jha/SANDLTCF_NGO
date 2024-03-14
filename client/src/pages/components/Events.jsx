@@ -33,11 +33,10 @@ function Main() {
 
   return (
     <>
-      <div className="text-center mx-auto mb-4">
-        <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2">
-          Gallery
-        </p>
-      </div>
+      <div className='text-center mb-8'>
+                <h2 className="text-3xl font-bold text-black mb-2">Gallery</h2>
+                <div className="h-1 w-10 bg-orange mx-auto mb-4"></div>
+            </div>
       {!gallery.length ? (
         <Container1>Coming Soon...</Container1>
       ) : (

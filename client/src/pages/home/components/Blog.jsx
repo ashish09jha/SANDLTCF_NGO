@@ -1,83 +1,90 @@
-import card1 from "../../../assets/blog-1.jpg";
-import card2 from "../../../assets/blog-2.jpg";
-import card6 from "../../../assets/blog-3.jpg";
-import { FaCalendarAlt } from 'react-icons/fa';
-import { IoPersonCircleOutline } from 'react-icons/io5';
-import { IoIosArrowForward } from 'react-icons/io';
+import React from 'react';
+import { FaQuoteRight } from 'react-icons/fa';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'react-router-dom';
 
-const Blog = () => {
+import card1 from "../../../assets/blog-1.jpg";
+import card2 from "../../../assets/blog-2.jpg";
+import card3 from "../../../assets/blog-3.jpg";
 
-    const blogData = [
+const TestimonialCard = ({ testimonial }) => {
+    return (
+        <div className="testimonial-card rounded-lg overflow-hidden shadow-md border border-gray-300 bg-white m-2"> {/* Added margin */}
+            <div className="relative p-6">
+                <div className="absolute top-0 right-0 transform -translate-x-3 -translate-y-3 text-4xl text-orange"><FaQuoteRight /></div>
+                <div className="testimonial-image relative overflow-hidden rounded-full w-24 h-24 mx-auto mb-4 border-4 border-orange">
+                    <img
+                        src={testimonial.image}
+                        alt="Testimonial Avatar"
+                        className="object-cover w-full h-full rounded-full"
+                    />
+                </div>
+                <h3 className="text-lg text-center font-semibold mb-2 text-gray-800">{testimonial.name}</h3>
+                <p className="text-gray-700 text-sm italic">{testimonial.testimony}</p> {/* Changed to italic */}
+            </div>
+        </div>
+    );
+};
+
+const Blog = () => {
+    const testimonialData = [
         {
-            category: "Community Outreach",
-            image: card6,
-            title: 'Empowering Local Communities through Education Initiatives',
-            content: 'Discover how our organization is making education accessible and empowering local communities. Learn about our initiatives starting October 1, 2023.',
-            date: 'October 10, 2023',
-            link: "/blog1",
+            image: card3,
+            name: 'Mr. T K Sharma IAS Retd. ',
+            testimony: 'TK Sharma, served in civil services (Indian Administrative Service) and was Divisional Commissioner, Gugaon and after retiring he joined S&L Trust as member of Advisory Council and actively participating in day to day activities. ',
+        },
+        {
+            image: card3,
+            name: 'Mrs. Dolly Jain',
+            testimony: 'Mrs. Dolly Jain, an industrialists & renowned philanthropist well known for her social and charitable activities. She has keen interest for welfare of unprivileged children and has active participation in monitoring of the Mobile Schools',
+        },
+        {
+            image: card3,
+            name: 'Mr. J K Dhar',
+            testimony: 'JK Dhar did electrical engineering from NIT, Kozhikode, Kerala, having over 43 years of working experience that included positions of being a Director on Board /Country Manager.',
         },
         {
             image: card1,
-            category: "Impact Stories",
-            title: 'Changing Lives: A Year in Review of our Philanthropic Journey',
-            content: 'As we step into a new year, let us reflect on the positive impact we made in the past 12 months. Join us on this journey and explore the stories of lives transformed.',
-            date: 'October 15, 2023',
-            link: "/blog2",
+            name: 'Mr. JK Mehta',
+            testimony: 'Mr. Mehta has worked in Doordarshan and after retirement from Govt. he worked as Professor (mass communication), Amity University. He specializes in Media Management and advertising sector.',
         },
         {
             image: card2,
-            category: "Announcement",
-            title: 'Building Hope: Our Latest Project for Shelter and Support',
-            content: 'Learn more about our ongoing project focused on providing shelter and support to those in need. Discover the reasons behind our mission.',
-            date: 'October 20, 2023',
-            link: "/blog3",
-
+            name: 'Mr. Sunil Nanda',
+            testimony: 'Mr. Sunil Nanda has worked as a Director in USAID and has experience of over 30 years in development sector. He is a philanthropist, participating in the various charities for the welfare of the down trodden people of the society.',
+        },
+        {
+            image: card2,
+            name: 'Mr. Sandeep Singh Rajput ',
+            testimony: 'Mr. Rajput is an active and devoted social worker. He is Director of All India Citizen’s Alliance for progress & Development (AICAPD). He accumulated lots of experience in the field operation activities. ',
         },
     ];
 
-    return (
-        <section className="p-6 md:mt-24">
-                <div className='text-center mx-auto mb-4 mt-8'>
-                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
-                        Testimonials
-                    </p>
-                </div>
-            
-                {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {blogData.map((post, index) => (
-                        <div
-                            key={index}
-                            className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
-                            <div className="image-container relative cursor-pointer">
-                                <div className="image-overlay absolute inset-0 bg-black opacity-0 transition-opacity duration-300 hover:opacity-70"></div>
-                                <img
-                                    src={post.image}
-                                    alt="Blog Image"
-                                    className="object-center object-cover"
-                                />
-                                <div className="top-left-text bg-orange text-white text-center text-sm font-semibold font-quicksand absolute top-4 md:pt-2 md:pb-2 md:pr-8 md:pl-8 pl-4  pr-4 pb-2 pt-2 rounded-sm">
-                                    {post.category}
-                                </div>
-                            </div>
-                            <h3 className="text-sm md:text-lg hover:text-orange cursor-pointer font-medium font-quicksand mt-4 mb-2">{post.title}</h3>
-                            <div className="text-sm text-gray-500 mb-4 mt-4 flex gap-4">
-                                <div className="flex items-center">
-                                    <FaCalendarAlt className="mr-1 md:h-4 md:w-4 text-orange cursor-pointer hover:text-purple" />
-                                    <p className="font-quicksand">{post.date}</p>
-                                </div>
-                            </div>
-                            <p className="text-gray-900 mb-4 text-sm font-quicksand">{post.content}</p>
-                            <div className='md:p-2 p-2 md:mb-4 mb-3 bg-orange hover:bg-primary md:mt-8 mt-4 flex items-center text-white w-32 text-center hover:bg-blue hover:text-white rounded-md cursor-pointer '>
-                                <Link to={post.link} className="text-center flex items-center md:mb-0 -mb-1">
-                                    Read More
-                                    <IoIosArrowForward className='ml-2' />
-                                </Link>
-                            </div>
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+            // Responsive settings...
+        ]
+    };
 
-                        </div>
-                    ))}
-                </div> */}
+    return (
+        <section className="container mx-auto py-12">
+            <div className='text-center mb-8'>
+                <h2 className="text-3xl font-bold text-black mb-2">ADVISORY MEMBERS</h2>
+                <div className="h-1 w-20 bg-orange mx-auto mb-4"></div>
+            </div>
+
+            <Slider {...settings}>
+                {testimonialData.map((testimonial, index) => (
+                    <TestimonialCard key={index} testimonial={testimonial} />
+                ))}
+            </Slider>
         </section>
     );
 };

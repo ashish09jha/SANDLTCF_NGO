@@ -4,7 +4,7 @@ import swal from "sweetalert";
 
 const Volunteer = () => {
     const [loading, setLoading] = useState(false);
-    const [showForm, setShowForm] = useState(false); // State to control form visibility
+    const [showForm, setShowForm] = useState(false); 
 
     const [donateInfo, setDonateInfo] = useState({
         email: "",
@@ -98,12 +98,16 @@ const Volunteer = () => {
             </div>
 
             {showForm && (
-                <div className="mx-auto mt-8">
-                    <div className="md:mr-10 bg-white md:p-6 p-3 pt-10 pb-10 rounded-md -ml-6 -mr-4">
-                        <form
-                            onSubmit={handleSave}
-                            className="mt-5 flex flex-col gap-6"
-                        >
+                <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-900 bg-opacity-50">
+                    <div className="bg-white p-6 rounded-md" style={{ backgroundColor: 'white' }}>
+                        <form onSubmit={handleSave} className="flex flex-col gap-6">
+                            <button
+                                type="button"
+                                onClick={() => setShowForm(false)}
+                                className="absolute top-2 right-2 bg-gray-200 text-gray-800 px-2 py-1 rounded-md hover:bg-gray-300 focus:outline-none"
+                            >
+                                Close
+                            </button>
                             <input
                                 id="fullname"
                                 name="fullname"
@@ -112,7 +116,7 @@ const Volunteer = () => {
                                 placeholder="Full Name"
                                 type="text"
                                 required
-                                className="p-2 font-quicksand border border-gray-600 rounded-md focus:outline-none border-b-2"
+                                className="p-2 font-quicksand border border-gray-600 rounded-md focus:outline-none"
                             />
                             <input
                                 id="email"
@@ -122,7 +126,7 @@ const Volunteer = () => {
                                 placeholder="Email Address"
                                 type="email"
                                 required
-                                className="p-2 font-quicksand border border-gray-600 rounded-md focus:outline-none border-b-2"
+                                className="p-2 font-quicksand border border-gray-600 rounded-md focus:outline-none"
                             />
                             <textarea
                                 id="reason"
@@ -131,8 +135,7 @@ const Volunteer = () => {
                                 onChange={handleInputChange}
                                 placeholder="Why do you want to become a Volunteer?"
                                 required
-                                className="p-2 font-quicksand border border-gray-600  rounded-md focus:outline-none border-b-2"
-                                min="0"
+                                className="p-2 font-quicksand border border-gray-600 rounded-md focus:outline-none"
                                 rows="3"
                             />
 

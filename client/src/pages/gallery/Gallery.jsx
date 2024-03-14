@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navigation from '../components/Navigation';
-import Header from './component/Header';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/Scroll';
 import Spinner from '../components/Spinner';
 import Main from './component/Main'
+import FullImage from '../common/fullImage';
 
 const Gallery = () => {
     const location = useLocation();
