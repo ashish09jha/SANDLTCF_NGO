@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { FiPlus } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import { BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
 
 function Main() {
