@@ -2,37 +2,29 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { FiPlus } from "react-icons/fi";
+import {Link} from 'react-router-dom';
 
 function Main() {
   const [gallery, setGallery] = useState([]);
-  const [filterData, setFilterData] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const resp = await axios.get("http://localhost:8000/ngo/Gallery");
-        const resp1 = resp.data;
-        const data = resp1.data;
+        const data = resp.data.data;
         const filteredData = data.filter((element) => element.status);
-        setFilterData(filteredData);
-        updateGallery(filteredData);
+        if (filteredData.length < 8) {
+          setGallery(filteredData);
+        } else {
+          updateGallery(filteredData);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (filterData.length > 8 && !hovered) {
-      const interval = setInterval(() => {
-        updateGallery(filterData);
-      }, 2000);
-      return () => clearInterval(interval);
-    }
-  }, [filterData, hovered]);
 
   const updateGallery = (data) => {
     const showImage = [];
@@ -44,19 +36,17 @@ function Main() {
   };
 
   const handleMouseEnter = (index) => {
-    setHovered(!hovered);
     setHoveredIndex(index);
   };
 
   const handleMouseLeave = () => {
-    setHovered(!hovered);
     setHoveredIndex(null);
   };
 
   return (
     <>
       <div className="text-center mx-auto mb-4">
-        <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
+        <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2">
           Gallery
         </p>
       </div>
@@ -80,7 +70,7 @@ function Main() {
           <Row>
             {gallery.slice(4, 8).map((element, index) => (
               <ImageContainer
-                key={index}
+                key={index + 4}
                 onMouseEnter={() => handleMouseEnter(index + 4)}
                 onMouseLeave={handleMouseLeave}
               >
@@ -90,6 +80,9 @@ function Main() {
               </ImageContainer>
             ))}
           </Row>
+          <ViewMoreRow>
+            <ViewMoreLink ><Link to="/gallery">View More</Link></ViewMoreLink>
+          </ViewMoreRow>
         </Container>
       )}
     </>
@@ -110,7 +103,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 1000px; 
+  max-width: 1000px;
   margin: 0 auto;
 `;
 
@@ -148,7 +141,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(253, 107, 28, 0.8);;
+  background-color: rgba(253, 107, 28, 0.8);
 `;
 
 const FiPlusStyled = styled(FiPlus)`
@@ -160,8 +153,20 @@ const FiPlusStyled = styled(FiPlus)`
   transform: translate(-50%, -50%);
   color: white;
   font-size: 24px;
-  z-index: 1; 
+  z-index: 1;
+`;
+
+const ViewMoreRow = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const ViewMoreLink = styled.a`
+  font-size: 18px;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 export default Main;
-
