@@ -7,8 +7,12 @@ import {addMediaPhoto,deleteMediaPhoto,fetchMediaPhoto,changeMediaStatus} from "
 import {addNewsClippingsPhoto,deleteNewsClippingsPhoto,fetchNewsClippingsPhoto,changeNewsClippingsStatus} from "../controllers/newsClippings.controller.js";
 import {addCertificatesPhoto,deleteCertificatesPhoto,fetchCertificatesPhoto,changeCertificatesStatus} from "../controllers/certificates.controller.js";
 import {fetchEvent,addEvent,changeEventStatus,deleteEvent} from "../controllers/event.controller.js";
+import {fetchVisitorsReview,addVisitorsReview} from "../controllers/visitorsReview.controller.js";
 
 const router=Router();
+
+router.route("/visitorsResview").get(fetchVisitorsReview);
+router.route("/visitorsReview").post(addVisitorsReview);
 
 router.route("/admin").get(fetchAdmin);
 router.route("/admin").post(addAdmin);
