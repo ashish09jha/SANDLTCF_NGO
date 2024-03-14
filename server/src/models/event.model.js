@@ -11,15 +11,19 @@ const eventSchema=new mongoose.Schema({
     },
     description:{
         type:string,
-        required:true,
+        required:true, 
     },
-    regitrationDate:{
+    regitrationDate:{ 
         type:string,
         required:true,
     },
     eventDate:{
         type:string,
         required:true,
+    },
+    status:{
+        type:Boolean,
+        default:0;
     }
 },{timestamps:true})
 
