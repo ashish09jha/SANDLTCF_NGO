@@ -15,7 +15,6 @@ function Sidebar() {
       <SidebarNav>
         <SidebarNavItem><Link to="/events">Events</Link></SidebarNavItem>
         <SidebarNavItem><Link to="/volunteer">Volunteer</Link></SidebarNavItem>
-        <SidebarNavItem><Link to="/media">Media</Link></SidebarNavItem>
         <SidebarNavItem><Link to="/editGallery">Gallery</Link></SidebarNavItem>
         <SidebarNavItem><Link to="">Donation</Link></SidebarNavItem>
         <SidebarNavItem><Link to="/admin">Admin</Link></SidebarNavItem>

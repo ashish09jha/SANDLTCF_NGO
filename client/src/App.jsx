@@ -13,7 +13,6 @@ import Blog1 from './pages/blog/blogs/blog1/Blog1';
 import Blog2 from './pages/blog/blogs/blog2/Blog2';
 import Blog3 from './pages/blog/blogs/blog3/Blog3';
 import Recent1 from './pages/event-blogs/first/Main';
-
 import AllVolunteer from "./pages/admin/volunteer/allVolunteer.jsx"
 import AllEvents from "./pages/admin/upcommingEvents/allEvents.jsx";
 import AllMedia from "./pages/admin/media/allMedia.jsx";
@@ -22,7 +21,10 @@ import AllGallery from "./pages/admin/editGallery/allGallery.jsx";
 import AllDonations from "./pages/admin/donation/allDonations.jsx";
 import AllAdmins from "./pages/admin/admin/allAdmins.jsx";
 import AllCertificates from "./pages/admin/Certificates/allCertificates.jsx";
-import AllNewsClippings from "./pages/admin/newsClippings/allNewsClippings.jsx";
+import AllNewsClippings from "./pages/admin/newsClippings/allNewsClippings.jsx"; 
+import Volunteer from "./pages/home/components/Volunteer.jsx"; 
+import PaymentGateway from "./pages/payment_gateway/paymentGateway.jsx";
+
 
 const App = () => {
 
@@ -50,9 +52,11 @@ const App = () => {
         <Route path="/editGallery" element={<AllGallery />} />
         <Route path="/media" element={<AllMedia />} />
         <Route path="/events" element={<AllEvents />} />
-        <Route path="/volunteer" element={<AllVolunteer/>}/>        
+        <Route path="/volunteer" element={<AllVolunteer/>}/> 
+        <Route path="/volunteers" element={<Volunteer/>}/>        
         <Route path="/certificates" element={<AllCertificates />} />
         <Route path="/newsClippings" element={<AllNewsClippings />} />
+        <Route path="/pay" element={<PaymentGateway/>}/>
       </Routes>
 
     </Router>

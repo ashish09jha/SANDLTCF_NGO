@@ -36,7 +36,7 @@ const Main = () => {
 
         try {
             // Assuming you are using fetch, I've corrected the code
-            const res = await fetch('https://v1.nocodeapi.com/kpanti/google_sheets/yyCouxnLhvkpKRdz?tabId=Enquiry', {
+            const res = await fetch('', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',

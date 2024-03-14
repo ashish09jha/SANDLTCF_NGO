@@ -83,11 +83,10 @@ const Causes = () => {
     return (
         <div className='justify-center align-center md:mt-6 -mt-4'>
             <div className=''>
-                <div className='text-center mx-auto mb-4 mt-8'>
-                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
-                        Projects
-                    </p>
-                </div>
+            <div className='text-center mb-8'>
+                <h2 className="text-3xl font-bold text-black mb-2">PROJECTS</h2>
+                <div className="h-1 w-20 bg-orange mx-auto mb-4"></div>
+            </div>
             </div>
             <div className="flex justify-center gap-4 mt-8 md:p-6 p-6 ">
 

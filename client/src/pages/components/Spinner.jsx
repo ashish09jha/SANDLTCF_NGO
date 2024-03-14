@@ -6,7 +6,7 @@ const Loading = () => (
 
         <div className="bg-gray-100 opacity-50 absolute top-0 left-0 right-0 bottom-0"></div>
         <RotatingLines
-            strokeColor="#85ba51"
+            strokeColor="#fd6b1c"
             strokeWidth="5"
             animationDuration="0.4"
             width="96"
