@@ -41,12 +41,21 @@ const addAdmin=asyncHandler(async(req,res)=>{
 
 const deleteAdmin=asyncHandler(async(req,res)=>{
     const {id,priority_Deleter,priority}=req.params;
+    if(!id){
+        throw new apiError(400,"Id is required");
+    }
+    if(!priority){
+        throw new apiError(400,"priority is required");
+    }
+    if(!priority_Deleter){
+        throw new apiError(400,"priority of deleter is required");
+    }
     if(priority_Deleter>priority){
         throw new apiError(400,"You are not able to delete");
     }
     else{
         try{
-            const resp=await admin.DeleteOne({id:id});
+            const resp=await admin.deleteOne({id:id});
             res.status(200).json(new apiResponse(200,resp,"Admin Deleted Successfully"));
         }catch(error){
             throw new apiError(400,`Error in Admin Deletion:${error}`);

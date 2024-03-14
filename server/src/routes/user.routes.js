@@ -1,13 +1,18 @@
 import { Router } from "express";
 import {upload} from "../middlewares/multer.middleware.js"
+import { fetchAdmin,deleteAdmin,addAdmin } from "../controllers/admin.controller.js";
 import {addVolunteer,fetchVolunteer,fetchVolunteerById } from "../controllers/volunteer.controller.js";
 import {addGaleryPhoto,deleteGalleryPhoto,fetchGalleryPhoto,changeGalleryStatus} from "../controllers/gallery.controller.js";
 import {addMediaPhoto,deleteMediaPhoto,fetchMediaPhoto,changeMediaStatus} from "../controllers/media.controller.js";
 import {addNewsClippingsPhoto,deleteNewsClippingsPhoto,fetchNewsClippingsPhoto,changeNewsClippingsStatus} from "../controllers/newsClippings.controller.js";
 import {addCertificatesPhoto,deleteCertificatesPhoto,fetchCertificatesPhoto,changeCertificatesStatus} from "../controllers/certificates.controller.js";
-import { fetchAdmin,deleteAdmin,addAdmin } from "../controllers/admin.controller.js";
+import {fetchEvent,addEvent,changeEventStatus,deleteEvent} from "../controllers/event.controller.js";
 
 const router=Router();
+
+router.route("/admin").get(fetchAdmin);
+router.route("/admin").post(addAdmin);
+router.route("/admin").delete(deleteAdmin);
 
 router.route("/Volunteer").post(addVolunteer);
 router.route("/Volunteer").get(fetchVolunteer);
@@ -33,8 +38,9 @@ router.route("/Certificates").post(upload.single("image"),addCertificatesPhoto);
 router.route("/Certificates").patch(changeCertificatesStatus);
 router.route("/Certificates/C/:id").delete(deleteCertificatesPhoto);
 
-router.route("/admin").get(fetchAdmin);
-router.route("/admin").post(addAdmin);
-router.route("/admin").delete(deleteAdmin);
+router.route("/event").get(fetchEvent)
+router.route("/event").post(addEvent)
+router.route("/event").patch(changeEventStatus)
+router.route("/event").delete(deleteEvent)
 
 export default router;
