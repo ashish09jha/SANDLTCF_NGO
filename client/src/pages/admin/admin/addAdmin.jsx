@@ -4,18 +4,44 @@ import styled from "styled-components";
 
 function AdminInformation() {
   const [adminList, setAdminList] = useState([]);
-  const [newImage, setNewImage] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [showForm, setShowForm] = useState(false);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("http://localhost:8000/admin");
+      setAdminList(response.data.data);
+    };
+    fetchData();
+  }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newAdmin = { name, email };
-    setAdminList([...adminList, newAdmin]);
-    setName("");
-    setEmail("");
-    setShowForm(false);
+    try {
+      const data = {
+        email: e.target.email.value,
+        name: e.target.name.value,
+        priority: localStorage.getItem("priority"),
+      };
+      await axios.post("http://localhost:8000/admin", data);
+      const newAdmin = { name, email };
+      setAdminList([...adminList, newAdmin]);
+      setName("");
+      setEmail("");
+      setShowForm(false);
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  };
+
+  const handleDelete = async (email) => {
+    try {
+      await axios.delete(`http://localhost:8000/admin/${email}`);
+      setAdminList(adminList.filter((admin) => admin.email !== email));
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
   };
 
   const toggleForm = () => {
@@ -26,7 +52,7 @@ function AdminInformation() {
     <>
       <ButtonContainer>
         <Button onClick={toggleForm}>Add Admin</Button>
-      </ButtonContainer>
+      </ButtonContainer> 
       {showForm && (
         <FormContainer>
           <Form onSubmit={handleSubmit}>
@@ -61,6 +87,7 @@ function AdminInformation() {
                 <th style={{ width: "100px" }}>Sr.No</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -69,6 +96,9 @@ function AdminInformation() {
                   <td>{index + 1}</td>
                   <td>{admin.name}</td>
                   <td>{admin.email}</td>
+                  <td>
+                    <Button onClick={() => handleDelete(admin.email)}>Delete</Button>
+                  </td>
                 </tr>
               ))}
             </tbody>
