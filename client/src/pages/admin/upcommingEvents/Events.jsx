@@ -6,7 +6,9 @@ function Events() {
   const [events, setEvents] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [eventDate, setEventDate] = useState("");
+  const [time, setTime] = useState("");
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +26,7 @@ function Events() {
   const handleDelete = async (email) => {
     try {
       await axios.delete(`http://localhost:8000/admin/${email}`);
-      setAdminList(adminList.filter((admin) => admin.email !== email));
+      setEvents(events.filter((event) => event.email !== email));
     } catch (error) {
       console.log(`Error: ${error}`);
     }
@@ -38,17 +40,18 @@ function Events() {
     e.preventDefault();
     try {
       const data = {
-        email: email,
         name: name,
+        eventDate: eventDate,
+        time: time,
+        location: location,
         priority: localStorage.getItem("priority"),
       };
       await axios.post("http://localhost:8000/ngo/event", data);
-      // Assuming you want to update the events list after adding a new event
       setEvents([...events, data]);
-      // Reset form fields
       setName("");
-      setEmail("");
-      // Close the form after submission
+      setEventDate("");
+      setTime("");
+      setLocation("");
       setShowForm(false);
     } catch (error) {
       console.log(`Error: ${error}`);
@@ -57,36 +60,54 @@ function Events() {
 
   return (
     <EventsContainer>
-      <ButtonContainer>
+      <ButtonContainer showForm={showForm}>
         <Button onClick={toggleForm}>Add Event</Button>
       </ButtonContainer>
-      {showForm && (
-        <FormContainer>
-          <Form onSubmit={handleSubmit}>
-            <InputContainer>
-              <label htmlFor="name">Name:</label>
-              <Input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </InputContainer>
-            <InputContainer>
-              <label htmlFor="email">Email:</label>
-              <Input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </InputContainer>
-            {/* No need for a submit button */}
-          </Form>
-        </FormContainer>
-      )}
+      <FormContainer showForm={showForm}>
+        <Form onSubmit={handleSubmit}>
+          <InputContainer>
+            <label htmlFor="name">Name:</label>
+            <Input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </InputContainer>
+          <InputContainer>
+            <label htmlFor="date">Event Date:</label>
+            <Input
+              type="date"
+              id="date"
+              value={eventDate}
+              onChange={(e) => setEventDate(e.target.value)}
+              required
+            />
+          </InputContainer>
+          <InputContainer>
+            <label htmlFor="time">Time:</label>
+            <Input
+              type="time"
+              id="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              required
+            />
+          </InputContainer>
+          <InputContainer>
+            <label htmlFor="location">Location:</label>
+            <Input
+              type="text"
+              id="location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              required
+            />
+          </InputContainer>
+          <SubmitButton type="submit">Submit</SubmitButton>
+        </Form>
+      </FormContainer>
       <EventsList>
         {events.map((event) => (
           <EventCard key={event.id}>
@@ -103,28 +124,6 @@ function Events() {
     </EventsContainer>
   );
 }
-
-const ButtonContainer = styled.div`
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-`;
-
-const Button = styled.button`
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  &:hover {
-    background-color: #0056b3;
-  }
-  margin-left: 10px;
-`;
 
 const EventsContainer = styled.div`
   width: 90%;
@@ -175,7 +174,15 @@ const EventDate = styled.p`
 `;
 
 const FormContainer = styled.div`
-  margin-bottom: 20px;
+  position: fixed;
+  top: 120px;
+  right: ${({ showForm }) => (showForm ? "20px" : "-300px")};
+  transition: right 0.3s ease;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 `;
 
 const Form = styled.form`
@@ -193,8 +200,44 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
+const SubmitButton = styled.button`
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #0056b3;
+  }
+  margin-top: 10px;
+`;
+
+const ButtonContainer = styled.div`
+  position: fixed;
+  top: 60px;
+  right: ${({ showForm }) => (showForm ? "-100px" : "20px")};
+  z-index: 1000;
+  transition: right 0.3s ease;
+`;
+
+const Button = styled.button`
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #0056b3;
+  }
+  margin-left: 10px;
+`;
+
 const DeleteButton = styled.button`
-  background-color: #dc3545; /* Red color */
+  background-color: #dc3545;
   color: white;
   border: none;
   padding: 8px 12px;

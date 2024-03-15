@@ -26,7 +26,7 @@ const GetinTouch = () => {
 
     const handleSave = (e) => {
         e.preventDefault();
-        swal("Restoration Foundation International", "Information Sent", "success")
+        swal("S&L Trehan Charitable Foundation", "Information Sent", "success")
         handleClear()
     }
 
@@ -36,19 +36,12 @@ const GetinTouch = () => {
                 {/* Left Column */}
                 <div className="w-full lg:w-1/2 lg:pr-10 md:-mt-16 -mt-2">
                     <div className="border-l-4 border-gold pl-2">
-                        <h2 className=' text-2xl font-quicksand text-gold font-medium ml-2'> Contact for any query
+                        <h2 className=' text-2xl font-quicksand text-gold font-medium ml-2'> Contact const first = useContext(second)
                         </h2>
                     </div>
                     <h2 className='md:text-5xl text-gray-600 text-3xl md:p-0 pr-1 font-quicksand mt-6 font-bold'>
-                        Contact for any query
+                        Contact Us
                     </h2>
-                    <p className='mt-6  font-quicksand max-w-[90%] md:text-lg text-sm'>
-                        If you have any questions or require assistance, please do not hesitate to reach out to us.
-                        We are dedicated to providing support and addressing your inquiries promptly.
-                        Your satisfaction is our priority, and we are committed to helping you.
-                        Feel free to contact us at any time. Our team is here to assist you in any way we can.
-                        We appreciate your trust and look forward to serving you
-                    </p>
                 </div>
                 {/* Right Column */}
                 <div className="w-full lg:w-1/2 p-6">
