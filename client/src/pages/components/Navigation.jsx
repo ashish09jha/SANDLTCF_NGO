@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './NavBar';
@@ -13,7 +14,9 @@ const Navigation = () => {
     return (
         <>
             <TopBar />
-            <Navbar />
+            <div style={{ paddingTop: '0px' }}> {/* Adjust according to the height of your top bar */}
+                <Navbar style={{ position: 'fixed', top: 0, width: '100%', zIndex: 1000 }} />
+            </div>
         </>
     );
 };

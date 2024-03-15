@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import ScrollToTop from '../components/Scroll';
 import Spinner from '../components/Spinner';
 import Main from './component/Main'
-
+import Header from './component/Header';
 const Testimonials = () => {
     const location = useLocation(); 
 
@@ -32,6 +32,7 @@ const Testimonials = () => {
                 :
                 <div>
                     <Navigation />
+                    <Header/>
                     <Main />
                     <Footer />
                     <ScrollToTop />

@@ -9,11 +9,11 @@ import React from "react";
 const Footer = () => {
     // Create an array of link texts
     const linkData = [
-        { text: "Home", href: "/", color: "red" },
+        { text: "Home", href: "/", color: "white" },
         { text: "About Us", href: "/about", color: "white" },
-        { text: "Projects", href: "/recent", color: "red" },
+        { text: "Projects", href: "/recent", color: "white" },
         { text: "Gallery", href: "/gallery", color: "white" },
-        { text: "Contact", href: "/about", color: "red" },
+        { text: "Contact", href: "/about", color: "white" },
     ];
 
     // Function to get the current year
@@ -25,12 +25,12 @@ const Footer = () => {
 
     return (
         <section className='justify-center  items-center' style={{ background: "black" }}>
-            <div className="bg-black p-4 ">
+            <div className="bg-navy p-4 ">
                 <div className="container md:ml-0 ml-4 md:mx-auto md:flex md:justify-between md:mt-10 md:gap-6">
                     {/* Center Section */}
                     <div className="md:w-1/3 ">
-                        <div className='border-l-4 pl-3 border-white md:pl-4 md:mt-0 mt-6'>
-                            <h2 className='text-2xl font-yeseva mb-8 font-yeseva tracking-wide text-white'>ABOUT US</h2>
+                        <div className='border-l-4 pl-3 border-orange md:pl-4 md:mt-0 mt-6'>
+                            <h2 className='text-2xl font-yeseva mb-8 font-yeseva tracking-wide text-orange'>ABOUT US</h2>
                         </div>
                         <div >
                             <p className=" font-quicksand md:text-md text-sm pb-4 p-2 text-white">
@@ -43,8 +43,8 @@ const Footer = () => {
 
                     {/* Center Section */}
                     <div className="md:w-1/3 text-center">
-                        <div className='border-l-4 pl-3 border-white md:mt-0 mt-6 md:pl-4'>
-                            <h2 className='text-2xl font-yeseva mb-8 font-yeseva text-white tracking-wide text-left'>POPULAR LINKS</h2>
+                        <div className='border-l-4 pl-3 border-orange md:mt-0 mt-6 md:pl-4'>
+                            <h2 className='text-2xl font-yeseva mb-8 font-yeseva text-orange tracking-wide text-left'>POPULAR LINKS</h2>
                         </div>
                         <div className="grid md:grid-cols-1 grid-cols-2 gap-4 md:text-md text-sm md:ml-8">
                             {linkData.map((data, index) => (
@@ -58,8 +58,8 @@ const Footer = () => {
 
                     {/* Left Section */}
                     <div className="md:w-1/3 ">
-                        <div className='border-l-4 pl-3 border-white md:pl-4 md:mt-0 mt-10'>
-                            <h2 className='text-2xl font-yeseva md:mb-8 mb-6 font-yeseva text-white tracking-wide'>OUR HEAD OFFICE</h2>
+                        <div className='border-l-4 pl-3 border-orange md:pl-4 md:mt-0 mt-10'>
+                            <h2 className='text-2xl font-yeseva md:mb-8 mb-6 font-yeseva text-orange tracking-wide'>OUR HEAD OFFICE</h2>
                         </div>
                         <div className='block items-center md:text-md text-sm'>
                             <p className=" flex items-center font-quicksand md:pb-5 pb-4 text-white">
@@ -92,7 +92,7 @@ const Footer = () => {
                 </div>
                 <div className='justify-center items-center text-center md:mt-16 mt-10 mb-6 md:mb-4'>
                     <p className=' font-quicksand text-white md:text-md text-sm'
-                    >© {getCurrentYear()} <span className='text-red md:text-md'>S&L Trehan Charitable Foundation</span>  Developed by <a href='#' className='font-medium md:text-md text-sm hover:text-gold'>Ashish Narayan Jha</a> </p>
+                    >© {getCurrentYear()} <span className='text-orange md:text-md'>S&L Trehan Charitable Foundation</span>  Developed by <a href='#' className='font-medium md:text-md text-sm hover:text-gold'>Ashish Narayan Jha</a> </p>
                 </div>
             </div>
         </section>

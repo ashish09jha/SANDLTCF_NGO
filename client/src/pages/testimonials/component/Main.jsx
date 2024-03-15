@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'react-router-dom';
-import Header from './Header';
 
 import card1 from "../../../assets/blog-1.jpg";
 import card2 from "../../../assets/blog-2.jpg";
@@ -75,8 +74,9 @@ const Blog = () => {
     };
 
     return (
+        
         <section className="container mx-auto py-12">
-            <Header/>
+            
             <div className='text-center mb-8'>
                 {/* <h2 className="text-3xl font-bold text-black mb-2">ADVISORY MEMBERS</h2> */}
                 <div className="h-1 w-20 bg-orange mx-auto mb-4"></div>
