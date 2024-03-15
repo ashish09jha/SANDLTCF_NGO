@@ -6,8 +6,8 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js"
 
 const addEvent=asyncHandler(async(req,res)=>{
     const {image}=req.file;
-    const {name,description,regitrationDate,eventDate}=req.body;
-    if(!(name||description||regitrationDate||eventDate)){
+    const {name,description,regitrationDate,eventDate,time,location}=req.body;
+    if(!(name||description||regitrationDate||eventDate||time||location)){
         throw new apiError(400,"All fields required");
     }
     if(!image){
@@ -20,6 +20,8 @@ const addEvent=asyncHandler(async(req,res)=>{
         description:description,
         regitrationDate:regitrationDate,
         eventDate:eventDate,
+        time:time,
+        location:location,
     }
     const resp= event.createUser(data);
     res.status(200).json(new apiResponse(200,resp,"Data send succesfully"));
