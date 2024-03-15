@@ -19,7 +19,8 @@ export default {
         orange: "#85ba51",
         red: "#d41418",
         blue: "#2b159b",
-        orange: "#fd6b1c"
+        orange: "#fd6b1c",
+        navy: "#001c2e",
       },
     },
   },
