@@ -1,82 +1,287 @@
-import card1 from "../../../assets/blog-1.jpg";
-import card2 from "../../../assets/blog-2.jpg";
-import card6 from "../../../assets/blog-3.jpg";
-import { FaCalendarAlt } from 'react-icons/fa';
-import { IoPersonCircleOutline } from 'react-icons/io5';
-import { IoIosArrowForward } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import { FiPlus, FiX } from "react-icons/fi";
+import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
+import Header from "./Header";
 
-const Blog = () => {
+function Main() {
+  const [gallery, setGallery] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentImage, setCurrentImage] = useState(null);
+  const [zoom, setZoom] = useState(false);
+  const [direction, setDirection] = useState(null);
 
-    const blogData = [
-        {
-            category: "Community Outreach",
-            image: card6,
-            title: 'Empowering Local Communities through Education Initiatives',
-            content: 'Discover how our organization is making education accessible and empowering local communities. Learn about our initiatives starting October 1, 2023.',
-            date: 'October 10, 2023',
-            link: "/blog1",
-        },
-        {
-            image: card1,
-            category: "Impact Stories",
-            title: 'Changing Lives: A Year in Review of our Philanthropic Journey',
-            content: 'As we step into a new year, let us reflect on the positive impact we made in the past 12 months. Join us on this journey and explore the stories of lives transformed.',
-            date: 'October 15, 2023',
-            link: "/blog2",
-        },
-        {
-            image: card2,
-            category: "Announcement",
-            title: 'Building Hope: Our Latest Project for Shelter and Support',
-            content: 'Learn more about our ongoing project focused on providing shelter and support to those in need. Discover the reasons behind our mission.',
-            date: 'October 20, 2023',
-            link: "/blog3",
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resp = await axios.get("http://localhost:8000/ngo/NewsClippings");
+        const resp1 = resp.data;
+        const data = resp1.data;
+        const filterData = data.filter((element) => element.status);
+        setGallery(filterData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
-        },
-    ];
+  useEffect(() => {
+    if (gallery.length > 0) {
+      setCurrentImage(gallery[currentIndex]?.image);
+    }
+  }, [gallery, currentIndex]);
 
-    return (
-        <section className="p-6 md:mt-24">
-            <div className="container mx-auto pb-8">
-                <h2 className="md:text-4xl font-bold text-gray-600 text-2xl font-raleway mb-6 text-center md:mb-12">Our Success Stories</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {blogData.map((post, index) => (
-                        <div
-                            key={index}
-                            className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
-                            <div className="image-container relative cursor-pointer">
-                                <div className="image-overlay absolute inset-0 bg-black opacity-0 transition-opacity duration-300 hover:opacity-70"></div>
-                                <img
-                                    src={post.image}
-                                    alt="Blog Image"
-                                    className="object-center object-cover"
-                                />
-                                <div className="top-left-text bg-orange text-white text-center text-sm font-semibold font-quicksand absolute top-4 md:pt-2 md:pb-2 md:pr-8 md:pl-8 pl-4  pr-4 pb-2 pt-2 rounded-sm">
-                                    {post.category}
-                                </div>
-                            </div>
-                            <h3 className="text-sm md:text-lg hover:text-orange cursor-pointer font-medium font-quicksand mt-4 mb-2">{post.title}</h3>
-                            <div className="text-sm text-gray-500 mb-4 mt-4 flex gap-4">
-                                <div className="flex items-center">
-                                    <FaCalendarAlt className="mr-1 md:h-4 md:w-4 text-orange cursor-pointer hover:text-purple" />
-                                    <p className="font-quicksand">{post.date}</p>
-                                </div>
-                            </div>
-                            <p className="text-gray-900 mb-4 text-sm font-quicksand">{post.content}</p>
-                            <div className='md:p-2 p-2 md:mb-4 mb-3 bg-orange hover:bg-primary md:mt-8 mt-4 flex items-center text-white w-32 text-center hover:bg-blue hover:text-white rounded-md cursor-pointer '>
-                                <Link to={post.link} className="text-center flex items-center md:mb-0 -mb-1">
-                                    Read More
-                                    <IoIosArrowForward className='ml-2' />
-                                </Link>
-                            </div>
-
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
+  const handleLeftClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? gallery.length - 1 : prevIndex - 1
     );
-};
+    setDirection("left");
+  };
 
-export default Blog;
+  const handleRightClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === gallery.length - 1 ? 0 : prevIndex + 1
+    );
+    setDirection("right");
+  };
+
+  const handleZoom = useCallback((index) => {
+    setZoom(true);
+    setCurrentIndex(index);
+    setCurrentImage(gallery[index].image);
+    document.body.style.overflow = "hidden";
+  }, [gallery]);
+
+  const handleCloseZoom = () => {
+    setZoom(false);
+    document.body.style.overflow = "auto";
+  };
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (zoom) {
+        if (e.keyCode === 37) {
+          // Left arrow key
+          handleLeftClick();
+        } else if (e.keyCode === 39) {
+          // Right arrow key
+          handleRightClick();
+        }
+      }
+    },
+    [zoom, handleLeftClick, handleRightClick]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
+
+  return (
+    <>
+        <Header/>
+      {gallery.length === 0 ? (
+        <Container1>Coming Soon...</Container1>
+      ) : (
+        <>
+          <Container zoomed={zoom}>
+            {gallery.map((element, index) => (
+              <HoveredImageContainer
+                key={index}
+                onClick={() => handleZoom(index)}
+                zoomed={zoom && currentIndex === index}
+              >
+                <img src={element.image} alt={`Image ${index}`} />
+                <FiPlusStyled />
+              </HoveredImageContainer>
+            ))}
+          </Container>
+          <DarkOverlay zoomed={zoom} onClick={handleCloseZoom} />
+          {zoom && (
+            <ImageWrapper>
+              <CloseButton onClick={handleCloseZoom}>
+                <FiXStyled />
+              </CloseButton>
+              <LeftArrow onClick={handleLeftClick}>
+                <IoMdArrowBackStyled />
+              </LeftArrow>
+              <FullImage
+                id="full-image"
+                src={currentImage}
+                alt="Full Image" 
+                direction={direction}
+                className={zoom ? "active" : ""}
+              />
+              <RightArrow onClick={handleRightClick}>
+                <IoMdArrowForwardStyled />
+              </RightArrow>
+            </ImageWrapper>
+          )}
+        </>
+      )}
+    </>
+  );
+}
+
+const Container1 = styled.div`
+  height: 100px;
+  display: flex;
+  font-size: 30px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  overflow: ${(props) => (props.zoomed ? "hidden" : "auto")};
+  height: ${(props) => (props.zoomed ? "100vh" : "auto")};
+`;
+
+const HoveredImageContainer = styled.div`
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: ${(props) => (props.zoomed ? "0" : "12px")};
+  overflow: hidden;
+  box-shadow: ${(props) =>
+    props.zoomed ? "none" : "0px 4px 8px rgba(0, 0, 0, 0.1)"};
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    border-radius: 8px;
+  }
+
+`;
+
+const FiPlusStyled = styled(FiPlus)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height:30%;
+  width:30%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 36px;
+  z-index:3;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  ${HoveredImageContainer}:hover & {
+    opacity: 1;
+  }
+`;
+
+const DarkOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  display: ${(props) => (props.zoomed ? "block" : "none")};
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 20;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+const LeftArrow = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 20;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+const RightArrow = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 20;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+const IoMdArrowBackStyled = styled(IoMdArrowBack)`
+  outline: none;
+`;
+
+const IoMdArrowForwardStyled = styled(IoMdArrowForward)`
+  outline: none;
+`;
+
+const FiXStyled = styled(FiX)`
+  outline: none;
+`;
+
+const FullImage = styled.img`
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 120px);
+  margin-top: 20px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateX(${(props) => (props.direction === 'left' ? '-100%' : '100%')});
+  opacity: 0;
+  &.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  text-align: center;
+`;
+
+export default Main;

@@ -7,7 +7,7 @@ import Spinner from '../components/Spinner';
 import Main from './component/Main'
 
 const Gallery = () => {
-    const location = useLocation();
+    const location = useLocation(); 
 
     useEffect(() => {
         window.scrollTo(0, 0); 

@@ -3,6 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { FiPlus, FiX } from "react-icons/fi";
 import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
+import Header from "./Header";
 
 function Main() {
   const [gallery, setGallery] = useState([]);
@@ -82,6 +83,7 @@ function Main() {
 
   return (
     <>
+      <Header/>
       {gallery.length === 0 ? (
         <Container1>Coming Soon...</Container1>
       ) : (
@@ -110,7 +112,7 @@ function Main() {
               <FullImage
                 id="full-image"
                 src={currentImage}
-                alt="Full Image"
+                alt="Full Image" 
                 direction={direction}
                 className={zoom ? "active" : ""}
               />
