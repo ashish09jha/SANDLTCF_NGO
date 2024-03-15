@@ -36,7 +36,7 @@ router.route("/Media").get(fetchMediaPhoto);
 router.route("/Media").post(upload.single("image"),addMediaPhoto);
 router.route("/Media").patch(changeMediaStatus); 
 router.route("/Media/C/:id").delete(deleteMediaPhoto);
-
+ 
 router.route("/Certificates").get(fetchCertificatesPhoto);
 router.route("/Certificates").post(upload.single("image"),addCertificatesPhoto);
 router.route("/Certificates").patch(changeCertificatesStatus);
@@ -45,6 +45,6 @@ router.route("/Certificates/C/:id").delete(deleteCertificatesPhoto);
 router.route("/event").get(fetchEvent)
 router.route("/event").post(addEvent)
 router.route("/event").patch(changeEventStatus)
-router.route("/event").delete(deleteEvent)
+router.route("/event/C/:id").delete(deleteEvent)
  
 export default router;

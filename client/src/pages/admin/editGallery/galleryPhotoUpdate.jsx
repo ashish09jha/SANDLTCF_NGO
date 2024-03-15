@@ -6,7 +6,7 @@ function GalleryPhotoUpdate() {
     const [images, setImages] = useState([]);
     const [newImage, setNewImage] = useState(null);
     const [isLoading, setIsLoading] = useState(false); 
-    const [addingNewImage, setAddingNewImage] = useState(false); // Track whether a new photo is being added
+    const [addingNewImage, setAddingNewImage] = useState(false);
 
     useEffect(() => {
         fetchData();

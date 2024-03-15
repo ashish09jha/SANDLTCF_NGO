@@ -23,6 +23,8 @@ const MyComponent = () => {
     suggestion: ''
   });
 
+  const [showForm, setShowForm] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -33,22 +35,41 @@ const MyComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newReview = {
-      name: formData.name,
-      email: formData.email,
-      suggestions: [formData.suggestion],
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    };
-    setReviews([...reviews, newReview]);
-    setFormData({
-      name: '',
-      email: '',
-      suggestion: ''
-    });
+    if (showForm) {
+      const newReview = {
+        name: formData.name,
+        email: formData.email,
+        suggestions: [formData.suggestion],
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      };
+      setReviews([...reviews, newReview]);
+      setFormData({
+        name: '',
+        email: '',
+        suggestion: ''
+      });
+    }
+    setShowForm(!showForm); // Toggle form visibility
   };
 
   return (
     <Container>
+      <SubmitButton onClick={handleSubmit}>
+        {showForm ? 'Close Form' : 'Submit Review'}
+      </SubmitButton>
+      {showForm && (
+        <FormContainer>
+          <Form onSubmit={handleSubmit}>
+            <InputLabel>Name:</InputLabel>
+            <Input type="text" name="name" value={formData.name} onChange={handleChange} required />
+            <InputLabel>Email:</InputLabel>
+            <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
+            <InputLabel>Suggestion:</InputLabel>
+            <TextArea name="suggestion" value={formData.suggestion} onChange={handleChange} required />
+            <SubmitButton type="submit">Submit</SubmitButton>
+          </Form>
+        </FormContainer>
+      )}
       <CardContainer>
         {reviews.map((review, index) => (
           <Card key={index}>
@@ -63,23 +84,22 @@ const MyComponent = () => {
           </Card>
         ))}
       </CardContainer>
-      <Form onSubmit={handleSubmit}>
-        <InputLabel>Name:</InputLabel>
-        <Input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        <InputLabel>Email:</InputLabel>
-        <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        <InputLabel>Suggestion:</InputLabel>
-        <TextArea name="suggestion" value={formData.suggestion} onChange={handleChange} required />
-        <SubmitButton type="submit">Submit Review</SubmitButton>
-      </Form>
     </Container>
   );
 };
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Align items to the center */
+`;
+
+const FormContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const CardContainer = styled.div`
@@ -136,5 +156,40 @@ const Time = styled.div`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 90%;
- 
+  width: 300px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+const InputLabel = styled.label`
+  margin-bottom: 5px;
+`;
+
+const Input = styled.input`
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+const TextArea = styled.textarea`
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+const SubmitButton = styled.button`
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+`;
+
+export default MyComponent;
