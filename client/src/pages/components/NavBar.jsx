@@ -162,7 +162,7 @@ const Navigation = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="/upcoming"
+                                    to="/certificates"
                                     className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
                                 >
                                     Certificates
@@ -170,7 +170,7 @@ const Navigation = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="/upcoming"
+                                    to="/visitorReview"
                                     className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
                                 >
                                     Visitor Reviews

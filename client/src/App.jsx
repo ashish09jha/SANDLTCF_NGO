@@ -25,7 +25,7 @@ import AllNewsClippings from "./pages/admin/newsClippings/allNewsClippings.jsx";
 import Volunteer from "./pages/home/components/Volunteer.jsx"; 
 import PaymentGateway from "./pages/payment_gateway/paymentGateway.jsx";
 import Testimonials from "./pages/testimonials/Testimonials.jsx";
-
+import VisitorReview from "./pages/visitorReview/visitorReview.jsx";
 
 const App = () => {
 
@@ -36,7 +36,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/founder" element={<Founder />} />
         <Route path="/causes" element={<Causes />} />
-        <Route path="/upcoming" element={<Upcoming />} />
+        <Route path="/certificates" element={<Upcoming />} />
         <Route path="/recent" element={<Recent />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
@@ -46,6 +46,7 @@ const App = () => {
         <Route path="/blog3" element={<Blog3 />} />
         <Route path="/inauguration" element={<Recent1 />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/visitorReview" element={<VisitorReview />} />
 
         <Route path="/landingPage" element={<LandingPage />} />
         <Route path="/admin" element={<AllAdmins />} />
