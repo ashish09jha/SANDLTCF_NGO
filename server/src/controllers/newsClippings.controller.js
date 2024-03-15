@@ -42,7 +42,7 @@ const changeNewsClippingsStatus = asyncHandler(async (req, res) => {
     throw new apiError(400, "ID is required");
   }
   try {
-    const data = await gallery.findByIdAndUpdate(
+    const data = await newsClippings.findByIdAndUpdate(
       id,
       {
         $set: {

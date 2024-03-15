@@ -8,6 +8,7 @@ import {v2 as cloudinary} from 'cloudinary';
 const fetchCertificatesPhoto = asyncHandler(async (req, res) => {
   try {
     const data = await certificates.find();
+    console.log(data);
     res.status(200).json(new apiResponse(200, data, "data send successfully"));
   } catch (error) {
     throw new apiError(400, `Error:${error}`);
@@ -15,6 +16,7 @@ const fetchCertificatesPhoto = asyncHandler(async (req, res) => {
 });
 
 const addCertificatesPhoto = asyncHandler(async (req, res) => {
+  console.log(req.file);
   const image = req.file;
   if (!image) {
     throw new apiError(400, "image is required");

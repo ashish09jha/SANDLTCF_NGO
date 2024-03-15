@@ -23,8 +23,8 @@ function Events() {
 
   const handleDelete = async (email) => {
     try {
-      await axios.delete(`http://localhost:8000/ngo/event/${email}`);
-      setEvents(events.filter((event) => event.email !== email));
+      await axios.delete(`http://localhost:8000/admin/${email}`);
+      setAdminList(adminList.filter((admin) => admin.email !== email));
     } catch (error) {
       console.log(`Error: ${error}`);
     }

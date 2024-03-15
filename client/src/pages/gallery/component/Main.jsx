@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { FiPlus } from "react-icons/fi";
-import { BiArrowToLeft, BiArrowToRight } from "react-icons/bi";
+import { FiPlus, FiX } from "react-icons/fi";
+import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 
 function Main() {
   const [gallery, setGallery] = useState([]);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState();
-  const [currentImage, setCurrentImage] = useState();
-  const [zoom, SetZoom] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentImage, setCurrentImage] = useState(null);
+  const [zoom, setZoom] = useState(false);
+  const [direction, setDirection] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,93 +26,104 @@ function Main() {
     fetchData();
   }, []);
 
-  const handleLeftClick = () => {
-    const newIndex = currentIndex - 1;
-    if (newIndex >= 0) {
-      setCurrentIndex(newIndex);
-      setCurrentImage(gallery[newIndex]?.image);
-      console.log("called");
-      console.log(currentImage);
+  useEffect(() => {
+    if (gallery.length > 0) {
+      setCurrentImage(gallery[currentIndex]?.image);
     }
+  }, [gallery, currentIndex]);
+
+  const handleLeftClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? gallery.length - 1 : prevIndex - 1
+    );
+    setDirection("left");
   };
 
   const handleRightClick = () => {
-    const newIndex = currentIndex + 1;
-    if (newIndex < gallery.length) {
-      setCurrentIndex(newIndex);
-      setCurrentImage(gallery[newIndex]?.image);
-    }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === gallery.length - 1 ? 0 : prevIndex + 1
+    );
+    setDirection("right");
   };
 
-  const handleZoom=(index)=>{
-    SetZoom(true);
+  const handleZoom = useCallback((index) => {
+    setZoom(true);
     setCurrentIndex(index);
     setCurrentImage(gallery[index].image);
-  }
+    document.body.style.overflow = "hidden";
+  }, [gallery]);
 
-  const handleZoomOut=()=>{
-    SetZoom(false);
-  }
+  const handleCloseZoom = () => {
+    setZoom(false);
+    document.body.style.overflow = "auto";
+  };
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (zoom) {
+        if (e.keyCode === 37) {
+          // Left arrow key
+          handleLeftClick();
+        } else if (e.keyCode === 39) {
+          // Right arrow key
+          handleRightClick();
+        }
+      }
+    },
+    [zoom, handleLeftClick, handleRightClick]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   return (
     <>
-      {!gallery.length ? (
+      {gallery.length === 0 ? (
         <Container1>Coming Soon...</Container1>
       ) : (
         <>
-          {zoom ? (
-            <Container2>
-              <LeftArrow onClick={handleLeftClick} />
-              <img src={currentImage} alt="Full Image" />
-              <RightArrow onClick={handleRightClick} />
-              <Goback onClick={handleZoomOut}>Go Back</Goback>
-            </Container2>
-          ) : (
-            <Container>
-              {gallery.map((element, index) => (
-                <HoveredImageContainer
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  onClick={() => handleZoom(index)}
-                >
-                  <img src={element.image} alt={`Image ${index}`} />
-                  {hoveredIndex === index && <FiPlusStyled />}
-                </HoveredImageContainer>
-              ))}
-            </Container>
+          <Container zoomed={zoom}>
+            {gallery.map((element, index) => (
+              <HoveredImageContainer
+                key={index}
+                onClick={() => handleZoom(index)}
+                zoomed={zoom && currentIndex === index}
+              >
+                <img src={element.image} alt={`Image ${index}`} />
+                <FiPlusStyled />
+              </HoveredImageContainer>
+            ))}
+          </Container>
+          <DarkOverlay zoomed={zoom} onClick={handleCloseZoom} />
+          {zoom && (
+            <ImageWrapper>
+              <CloseButton onClick={handleCloseZoom}>
+                <FiXStyled />
+              </CloseButton>
+              <LeftArrow onClick={handleLeftClick}>
+                <IoMdArrowBackStyled />
+              </LeftArrow>
+              <FullImage
+                id="full-image"
+                src={currentImage}
+                alt="Full Image"
+                direction={direction}
+                className={zoom ? "active" : ""}
+              />
+              <RightArrow onClick={handleRightClick}>
+                <IoMdArrowForwardStyled />
+              </RightArrow>
+            </ImageWrapper>
           )}
         </>
       )}
     </>
   );
 }
-
-const Container2 = styled.div`
-  position: relative;
-  display: inline-block;
-  
-  img {
-    max-width: 100vw;
-    max-height: 100vh;
-  }
-`;
-
-
-const LeftArrow = styled(BiArrowToLeft)`
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  cursor: pointer;
-`;
-
-const RightArrow = styled(BiArrowToRight)`
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  cursor: pointer;
-`;
 
 const Container1 = styled.div`
   height: 100px;
@@ -125,41 +136,30 @@ const Container1 = styled.div`
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+  overflow: ${(props) => (props.zoomed ? "hidden" : "auto")};
+  height: ${(props) => (props.zoomed ? "100vh" : "auto")};
 `;
 
-const ImageContainer = styled.div`
+const HoveredImageContainer = styled.div`
   position: relative;
   width: 200px;
   height: 200px;
-  margin: 10px;
+  border-radius: ${(props) => (props.zoomed ? "0" : "12px")};
   overflow: hidden;
-  border-radius: 8px;
+  box-shadow: ${(props) =>
+    props.zoomed ? "none" : "0px 4px 8px rgba(0, 0, 0, 0.1)"};
   transition: transform 0.3s ease;
+  cursor: pointer;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  &:hover {
-    transform: scale(1.1);
-  }
-
-  &:hover::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-    border-radius: 8px;
   }
 `;
 
@@ -167,32 +167,100 @@ const FiPlusStyled = styled(FiPlus)`
   position: absolute;
   top: 50%;
   left: 50%;
-  height: 50%;
-  width: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 48px;
-  z-index: 2;
+  font-size: 36px;
   opacity: 0;
   transition: opacity 0.3s ease;
-`;
-
-const HoveredImageContainer = styled(ImageContainer)`
-  &:hover ${FiPlusStyled} {
+  ${HoveredImageContainer}:hover & {
     opacity: 1;
   }
 `;
 
-const Goback = styled.div`
+const DarkOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  display: ${(props) => (props.zoomed ? "block" : "none")};
+`;
+
+const CloseButton = styled.button`
   position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
-  border: 2px solid #000;
-  padding: 8px 16px;
-  font-size: 16px;
+  top: 20px;
+  right: 20px;
   cursor: pointer;
+  z-index: 20;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+const LeftArrow = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 20;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+const RightArrow = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 20;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+const IoMdArrowBackStyled = styled(IoMdArrowBack)`
+  outline: none;
+`;
+
+const IoMdArrowForwardStyled = styled(IoMdArrowForward)`
+  outline: none;
+`;
+
+const FiXStyled = styled(FiX)`
+  outline: none;
+`;
+
+const FullImage = styled.img`
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 120px);
+  margin-top: 20px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateX(${(props) => (props.direction === 'left' ? '-100%' : '100%')});
+  opacity: 0;
+  &.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  text-align: center;
 `;
 
 export default Main;
