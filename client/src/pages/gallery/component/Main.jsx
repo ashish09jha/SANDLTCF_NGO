@@ -161,6 +161,22 @@ const HoveredImageContainer = styled.div`
     height: 100%;
     object-fit: cover;
   }
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    border-radius: 8px;
+  }
+
 `;
 
 const FiPlusStyled = styled(FiPlus)`
