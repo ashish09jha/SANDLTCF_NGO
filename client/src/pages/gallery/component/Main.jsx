@@ -185,6 +185,9 @@ const FiPlusStyled = styled(FiPlus)`
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+  z-index: 3;
+  height: 30%;
+  width: 30%;
   font-size: 36px;
   opacity: 0;
   transition: opacity 0.3s ease;
