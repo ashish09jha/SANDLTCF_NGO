@@ -24,6 +24,7 @@ import AllCertificates from "./pages/admin/Certificates/allCertificates.jsx";
 import AllNewsClippings from "./pages/admin/newsClippings/allNewsClippings.jsx"; 
 import Volunteer from "./pages/home/components/Volunteer.jsx"; 
 import PaymentGateway from "./pages/payment_gateway/paymentGateway.jsx";
+import Testimonials from "./pages/testimonials/Testimonials.jsx";
 
 
 const App = () => {
@@ -57,6 +58,7 @@ const App = () => {
         <Route path="/certificates" element={<AllCertificates />} />
         <Route path="/newsClippings" element={<AllNewsClippings />} />
         <Route path="/pay" element={<PaymentGateway/>}/>
+        <Route path="/testinomials" element={<Testimonials/>}/>
       </Routes>
 
     </Router>
