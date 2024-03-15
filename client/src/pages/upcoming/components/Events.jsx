@@ -1,96 +1,287 @@
-import Img1 from '../../../assets/event-1.jpg';
-import Img2 from '../../../assets/event-2.jpg';
-import { GoArrowRight } from 'react-icons/go';
-import { BsClock } from 'react-icons/bs';
-import { IoLocationSharp } from 'react-icons/io5';
-import { FaCalendarAlt } from 'react-icons/fa';
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import { FiPlus, FiX } from "react-icons/fi";
+import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
+import Header from "./Header";
 
-const eventsData = [
-    {
-        title: 'Lorem ipsum dolor',
-        date: "22-Jun-23",
-        time: "8:00 - 10:00",
-        location: "Volta Region",
-        buttonText: "Read More!",
-        description: 'Lorem Ipsum is simply dummy text of the industry',
-        image: Img1,
-        link: "#",
+function Main() {
+  const [gallery, setGallery] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentImage, setCurrentImage] = useState(null);
+  const [zoom, setZoom] = useState(false);
+  const [direction, setDirection] = useState(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resp = await axios.get("http://localhost:8000/ngo/Certificates");
+        const resp1 = resp.data;
+        const data = resp1.data;
+        const filterData = data.filter((element) => element.status);
+        setGallery(filterData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (gallery.length > 0) {
+      setCurrentImage(gallery[currentIndex]?.image);
+    }
+  }, [gallery, currentIndex]);
+
+  const handleLeftClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? gallery.length - 1 : prevIndex - 1
+    );
+    setDirection("left");
+  };
+
+  const handleRightClick = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === gallery.length - 1 ? 0 : prevIndex + 1
+    );
+    setDirection("right");
+  };
+
+  const handleZoom = useCallback((index) => {
+    setZoom(true);
+    setCurrentIndex(index);
+    setCurrentImage(gallery[index].image);
+    document.body.style.overflow = "hidden";
+  }, [gallery]);
+
+  const handleCloseZoom = () => {
+    setZoom(false);
+    document.body.style.overflow = "auto";
+  };
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (zoom) {
+        if (e.keyCode === 37) {
+          // Left arrow key
+          handleLeftClick();
+        } else if (e.keyCode === 39) {
+          // Right arrow key
+          handleRightClick();
+        }
+      }
     },
-    {
-        title: 'Lorem ipsum dolor ',
-        date: "22-Jun-23",
-        time: "8:00 - 10:00",
-        location: "Volta Region",
-        buttonText: "Join Now!",
-        description: 'Lorem Ipsum is simply dummy text of the industry',
-        image: Img2,
-        link: "#",
+    [zoom, handleLeftClick, handleRightClick]
+  );
 
-    },
-    {
-        title: 'Lorem ipsum dolor ',
-        date: "22-Jun-23",
-        time: "8:00 - 10:00",
-        location: "Volta Region",
-        buttonText: "Join Now!",
-        description: 'Lorem Ipsum is simply dummy text of the industry',
-        image: Img1,
-        link: "#",
-    },
-];
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
-const Events = () => {
-    return (
-        <div className='justify-center align-center '>
-            <div className=''>
-                <div className='text-center mx-auto mb-4 mt-24'>
-                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
-                        Upcoming Events
-                    </p>
-                    <h2 className=" font-quicksand font-bold md:text-5xl text-3xl text-gray-600 mb-4 md:max-w-[700px] md:ml-[25%] mt-6 md:p-0 p-2">
-                        Be ready for our upcoming charity events
-                    </h2>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 md:p-14 md:mb-4 mb-10">
-                {eventsData.map((event, index) => (
-                    <div key={index} className="bg-white p-4 rounded-lg shadow-md border border-gray-300">
-                        <div className="image-container relative cursor-pointer overflow-hidden">
-                            <img
-                                src={event.image}
-                                alt="Recent Events"
-                                className="object-center object-cover transition-transform duration-300 transform hover:scale-110"
-                            />
-                        </div>
-                        <h3 className="text-sm md:text-lg hover:text-orange cursor-pointer text-center capitalize font-semibold font-quicksand mt-4 mb-2">{event.title}</h3>
-                        <div className="container mx-auto mt-8 pl-4 mb-4 flex flex-wrap items-center">
-                            {/* Left Content */}
-                            <div className="w-full lg:w-1/2 lg:pr-10 ">
-                                <p className='flex items-center gap-2 font-quicksand font-sm  pb-1'>
-                                    <FaCalendarAlt className='text-orange mr-2 h-4 w-4' />{event.date}
-                                </p>
-                                <p className='flex items-center gap-2 mt-3 font-quicksand font-sm  pb-1'>
-                                    <BsClock className='text-orange mr-2 h-4 w-4' />{event.time}
-                                </p>
-                                <p className='flex items-center gap-2 mt-3 font-quicksand font-sm  pb-1 '>
-                                    <IoLocationSharp className='text-orange mr-2 h-6 w-6 -ml-1' />{event.location}
-                                </p>
-                            </div>
-                            {/* Right Content */}
-                            <div className="w-full lg:w-1/2 md:border-l-4 border-orange pl-4 md:mt-0 mt-4 md:ml-0 -ml-4">
-                                <p className=' text-sm font-quicksand'>{event.description}</p>
-                                <button href={event.link} className='mt-4 border border-orange border-b-4 md:ml-0  pl-2 pb-1 pt-1 pr-2 rounded-md flex items-center font-quicksand font-medium -ml-1 hover:border-primary'>
-                                    {event.buttonText}
-                                    <GoArrowRight className='ml-2 mr-2' />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
+  return (
+    <>
+      <Header/>
+      {gallery.length === 0 ? (
+        <Container1>Coming Soon...</Container1>
+      ) : (
+        <>
+          <Container zoomed={zoom}>
+            {gallery.map((element, index) => (
+              <HoveredImageContainer
+                key={index}
+                onClick={() => handleZoom(index)}
+                zoomed={zoom && currentIndex === index}
+              >
+                <img src={element.image} alt={`Image ${index}`} />
+                <FiPlusStyled />
+              </HoveredImageContainer>
+            ))}
+          </Container>
+          <DarkOverlay zoomed={zoom} onClick={handleCloseZoom} />
+          {zoom && (
+            <ImageWrapper>
+              <CloseButton onClick={handleCloseZoom}>
+                <FiXStyled />
+              </CloseButton>
+              <LeftArrow onClick={handleLeftClick}>
+                <IoMdArrowBackStyled />
+              </LeftArrow>
+              <FullImage
+                id="full-image"
+                src={currentImage}
+                alt="Full Image" 
+                direction={direction}
+                className={zoom ? "active" : ""}
+              />
+              <RightArrow onClick={handleRightClick}>
+                <IoMdArrowForwardStyled />
+              </RightArrow>
+            </ImageWrapper>
+          )}
+        </>
+      )}
+    </>
+  );
 }
-export default Events;
+
+const Container1 = styled.div`
+  height: 100px;
+  display: flex;
+  font-size: 30px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  overflow: ${(props) => (props.zoomed ? "hidden" : "auto")};
+  height: ${(props) => (props.zoomed ? "100vh" : "auto")};
+`;
+
+const HoveredImageContainer = styled.div`
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: ${(props) => (props.zoomed ? "0" : "12px")};
+  overflow: hidden;
+  box-shadow: ${(props) =>
+    props.zoomed ? "none" : "0px 4px 8px rgba(0, 0, 0, 0.1)"};
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    border-radius: 8px;
+  }
+
+`;
+
+const FiPlusStyled = styled(FiPlus)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height:30%;
+  width:30%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 36px;
+  z-index:3;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  ${HoveredImageContainer}:hover & {
+    opacity: 1;
+  }
+`;
+
+const DarkOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  display: ${(props) => (props.zoomed ? "block" : "none")};
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 20;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+const LeftArrow = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 20;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+const RightArrow = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 20;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+const IoMdArrowBackStyled = styled(IoMdArrowBack)`
+  outline: none;
+`;
+
+const IoMdArrowForwardStyled = styled(IoMdArrowForward)`
+  outline: none;
+`;
+
+const FiXStyled = styled(FiX)`
+  outline: none;
+`;
+
+const FullImage = styled.img`
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 120px);
+  margin-top: 20px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateX(${(props) => (props.direction === 'left' ? '-100%' : '100%')});
+  opacity: 0;
+  &.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  text-align: center;
+`;
+
+export default Main;
