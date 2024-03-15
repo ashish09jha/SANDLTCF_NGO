@@ -14,13 +14,13 @@ const TestimonialCard = ({ testimonial }) => {
         <div className="testimonial-card rounded-lg overflow-hidden shadow-md border border-gray-300 bg-white m-2"> {/* Added margin */}
             <div className="relative p-6">
                 <div className="absolute top-0 right-0 transform -translate-x-3 -translate-y-3 text-4xl text-orange"><FaQuoteRight /></div>
-                <div className="testimonial-image relative overflow-hidden rounded-full w-24 h-24 mx-auto mb-4 border-4 border-orange">
+                {/* <div className="testimonial-image relative overflow-hidden rounded-full w-24 h-24 mx-auto mb-4 border-4 border-orange">
                     <img
                         src={testimonial.image}
                         alt="Testimonial Avatar"
                         className="object-cover w-full h-full rounded-full"
                     />
-                </div>
+                </div> */}
                 <h3 className="text-lg text-center font-semibold mb-2 text-gray-800">{testimonial.name}</h3>
                 <p className="text-gray-700 text-sm italic">{testimonial.testimony}</p> {/* Changed to italic */}
             </div>

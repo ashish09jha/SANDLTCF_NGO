@@ -6,8 +6,8 @@ import Events from "./Events.jsx";
 function AllEvents() {
   return (
     <div>
-        {/* <Navbar/> */}
-        {/* <Sidebar/> */}
+        <Navbar/> 
+        <Sidebar/>
         <Events/>
     </div>
   );
