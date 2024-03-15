@@ -58,17 +58,21 @@ const MyComponent = () => {
         {showForm ? 'Close Form' : 'Submit Review'}
       </SubmitButton>
       {showForm && (
-        <FormContainer>
-          <Form onSubmit={handleSubmit}>
-            <InputLabel>Name:</InputLabel>
-            <Input type="text" name="name" value={formData.name} onChange={handleChange} required />
-            <InputLabel>Email:</InputLabel>
-            <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
-            <InputLabel>Suggestion:</InputLabel>
-            <TextArea name="suggestion" value={formData.suggestion} onChange={handleChange} required />
-            <SubmitButton type="submit">Submit</SubmitButton>
-          </Form>
-        </FormContainer>
+        <>
+          <Overlay onClick={() => setShowForm(false)} />
+          <FormContainer>
+            <CloseButton onClick={() => setShowForm(false)}>×</CloseButton>
+            <Form onSubmit={handleSubmit}>
+              <InputLabel>Name:</InputLabel>
+              <Input type="text" name="name" value={formData.name} onChange={handleChange} required />
+              <InputLabel>Email:</InputLabel>
+              <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
+              <InputLabel>Suggestion:</InputLabel>
+              <TextArea name="suggestion" value={formData.suggestion} onChange={handleChange} required />
+              <SubmitButton type="submit">Submit</SubmitButton>
+            </Form>
+          </FormContainer>
+        </>
       )}
       <CardContainer>
         {reviews.map((review, index) => (
@@ -95,11 +99,36 @@ const Container = styled.div`
   align-items: center; /* Align items to the center */
 `;
 
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+  z-index: 999; /* Ensure overlay is on top */
+`;
+
 const FormContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1000; /* Ensure form is on top of overlay */
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
 `;
 
 const CardContainer = styled.div`
