@@ -21,6 +21,14 @@ const eventSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
+    location:{
+        type:String,
+        required:true,
+    },
+    time:{
+        type:String,
+        required:true,
+    },
     status:{
         type:Boolean,
         default:0,

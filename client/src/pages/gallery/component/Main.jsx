@@ -183,9 +183,12 @@ const FiPlusStyled = styled(FiPlus)`
   position: absolute;
   top: 50%;
   left: 50%;
+  height:30%;
+  width:30%;
   transform: translate(-50%, -50%);
   color: white;
   font-size: 36px;
+  z-index:3;
   opacity: 0;
   transition: opacity 0.3s ease;
   ${HoveredImageContainer}:hover & {
