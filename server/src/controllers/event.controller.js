@@ -5,25 +5,27 @@ import { event } from "../models/event.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 
 const addEvent=asyncHandler(async(req,res)=>{
-    const {image}=req.file;
-    const {name,description,regitrationDate,eventDate,time,location}=req.body;
-    if(!(name||description||regitrationDate||eventDate||time||location)){
+    const image=req.file;
+    const {eventName,description,regitrationDate,eventDate,time,location}=req.body;
+    console.log(req.body);
+    if(!(eventName||description||regitrationDate||eventDate||time||location)){
         throw new apiError(400,"All fields required");
     }
     if(!image){
         throw new apiError(400,"Image is required");
     }
-    const imageURL=uploadOnCloudinary(image);
+    const imageURL=await uploadOnCloudinary(image.path);
     const data={
         image:imageURL,
-        name:name,
+        name:eventName,
         description:description,
         regitrationDate:regitrationDate,
         eventDate:eventDate,
         time:time,
         location:location,
     }
-    const resp= event.createUser(data);
+    const evt=new event(data);
+    const resp=await evt.save();
     res.status(200).json(new apiResponse(200,resp,"Data send succesfully"));
 }) 
 
