@@ -178,18 +178,18 @@ const Navigation = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="/upcoming"
+                                    to="/Testinomials"
                                     className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
                                 >
-                                    Testimonials
+                                    Advisory Members
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink
-                                    to="/upcoming"
+                                    to="/upcomingEvents"
                                     className={`block p-2 hover:bg-white rounded-md border-purple font-medium text-md mt-4 hover:text-orange`}
                                 >
-                                    Testimonials
+                                    Upcomming Events
                                 </NavLink>
                             </li>
                         </ul>

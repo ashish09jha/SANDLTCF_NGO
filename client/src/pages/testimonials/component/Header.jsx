@@ -4,7 +4,7 @@ const Header = () => {
 
     return (
         <div className="relative w-full py-12 ">
-            <Container>GALLERY</Container>
+            <Container>ADVISORY MEMBERS</Container>
         </div>
     );
 };
