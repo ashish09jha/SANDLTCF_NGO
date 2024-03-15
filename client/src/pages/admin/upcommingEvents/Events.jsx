@@ -21,7 +21,7 @@ function Events() {
 
   const handleDelete = async (email) => {
     try {
-      await axios.delete(`http://localhost:8000/admin/${email}`);
+      await axios.delete(`http://localhost:8000`);
       setAdminList(adminList.filter((admin) => admin.email !== email));
     } catch (error) {
       console.log(`Error: ${error}`);

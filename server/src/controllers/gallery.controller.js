@@ -4,6 +4,7 @@ import { apiError } from "../utils/apiError.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { gallery } from "../models/gallery.model.js";
 import {v2 as cloudinary} from 'cloudinary';
+
 const fetchGalleryPhoto = asyncHandler(async (req, res) => {
   try {
     const data = await gallery.find();
