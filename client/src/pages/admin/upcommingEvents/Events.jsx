@@ -5,6 +5,8 @@ import styled from "styled-components";
 function Events() {
   const [events, setEvents] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +23,7 @@ function Events() {
 
   const handleDelete = async (email) => {
     try {
-      await axios.delete(`http://localhost:8000`);
+      await axios.delete(`http://localhost:8000/admin/${email}`);
       setAdminList(adminList.filter((admin) => admin.email !== email));
     } catch (error) {
       console.log(`Error: ${error}`);
@@ -36,22 +38,24 @@ function Events() {
     e.preventDefault();
     try {
       const data = {
-        email: e.target.email.value,
-        name: e.target.name.value,
+        email: email,
+        name: name,
         priority: localStorage.getItem("priority"),
       };
-      await axios.post("http://localhost:8000/admin", data);
-      
+      await axios.post("http://localhost:8000/ngo/event", data);
+      // Assuming you want to update the events list after adding a new event
+      setEvents([...events, data]);
+      // Reset form fields
+      setName("");
+      setEmail("");
+      // Close the form after submission
+      setShowForm(false);
     } catch (error) {
       console.log(`Error: ${error}`);
     }
   };
 
-  const handleAddEvent = () => {
-
-  };
-
-  return ( 
+  return (
     <EventsContainer>
       <ButtonContainer>
         <Button onClick={toggleForm}>Add Event</Button>
@@ -79,6 +83,7 @@ function Events() {
                 required
               />
             </InputContainer>
+            {/* No need for a submit button */}
           </Form>
         </FormContainer>
       )}
@@ -90,6 +95,7 @@ function Events() {
               <EventName>{event.name}</EventName>
               <EventDescription>{event.description}</EventDescription>
               <EventDate>Date: {event.date}</EventDate>
+              <DeleteButton onClick={() => handleDelete(event.email)}>Delete</DeleteButton>
             </EventDetails>
           </EventCard>
         ))}
@@ -99,25 +105,25 @@ function Events() {
 }
 
 const ButtonContainer = styled.div`
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
 `;
 
 const Button = styled.button`
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    &:hover {
-        background-color: #0056b3;
-    }
-    margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #0056b3;
+  }
+  margin-left: 10px;
 `;
 
 const EventsContainer = styled.div`
@@ -168,13 +174,33 @@ const EventDate = styled.p`
   color: #777;
 `;
 
-const AddEventButton = styled.button`
-  background-color: #fff;
-  color: #007bff; /* Blue color */
-  border: 1px solid #007bff; /* Blue border */
-  border-radius: 5px;
-  padding: 10px 20px;
-  margin: 20px 0 0 auto; /* Move to right with some margin */
+const FormContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const InputContainer = styled.div`
+  margin-bottom: 15px;
+`;
+
+const Input = styled.input`
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+const DeleteButton = styled.button`
+  background-color: #dc3545; /* Red color */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
 `;
 
 export default Events;
