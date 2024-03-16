@@ -12,7 +12,7 @@ function MediaPhotoUpdate() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/ngo/Media");
+            const response = await axios.get("http://sandltcf-ngo.onrender.com/ngo/Media");
             const data1 = response.data;
             const data = data1.data;
             setImages(data);
@@ -29,7 +29,7 @@ function MediaPhotoUpdate() {
             }
             const formData = new FormData();
             formData.append('image', newImage);
-            await axios.post("http://localhost:8000/ngo/Media", formData, {
+            await axios.post("http://sandltcf-ngo.onrender.com/ngo/Media", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -45,7 +45,7 @@ function MediaPhotoUpdate() {
 
         const deleteData = async () => {
             try {
-                await axios.delete(`http://localhost:8000/ngo/Media/C/${id}`);
+                await axios.delete(`http://sandltcf-ngo.onrender.com/ngo/Media/C/${id}`);
                 setImages(prevImages => prevImages.filter(image => image._id !== id));
             } catch (error) {
                 console.error("Error deleting photo:", error);
@@ -66,7 +66,7 @@ function MediaPhotoUpdate() {
                     id:id,
                     status:status,
                 }
-                await axios.patch("http://localhost:8000/ngo/Media",data);
+                await axios.patch("http://sandltcf-ngo.onrender.com/ngo/Media",data);
             }catch(error){
                 console.log(`ERROR:${error}`)
             }

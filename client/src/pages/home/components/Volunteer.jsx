@@ -37,7 +37,7 @@ const Volunteer = () => {
     
         try {
             // Assuming you are using fetch, I've corrected the code
-            const res = await fetch("http://localhost:8000/ngo/Volunteer", {
+            const res = await fetch("http://sandltcf-ngo.onrender.com/ngo/Volunteer", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

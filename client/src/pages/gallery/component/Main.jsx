@@ -15,7 +15,7 @@ function Main() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await axios.get("http://localhost:8000/ngo/Gallery");
+        const resp = await axios.get(`https://sandltcf-ngo.onrender.com/ngo/Gallery`);
         const resp1 = resp.data;
         const data = resp1.data;
         const filterData = data.filter((element) => element.status);

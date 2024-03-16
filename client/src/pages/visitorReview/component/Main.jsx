@@ -12,7 +12,7 @@ const Main = () => {
 
   const fetchData=async()=>{
     try{
-      const data1=await axios.get("http://localhost:8000/ngo/visitorsReview");
+      const data1=await axios.get("http://sandltcf-ngo.onrender.com/ngo/visitorsReview");
       const data=data1.data.data;
       setReviews(data);
       console.log(data);

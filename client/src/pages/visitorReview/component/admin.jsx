@@ -32,7 +32,7 @@ const Volunteer = () => {
         e.preventDefault();
         setLoading(true);
         try{
-            const data=await axios.post(`http://localhost:8000/ngo/visitorsReview`,formData)
+            const data=await axios.post(`http://sandltcf-ngo.onrender.com/ngo/visitorsReview`,formData)
         }catch(error){
             console.log(`ERROR:${error}`);
         }
