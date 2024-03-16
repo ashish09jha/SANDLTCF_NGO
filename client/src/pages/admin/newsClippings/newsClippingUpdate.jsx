@@ -14,7 +14,7 @@ function NewsClippingUpdate() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/ngo/NewsClippings");
+            const response = await axios.get("http://sandltcf-ngo.onrender.com/ngo/NewsClippings");
             const data1 = response.data;
             const data = data1.data;
             setImages(data);
@@ -34,7 +34,7 @@ function NewsClippingUpdate() {
             }
             const formData = new FormData();
             formData.append('image', newImage);
-            setAddingNewImage(true);await axios.post("http://localhost:8000/ngo/NewsClippings", formData, {
+            setAddingNewImage(true);await axios.post("http://sandltcf-ngo.onrender.com/ngo/NewsClippings", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -51,7 +51,7 @@ function NewsClippingUpdate() {
 
     const handleDeletePhoto = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/ngo/NewsClippings/C/${id}`);
+            await axios.delete(`http://sandltcf-ngo.onrender.com/ngo/NewsClippings/C/${id}`);
             setImages(prevImages => prevImages.filter(image => image._id !== id));
         } catch (error) {
             console.error("Error deleting photo:", error);
@@ -67,7 +67,7 @@ function NewsClippingUpdate() {
                 id: id,
                 status: status,
             }
-            await axios.patch("http://localhost:8000/ngo/NewsClippings", data);
+            await axios.patch("http://sandltcf-ngo.onrender.com/ngo/NewsClippings", data);
         } catch (error) {
             console.log(`ERROR:${error}`)
         }

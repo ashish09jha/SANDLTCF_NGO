@@ -14,7 +14,7 @@ function Events() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/ngo/event");
+            const response = await axios.get("http://sandltcf-ngo.onrender.com/ngo/event");
             const data = response.data.data;
             console.log(data);
             setEvents(data);
@@ -26,7 +26,7 @@ function Events() {
     const handleDeleteCard = async (id) => {
         try {
             console.log("object")
-            await axios.delete(`http://localhost:8000/ngo/event/C/${id}`);
+            await axios.delete(`http://sandltcf-ngo.onrender.com/ngo/event/C/${id}`);
             setEvents(prevEvents => prevEvents.filter(events => events._id !== id));
         } catch (error) {
             console.error("Error deleting photo:", error);
@@ -43,7 +43,7 @@ function Events() {
                 id: id,
                 status: status,
             }
-            await axios.patch("http://localhost:8000/ngo/event", data);
+            await axios.patch("http://sandltcf-ngo.onrender.com/ngo/event", data);
         } catch (error) {
             console.log(`ERROR:${error}`)
         }

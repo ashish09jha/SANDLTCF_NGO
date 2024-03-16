@@ -6,6 +6,8 @@ import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import Header from "./Header";
 
 function Main() {
+
+  
   const [gallery, setGallery] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentImage, setCurrentImage] = useState(null);
@@ -14,8 +16,10 @@ function Main() {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(process.env.APIURL);
       try {
-        const resp = await axios.get("http://localhost:8000/ngo/Gallery");
+        
+        const resp = await axios.get(`https://sandltcf-ngo.onrender.com/ngo/Gallery`);
         const resp1 = resp.data;
         const data = resp1.data;
         const filterData = data.filter((element) => element.status);

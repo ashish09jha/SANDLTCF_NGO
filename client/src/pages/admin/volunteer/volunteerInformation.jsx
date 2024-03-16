@@ -8,7 +8,7 @@ function VolunteerInformation() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/ngo/Volunteer');
+                const response = await axios.get('http://sandltcf-ngo.onrender.com/ngo/Volunteer');
                 const data = response.data.data;
                 console.log('Fetched volunteer data:', data);
                 setVolunteer(data);

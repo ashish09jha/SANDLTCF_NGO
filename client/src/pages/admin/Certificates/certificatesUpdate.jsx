@@ -14,7 +14,7 @@ function CertificatesUpdate() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/ngo/Certificates");
+            const response = await axios.get("http://sandltcf-ngo.onrender.com/ngo/Certificates");
             const data1 = response.data;
             const data = data1.data;
             setImages(data);
@@ -34,7 +34,7 @@ function CertificatesUpdate() {
             }
             const formData = new FormData();
             formData.append('image', newImage);
-            setAddingNewImage(true);await axios.post("http://localhost:8000/ngo/Certificates", formData, {
+            setAddingNewImage(true);await axios.post("http://sandltcf-ngo.onrender.com/ngo/Certificates", formData, {
                 headers: { 
                     'Content-Type': 'multipart/form-data'
                 }
@@ -51,7 +51,7 @@ function CertificatesUpdate() {
 
     const handleDeletePhoto = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/ngo/Certificates/C/${id}`);
+            await axios.delete(`http://sandltcf-ngo.onrender.com/ngo/Certificates/C/${id}`);
             setImages(prevImages => prevImages.filter(image => image._id !== id));
         } catch (error) {
             console.error("Error deleting photo:", error);
@@ -67,7 +67,7 @@ function CertificatesUpdate() {
                 id: id,
                 status: status,
             }
-            await axios.patch("http://localhost:8000/ngo/Certificates", data);
+            await axios.patch("http://sandltcf-ngo.onrender.com/ngo/Certificates", data);
         } catch (error) {
             console.log(`ERROR:${error}`)
         }

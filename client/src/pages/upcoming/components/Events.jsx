@@ -15,7 +15,7 @@ function Main() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await axios.get("http://localhost:8000/ngo/Certificates");
+        const resp = await axios.get("http://sandltcf-ngo.onrender.com/ngo/Certificates");
         const resp1 = resp.data;
         const data = resp1.data;
         const filterData = data.filter((element) => element.status);

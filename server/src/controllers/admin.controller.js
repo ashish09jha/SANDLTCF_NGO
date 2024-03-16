@@ -32,7 +32,7 @@ const addAdmin=asyncHandler(async(req,res)=>{
         }
         const resp1=await new admin.createUser(data);
         const resp=resp1.save();
-        verification(email,"http:/localhost:8000/volunteer");
+        verification(email,"http:/sandltcf-ngo.onrender.com/volunteer");
         res.status(200).json(new apiResponse(200,resp,"admin crested successfully"));
     }catch(error){
         throw new apiError(400,`Data not stored:${error}`);

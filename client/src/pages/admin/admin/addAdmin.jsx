@@ -10,7 +10,7 @@ function AdminInformation() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:8000/admin");
+      const response = await axios.get("http://sandltcf-ngo.onrender.com/admin");
       setAdminList(response.data.data);
     };
     fetchData();
@@ -24,7 +24,7 @@ function AdminInformation() {
         name: e.target.name.value,
         priority: localStorage.getItem("priority"),
       };
-      await axios.post("http://localhost:8000/admin", data);
+      await axios.post("http://sandltcf-ngo.onrender.com/admin", data);
       const newAdmin = { name, email };
       setAdminList([...adminList, newAdmin]);
       setName("");
@@ -37,7 +37,7 @@ function AdminInformation() {
 
   const handleDelete = async (email) => {
     try {
-      await axios.delete(`http://localhost:8000/admin/${email}`);
+      await axios.delete(`http://sandltcf-ngo.onrender.com/admin/${email}`);
       setAdminList(adminList.filter((admin) => admin.email !== email));
     } catch (error) {
       console.log(`Error: ${error}`);
