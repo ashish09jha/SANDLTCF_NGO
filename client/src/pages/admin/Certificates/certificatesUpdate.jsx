@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import {localHost} from "../../../../URL.js"
 
 function CertificatesUpdate() {
     const [images, setImages] = useState([]);
@@ -14,7 +15,7 @@ function CertificatesUpdate() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://sandltcf-ngo.onrender.com/ngo/Certificates");
+            const response = await axios.get(`${localHost}/ngo/Certificates`);
             const data1 = response.data;
             const data = data1.data;
             setImages(data);
@@ -34,7 +35,7 @@ function CertificatesUpdate() {
             }
             const formData = new FormData();
             formData.append('image', newImage);
-            setAddingNewImage(true);await axios.post("http://sandltcf-ngo.onrender.com/ngo/Certificates", formData, {
+            setAddingNewImage(true);await axios.post(`${localHost}/ngo/Certificates`, formData, {
                 headers: { 
                     'Content-Type': 'multipart/form-data'
                 }
@@ -51,7 +52,7 @@ function CertificatesUpdate() {
 
     const handleDeletePhoto = async (id) => {
         try {
-            await axios.delete(`http://sandltcf-ngo.onrender.com/ngo/Certificates/C/${id}`);
+            await axios.delete(`${localHost}/ngo/Certificates/C/${id}`);
             setImages(prevImages => prevImages.filter(image => image._id !== id));
         } catch (error) {
             console.error("Error deleting photo:", error);
@@ -67,7 +68,7 @@ function CertificatesUpdate() {
                 id: id,
                 status: status,
             }
-            await axios.patch("http://sandltcf-ngo.onrender.com/ngo/Certificates", data);
+            await axios.patch(`${localHost}/ngo/Certificates`, data);
         } catch (error) {
             console.log(`ERROR:${error}`)
         }

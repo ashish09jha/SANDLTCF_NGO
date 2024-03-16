@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Volunteer from './admin.jsx';
+import  {localHost}  from '../../../../URL.js';
 
 function Events() {
     const [events, setEvents] = useState([]);
@@ -14,7 +15,7 @@ function Events() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://sandltcf-ngo.onrender.com/ngo/event");
+            const response = await axios.get(`${localHost}/ngo/event`);
             const data = response.data.data;
             console.log(data);
             setEvents(data);
@@ -26,7 +27,7 @@ function Events() {
     const handleDeleteCard = async (id) => {
         try {
             console.log("object")
-            await axios.delete(`http://sandltcf-ngo.onrender.com/ngo/event/C/${id}`);
+            await axios.delete(`${localHost}/ngo/event/C/${id}`);
             setEvents(prevEvents => prevEvents.filter(events => events._id !== id));
         } catch (error) {
             console.error("Error deleting photo:", error);
@@ -43,7 +44,7 @@ function Events() {
                 id: id,
                 status: status,
             }
-            await axios.patch("http://sandltcf-ngo.onrender.com/ngo/event", data);
+            await axios.patch(`${localHost}/ngo/event`, data);
         } catch (error) {
             console.log(`ERROR:${error}`)
         }

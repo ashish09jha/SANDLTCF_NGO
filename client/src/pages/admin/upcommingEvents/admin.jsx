@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@material-tailwind/react";
 import axios from "axios";
+import  {localHost}  from "../../../../URL";
 
 const Volunteer = () => {
     const [loading, setLoading] = useState(false);
@@ -58,7 +59,7 @@ const Volunteer = () => {
         formData.append("time", eventInfo.time);
 
         try {
-            const response = await axios.post("http://sandltcf-ngo.onrender.com/ngo/event", formData);
+            const response = await axios.post(`${localHost}/ngo/event`, formData);
             console.log(response.data); 
             handleClear();
         } catch (error) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import {localHost} from "../../../../URL";
 
 function AdminInformation() {
   const [adminList, setAdminList] = useState([]);
@@ -10,7 +11,7 @@ function AdminInformation() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://sandltcf-ngo.onrender.com/admin");
+      const response = await axios.get(`${localHost}/admin`);
       setAdminList(response.data.data);
     };
     fetchData();
@@ -24,7 +25,7 @@ function AdminInformation() {
         name: e.target.name.value,
         priority: localStorage.getItem("priority"),
       };
-      await axios.post("http://sandltcf-ngo.onrender.com/admin", data);
+      await axios.post(`${localHost}/admin`, data);
       const newAdmin = { name, email };
       setAdminList([...adminList, newAdmin]);
       setName("");
@@ -37,7 +38,7 @@ function AdminInformation() {
 
   const handleDelete = async (email) => {
     try {
-      await axios.delete(`http://sandltcf-ngo.onrender.com/admin/${email}`);
+      await axios.delete(`${localHost}/admin/${email}`);
       setAdminList(adminList.filter((admin) => admin.email !== email));
     } catch (error) {
       console.log(`Error: ${error}`);

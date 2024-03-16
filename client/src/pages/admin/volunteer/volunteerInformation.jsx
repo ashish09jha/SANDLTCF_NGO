@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import {localHost} from '../../../../URL';
 
 function VolunteerInformation() {
     const [volunteer, setVolunteer] = useState([]);
@@ -8,7 +9,7 @@ function VolunteerInformation() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://sandltcf-ngo.onrender.com/ngo/Volunteer');
+                const response = await axios.get(`${localHost}/ngo/Volunteer`);
                 const data = response.data.data;
                 console.log('Fetched volunteer data:', data);
                 setVolunteer(data);
