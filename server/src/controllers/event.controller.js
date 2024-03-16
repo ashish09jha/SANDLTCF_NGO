@@ -6,20 +6,21 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js"
 
 const addEvent=asyncHandler(async(req,res)=>{
     const image=req.file;
-    const {eventName,description,regitrationDate,eventDate,time,location}=req.body;
+    const {eventName,description,registrationDate,eventDate,time,location}=req.body;
     console.log(req.body);
-    if(!(eventName||description||regitrationDate||eventDate||time||location)){
+    if(!(eventName||description||registrationDate||eventDate||time||location)){
         throw new apiError(400,"All fields required");
     }
     if(!image){
         throw new apiError(400,"Image is required");
     }
-    const imageURL=await uploadOnCloudinary(image.path);
+    const image1=await uploadOnCloudinary(image.path);
+    const imageURL=image1.url;
     const data={
         image:imageURL,
         name:eventName,
         description:description,
-        regitrationDate:regitrationDate,
+        registrationDate:registrationDate,
         eventDate:eventDate,
         time:time,
         location:location,
@@ -30,7 +31,7 @@ const addEvent=asyncHandler(async(req,res)=>{
 }) 
 
 const changeEventStatus=asyncHandler(async(req,res)=>{
-    const {id,status}=req.params;
+    const {id,status}=req.body;
     if(!id){
         throw new apiError(400,"Id is required");
     }
@@ -63,6 +64,7 @@ const fetchEvent=asyncHandler(async(req,res)=>{
 })
 
 const deleteEvent=asyncHandler(async(req,res)=>{
+    console.log("object")
     const {id}=req.params;
     if(!id){
         throw new apiError(400,"Id is required");
