@@ -13,13 +13,13 @@ function Sidebar() {
         SANDLTCF
       </SidebarHeader>
       <SidebarNav>
-        <SidebarNavItem><Link to="/events">Events</Link></SidebarNavItem>
-        <SidebarNavItem><Link to="/volunteer">Volunteer</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/editevents">Events</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/editvolunteer">Volunteer</Link></SidebarNavItem>
         <SidebarNavItem><Link to="/editGallery">Gallery</Link></SidebarNavItem>
         <SidebarNavItem><Link to="">Donation</Link></SidebarNavItem>
-        <SidebarNavItem><Link to="/admin">Admin</Link></SidebarNavItem>
-        <SidebarNavItem><Link to="/certificates">Certificates</Link></SidebarNavItem>
-        <SidebarNavItem><Link to="/newsClippings">News Clippings</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/editadmin">Admin</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/editcertificates">Certificates</Link></SidebarNavItem>
+        <SidebarNavItem><Link to="/editnewsClippings">News Clippings</Link></SidebarNavItem>
       </SidebarNav>
     </SidebarContainer>
   );

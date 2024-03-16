@@ -13,7 +13,7 @@ const eventSchema=new mongoose.Schema({
         type:String,
         required:true, 
     },
-    regitrationDate:{ 
+    registrationDate:{ 
         type:String,
         required:true,
     },
@@ -32,6 +32,10 @@ const eventSchema=new mongoose.Schema({
     status:{
         type:Boolean,
         default:0,
+    },
+    public_id:{
+        type:String,
+        default:true,
     }
 },{timestamps:true})
 
