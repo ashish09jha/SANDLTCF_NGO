@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FiPlus, FiX } from "react-icons/fi";
 import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import Header from "./Header";
+import {localHost} from "../../../../URL.js"
 
 function Main() {
   const [gallery, setGallery] = useState([]);
@@ -14,8 +15,9 @@ function Main() {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(`${localHost}/ngo/Gallery`)
       try {
-        const resp = await axios.get(`https://sandltcf-ngo.onrender.com/ngo/Gallery`);
+        const resp = await axios.get(`${localHost}/ngo/Gallery`);
         const resp1 = resp.data;
         const data = resp1.data;
         const filterData = data.filter((element) => element.status);

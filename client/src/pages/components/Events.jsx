@@ -3,6 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import {localHost} from "../../../URL";
 
 function Main() {
   const [gallery, setGallery] = useState([]);
@@ -11,7 +12,7 @@ function Main() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await axios.get("http://sandltcf-ngo.onrender.com/ngo/Gallery");
+        const resp = await axios.get(`${localHost}/ngo/Gallery`);
         const data = resp.data.data;
         const filteredData = data.filter((element) => element.status);
         if (filteredData.length < 8) {
