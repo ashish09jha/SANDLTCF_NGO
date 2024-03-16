@@ -13,7 +13,7 @@ const visitorsReviewSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    suggesstion:{
+    suggestion:{
         type:String,
         required:true
     }

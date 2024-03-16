@@ -49,15 +49,15 @@ const App = () => {
         <Route path="/visitorReview" element={<VisitorReview />} />
 
         <Route path="/landingPage" element={<LandingPage />} />
-        <Route path="/admin" element={<AllAdmins />} />
-        <Route path="/donation" element={<AllDonations />} />
+        <Route path="/editadmin" element={<AllAdmins />} />
+        <Route path="/editdonation" element={<AllDonations />} />
         <Route path="/editGallery" element={<AllGallery />} />
-        <Route path="/media" element={<AllMedia />} />
-        <Route path="/events" element={<AllEvents />} />
-        <Route path="/volunteer" element={<AllVolunteer/>}/> 
+        <Route path="/editmedia" element={<AllMedia />} />
+        <Route path="/editevents" element={<AllEvents />} />
+        <Route path="/editvolunteer" element={<AllVolunteer/>}/> 
         <Route path="/volunteers" element={<Volunteer/>}/>        
-        <Route path="/certificates" element={<AllCertificates />} />
-        <Route path="/newsClippings" element={<AllNewsClippings />} />
+        <Route path="/editcertificates" element={<AllCertificates />} />
+        <Route path="/editnewsClippings" element={<AllNewsClippings />} />
         <Route path="/pay" element={<PaymentGateway/>}/>
         <Route path="/testinomials" element={<Testimonials/>}/>
       </Routes>

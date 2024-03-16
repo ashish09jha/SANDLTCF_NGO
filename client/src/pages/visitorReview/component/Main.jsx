@@ -1,134 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
+import Volunteer from './admin.jsx';
+import axios from 'axios';
 
-const MyComponent = () => {
-  const [reviews, setReviews] = useState([
-    {
-      name: 'John Doe',
-      email: 'john@example.com',
-      suggestions: ['Go for a walk', 'Read a book', 'Cook a meal'],
-      time: '12:00 PM',
-    },
-    {
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-      suggestions: ['Watch a movie', 'Take a nap', 'Call a friend'],
-      time: '2:30 PM',
-    },
-  ]);
+const Main = () => {
+  const [reviews, setReviews] = useState([]);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    suggestion: ''
-  });
+  useEffect(()=>{
+    fetchData();
+  },[])
 
-  const [showForm, setShowForm] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (showForm) {
-      const newReview = {
-        name: formData.name,
-        email: formData.email,
-        suggestions: [formData.suggestion],
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      };
-      setReviews([...reviews, newReview]);
-      setFormData({
-        name: '',
-        email: '',
-        suggestion: ''
-      });
+  const fetchData=async()=>{
+    try{
+      const data1=await axios.get("http://localhost:8000/ngo/visitorsReview");
+      const data=data1.data.data;
+      setReviews(data);
+      console.log(data);
+    }catch(error){
+      console.log(`Error:${error}`);
     }
-    setShowForm(!showForm); // Toggle form visibility
-  };
-
+  }
+  
   return (
     <Container>
-      <SubmitButton onClick={handleSubmit}>
-        {showForm ? 'Close Form' : 'Submit Review'}
-      </SubmitButton>
-      {showForm && (
-        <>
-          <Overlay onClick={() => setShowForm(false)} />
-          <FormContainer>
-            <CloseButton onClick={() => setShowForm(false)}>×</CloseButton>
-            <Form onSubmit={handleSubmit}>
-              <InputLabel>Name:</InputLabel>
-              <Input type="text" name="name" value={formData.name} onChange={handleChange} required />
-              <InputLabel>Email:</InputLabel>
-              <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
-              <InputLabel>Suggestion:</InputLabel>
-              <TextArea name="suggestion" value={formData.suggestion} onChange={handleChange} required />
-              <SubmitButton type="submit">Submit</SubmitButton>
-            </Form>
-          </FormContainer>
-        </>
-      )}
+      <Volunteer/>
       <CardContainer>
         {reviews.map((review, index) => (
           <Card key={index}>
-            <Name>{review.name}</Name>
-            <Email>{review.email}</Email>
+            <Name>{review.personalDetail}</Name>
             <Suggestions>
-              {review.suggestions.map((suggestion, idx) => (
-                <SuggestionCard key={idx}>{suggestion}</SuggestionCard>
-              ))}
+                <SuggestionCard >{review.suggestion}</SuggestionCard>
             </Suggestions>
-            <Time>{review.time}</Time>
-          </Card>
+            <Time>{review.date}</Time>
+          </Card> 
         ))}
       </CardContainer>
     </Container>
   );
 };
+// const VolunteerForm = styled(Volunteer)`
+//   position: absolute; /* Position the form absolutely within the CardContainer */
+//   z-index: 2; /* Ensure the form overlays the suggestions */
+// `;
 
 const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Align items to the center */
-`;
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
-  z-index: 999; /* Ensure overlay is on top */
-`;
-
-const FormContainer = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000; /* Ensure form is on top of overlay */
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 40px;
-  height: 40px;
-  background-color: red;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
+  align-items: center; 
+  margin-top:-120px;
 `;
 
 const CardContainer = styled.div`
@@ -136,6 +56,7 @@ const CardContainer = styled.div`
   flex-direction: column;
   width: 90%;
   margin-top: 20px;
+  z-index:-1;
 `;
 
 const Card = styled.div`
@@ -151,12 +72,6 @@ const Card = styled.div`
 const Name = styled.div`
   font-size: 24px;
   margin-bottom: 5px;
-`;
-
-const Email = styled.div`
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 10px;
 `;
 
 const Suggestions = styled.div`
@@ -182,43 +97,4 @@ const Time = styled.div`
   color: #888;
 `;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
-
-const InputLabel = styled.label`
-  margin-bottom: 5px;
-`;
-
-const Input = styled.input`
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`;
-
-const TextArea = styled.textarea`
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`;
-
-const SubmitButton = styled.button`
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-`;
-
-export default MyComponent;
+export default Main;

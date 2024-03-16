@@ -11,7 +11,7 @@ import {fetchVisitorsReview,addVisitorsReview} from "../controllers/visitorsRevi
 
 const router=Router();
 
-router.route("/visitorsResview").get(fetchVisitorsReview);
+router.route("/visitorsReview").get(fetchVisitorsReview);
 router.route("/visitorsReview").post(addVisitorsReview);
 
 router.route("/admin").get(fetchAdmin);
@@ -43,7 +43,7 @@ router.route("/Certificates").patch(changeCertificatesStatus);
 router.route("/Certificates/C/:id").delete(deleteCertificatesPhoto);
 
 router.route("/event").get(fetchEvent)
-router.route("/event").post(addEvent)
+router.route("/event").post(upload.single("image"),addEvent)
 router.route("/event").patch(changeEventStatus)
 router.route("/event/C/:id").delete(deleteEvent)
  
