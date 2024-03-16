@@ -64,7 +64,6 @@ const fetchEvent=asyncHandler(async(req,res)=>{
 })
 
 const deleteEvent=asyncHandler(async(req,res)=>{
-    console.log("object")
     const {id}=req.params;
     if(!id){
         throw new apiError(400,"Id is required");

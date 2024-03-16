@@ -58,7 +58,7 @@ const Volunteer = () => {
         formData.append("time", eventInfo.time);
 
         try {
-            const response = await axios.post("http://localhost:8000/ngo/event", formData);
+            const response = await axios.post("http://sandltcf-ngo.onrender.com/ngo/event", formData);
             console.log(response.data); 
             handleClear();
         } catch (error) {

@@ -11,7 +11,7 @@ function Main() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await axios.get("http://localhost:8000/ngo/Gallery");
+        const resp = await axios.get("http://sandltcf-ngo.onrender.com/ngo/Gallery");
         const data = resp.data.data;
         const filteredData = data.filter((element) => element.status);
         if (filteredData.length < 8) {
