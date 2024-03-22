@@ -16,7 +16,7 @@ router.route("/visitorsReview").post(addVisitorsReview);
 
 router.route("/admin").get(fetchAdmin);
 router.route("/admin").post(addAdmin);
-router.route("/admin").delete(deleteAdmin);
+router.route("/admin/:id/:priority_Deleter/:priority").delete(deleteAdmin);
 
 router.route("/Volunteer").post(addVolunteer);
 router.route("/Volunteer").get(fetchVolunteer);
