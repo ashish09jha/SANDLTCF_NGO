@@ -21,7 +21,7 @@ const About = () => {
                     <div className="right-section">
                         <div className="lg:order-1 ml-8 md:-mb-24" >
                             <div className=' border-l-4 border-orange md:-ml-1 -ml-8 max-w-full md:-mt-56'>
-                                <h1 className="mb-5 text-xl max-w-[95%] w-full lg:text-2xl ml-3 text-gray-600 font-semibold font-raleway">
+                                <h1 className="mt-20 mb-5 text-xl max-w-[95%] w-full lg:text-2xl ml-3 text-gray-600 font-semibold font-raleway">
                                     About the Founder
                                 </h1>
                             </div>

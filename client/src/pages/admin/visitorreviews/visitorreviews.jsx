@@ -4,15 +4,13 @@ const VisitorReviews = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        // Fetch data from API
         fetch('https://api.example.com/visitor-reviews')
             .then(response => response.json())
             .then(data => setReviews(data))
             .catch(error => console.error('Error fetching data:', error));
-    }, []); // Empty dependency array ensures useEffect runs only once
+    }, []); 
 
     const handleAddReview = () => {
-        // Add a new review locally
         const newReview = {
             date: '2024-03-16',
             personalDetails: 'New Reviewer',

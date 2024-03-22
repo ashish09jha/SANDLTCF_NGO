@@ -9,29 +9,29 @@ import { useInView } from "react-intersection-observer";
 const teamData = [
     {
         name: 'S.K. Trehan',
-        role: "Founder and Trustee of S&L Trehan Charitable Foundation",
-        role2: "Board Member",
+        role: "Founder of S&L Trehan Charitable Foundation",
+        role2: "Founder",
         image: William,
         badge: <HiBadgeCheck />,
     },
     {
         name: 'Lalita Trehan',
-        role: "Co-Founder and Trustee of S&L Trehan Charitable Foundation",
-        role2: "Board Member",
+        role: "Co-Founder of S&L Trehan Charitable Foundation",
+        role2: "Co-Founder",
         image: Doris,
         badge: <HiBadgeCheck />,
     },
     {
         name: 'Dr. Akhilesh Jain ',
-        role: "Member",
-        role2: "Board Member",
+        role: "Executive Director of S&L Trehan Charitable Foundation",
+        role2: "Executive Director",
         image: George,
         badge: <HiBadgeCheck />,
     },
     {
         name: 'Dhruv Narayan Jha',
-        role: "Member",
-        role2: "Board Member",
+        role: "Project Manager of S&L Trehan Charitable Foundation",
+        role2: "Project Manager",
         image: Sitsofe,
         badge: <HiBadgeCheck />,
     },
@@ -56,11 +56,9 @@ const Team = () => {
         <div className='justify-center align-center mt-8 pb-16'>
             <div className=''>
                 <div className='text-center mx-auto mb-4 mt-24'>
-                    <p className="font-quicksand items-center font-bold text-2xl text-orange mb-2 ">
-                        Meet Our Team
-                    </p>
+                   
                     <h2 className=" font-quicksand font-bold md:text-5xl text-3xl text-gray-600 mb-4 md:max-w-[700px] md:ml-[25%] mt-6 md:p-0 p-2">
-                        Meet Our Team behind our charity activities
+                        Meet Our Team
                     </h2>
                 </div>
             </div>
