@@ -2,12 +2,20 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import {localHost} from "../../../../URL.js"
+import { useNavigate } from 'react-router-dom';
 
 function CertificatesUpdate() {
     const [images, setImages] = useState([]);
     const [newImage, setNewImage] = useState(null);
     const [isLoading, setIsLoading] = useState(false); 
-    const [addingNewImage, setAddingNewImage] = useState(false); // Track whether a new photo is being added
+    const [addingNewImage, setAddingNewImage] = useState(false);
+    const navigate=useNavigate();
+  
+  useEffect(()=>{
+    if(!localStorage.getItem("priority")){
+      navigate("/");
+    }
+  },[])
 
     useEffect(() => {
         fetchData();
@@ -126,7 +134,7 @@ const Button = styled.button`
     color: #fff;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: pointer; 
     transition: background-color 0.3s ease;
     &:hover {
         background-color: #0056b3;

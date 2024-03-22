@@ -5,6 +5,7 @@ import { BsFacebook, BsInstagram } from 'react-icons/bs';
 import { FaPhone } from 'react-icons/fa6';
 import { TiSocialTwitter } from 'react-icons/ti'; // Import Twitter icon
 import React from "react";
+import {Link} from 'react-router-dom'
 
 const Footer = () => {
     // Create an array of link texts
@@ -87,6 +88,13 @@ const Footer = () => {
                             <a href='#' className='p-2 border border-white rounded-full inline-block'>
                                 <TiSocialTwitter className='h-4 w-4 transition-transform transform hover:scale-110' />
                             </a>
+                        </div>
+                        <div className='flex items-center md:mt-5 mt-1 md:mb-0 mb-10 text-white gap-6'>
+                            <Link to="/form">
+                                <p className='p-2 border border-white rounded-full inline-block'>
+                                    Admin Login
+                                </p>
+                            </Link>
                         </div>
                     </div>
                 </div>

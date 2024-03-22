@@ -2,12 +2,20 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import {localHost} from '../../../../URL';
+import { useNavigate } from 'react-router-dom';
 
 function GalleryPhotoUpdate() {
     const [images, setImages] = useState([]);
     const [newImage, setNewImage] = useState(null);
     const [isLoading, setIsLoading] = useState(false); 
     const [addingNewImage, setAddingNewImage] = useState(false);
+    const navigate=useNavigate();
+  
+  useEffect(()=>{
+    if(!localStorage.getItem("priority")){
+      navigate("/");
+    }
+  },[])
 
     useEffect(() => {
         fetchData();
@@ -66,7 +74,7 @@ function GalleryPhotoUpdate() {
             setImages(updatedImages);
             const data = {
                 id: id,
-                status: status,
+                status: status, 
             }
             await axios.patch(`${localHost}/ngo/Gallery`, data);
         } catch (error) {

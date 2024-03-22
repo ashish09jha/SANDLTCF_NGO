@@ -2,16 +2,24 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import {localHost} from "../../../../URL.js"
+import { useNavigate } from 'react-router-dom';
 
 function NewsClippingUpdate() {
     const [images, setImages] = useState([]);
     const [newImage, setNewImage] = useState(null);
     const [isLoading, setIsLoading] = useState(false); 
-    const [addingNewImage, setAddingNewImage] = useState(false); // Track whether a new photo is being added
+    const [addingNewImage, setAddingNewImage] = useState(false); 
+    const navigate=useNavigate();
+  
+  useEffect(()=>{
+    if(!localStorage.getItem("priority")){
+      navigate("/");
+    }
+  },[])
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, []); 
 
     const fetchData = async () => {
         try {

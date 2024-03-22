@@ -2,9 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import {localHost} from '../../../../URL';
+import { useNavigate } from 'react-router-dom';
 
 function VolunteerInformation() {
     const [volunteer, setVolunteer] = useState([]);
+    const navigate=useNavigate();
+  
+  useEffect(()=>{
+    if(!localStorage.getItem("priority")){
+      navigate("/");
+    }
+  },[])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,7 +21,7 @@ function VolunteerInformation() {
                 const data = response.data.data;
                 console.log('Fetched volunteer data:', data);
                 setVolunteer(data);
-            } catch (error) {
+            } catch (error) { 
                 console.error('Error fetching volunteer data:', error);
             }
         };

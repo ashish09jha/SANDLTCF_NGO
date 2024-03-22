@@ -13,6 +13,11 @@ import Spinner from '../components/Spinner'
 const Founder = () => {
     const location = useLocation();
 
+    useEffect(()=>{
+        localStorage.removeItem('priority');
+        localStorage.removeItem('name');
+    },[])
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location]);

@@ -10,6 +10,11 @@ import Header from './component/Header.jsx';
 const VisitorReview = () => {
     const location = useLocation(); 
 
+    useEffect(()=>{
+        localStorage.removeItem('priority');
+        localStorage.removeItem('name');
+    },[])
+    
     useEffect(() => {
         window.scrollTo(0, 0); 
     }, [location])

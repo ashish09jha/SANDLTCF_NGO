@@ -9,6 +9,11 @@ import Main from './component/Main'
 const Gallery = () => {
     const location = useLocation(); 
 
+    useEffect(()=>{
+        localStorage.removeItem('priority');
+        localStorage.removeItem('name');
+    },[])
+    
     useEffect(() => {
         window.scrollTo(0, 0); 
     }, [location])

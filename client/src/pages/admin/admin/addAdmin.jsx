@@ -2,13 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import {localHost} from "../../../../URL";
+import { useNavigate } from "react-router-dom";
 
 function AdminInformation() {
   const [adminList, setAdminList] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const navigate=useNavigate();
   
+  useEffect(()=>{
+    if(!localStorage.getItem("priority")){
+      navigate("/");
+    }
+  },[])
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`${localHost}/admin`);
@@ -20,7 +28,7 @@ function AdminInformation() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = {
+      const data = { 
         email: e.target.email.value,
         name: e.target.name.value,
         priority: localStorage.getItem("priority"),

@@ -3,16 +3,24 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Volunteer from './admin.jsx';
 import  {localHost}  from '../../../../URL.js';
+import { useNavigate } from 'react-router-dom';
 
 function Events() {
     const [events, setEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [addingNewEvent, setAddingNewEvent] = useState(false);
+    const navigate=useNavigate();
+  
+  useEffect(()=>{
+    if(!localStorage.getItem("priority")){
+      navigate("/");
+    }
+  },[])
 
     useEffect(() => {
         fetchData();
     }, []);
-
+ 
     const fetchData = async () => {
         try {
             const response = await axios.get(`${localHost}/ngo/event`);
