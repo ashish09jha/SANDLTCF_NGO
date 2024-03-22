@@ -1,19 +1,45 @@
+import React from 'react';
+import { PulseLoader } from 'react-spinners';
+import styled, { keyframes } from 'styled-components';
 
-import { RotatingLines } from 'react-loader-spinner';
+const fadeIn = keyframes`
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+`;
+
+const LoadingContainer = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+
+
+const LoaderWrapper = styled.div`
+    z-index: 2;
+    animation: ${fadeIn} 0.3s ease-in-out forwards;
+`;
 
 const Loading = () => (
-    <div className="w-screen h-screen z-50 absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center flex-col">
-
-        <div className="bg-gray-100 opacity-50 absolute top-0 left-0 right-0 bottom-0"></div>
-        <RotatingLines
-            strokeColor="#fd6b1c"
-            strokeWidth="5"
-            animationDuration="0.4"
-            width="96"
-            visible={true}
-        />
-
-    </div>
+    <LoadingContainer>
+        <LoaderWrapper>
+            <PulseLoader
+                color="#fd6b1c"
+                size={15}
+                margin={5}
+                loading={true}
+            />
+        </LoaderWrapper>
+    </LoadingContainer>
 );
 
 export default Loading;

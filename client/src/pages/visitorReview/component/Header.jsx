@@ -1,25 +1,29 @@
 import styled from "styled-components";
 
 const Header = () => {
-
     return (
-        <div className="relative w-full py-12 ">
-            <Container>VISITORS REVIEW</Container>
-        </div>
+        <HeaderContainer>
+            <HeaderText>VISITORS REVIEW</HeaderText>
+        </HeaderContainer>
     );
 };
 
-const Container=styled.div`
-width:100%;
-height:20%;
-display:flex; 
-align-items:center;
-justify-content:center;
-margin:20px; 
-font-size:50px;
-color:#fff;
-background-color:#333;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-`
+const HeaderContainer = styled.div`
+    width: 100%;
+    padding: 10px 0;
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+`;
+
+const HeaderText = styled.h1`
+    font-size: 28px;
+    font-weight: 700; /* Bold font weight */
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slight text shadow */
+`;
 
 export default Header;
