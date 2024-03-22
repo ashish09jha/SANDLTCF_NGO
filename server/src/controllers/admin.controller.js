@@ -28,12 +28,12 @@ const addAdmin=asyncHandler(async(req,res)=>{
         const data={
             name:name,
             email:email,
-            priority:priority+1,
+            priority:parseInt(priority)+1,
         }
-        const resp1=await new admin.createUser(data);
-        const resp=resp1.save();
-        verification(email,"http:/{localhost}:8000/volunteer");
-        res.status(200).json(new apiResponse(200,resp,"admin crested successfully"));
+        const resp1=new admin(data);
+        const resp=await resp1.save();
+        // verification(email,"http:/{localhost}:8000/volunteer");
+        res.status(200).json(new apiResponse(200,resp,"admin created successfully"));
     }catch(error){
         throw new apiError(400,`Data not stored:${error}`);
     }
@@ -50,12 +50,13 @@ const deleteAdmin=asyncHandler(async(req,res)=>{
     if(!priority_Deleter){
         throw new apiError(400,"priority of deleter is required");
     }
-    if(priority_Deleter>priority){
+    if(parseInt(priority_Deleter)>=parseInt(priority)){
         throw new apiError(400,"You are not able to delete");
     }
     else{
         try{
-            const resp=await admin.deleteOne({id:id});
+            const resp=await admin.deleteOne({_id:id});
+            console.log(resp);
             res.status(200).json(new apiResponse(200,resp,"Admin Deleted Successfully"));
         }catch(error){
             throw new apiError(400,`Error in Admin Deletion:${error}`);

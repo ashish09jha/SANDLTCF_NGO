@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import {localHost} from "../../../../URL";
+import { localHost } from "../../../../URL";
 import { useNavigate } from "react-router-dom";
 
 function AdminInformation() {
@@ -9,17 +9,17 @@ function AdminInformation() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const navigate=useNavigate();
-  
-  useEffect(()=>{
-    if(!localStorage.getItem("priority")){
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("priority")) {
       navigate("/");
     }
-  },[])
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`${localHost}/admin`);
+      const response = await axios.get(`${localHost}/ngo/admin`);
       setAdminList(response.data.data);
     };
     fetchData();
@@ -28,12 +28,12 @@ function AdminInformation() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = { 
+      const data = {
         email: e.target.email.value,
         name: e.target.name.value,
         priority: localStorage.getItem("priority"),
       };
-      await axios.post(`${localHost}/admin`, data);
+      await axios.post(`${localHost}/ngo/admin`, data);
       const newAdmin = { name, email };
       setAdminList([...adminList, newAdmin]);
       setName("");
@@ -44,10 +44,15 @@ function AdminInformation() {
     }
   };
 
-  const handleDelete = async (email) => {
+  const handleDelete = async (id,priority) => {
+    if(priority<=localStorage.getItem('priority')){
+      alert('You Are Not Able TO Remove Admin');
+    }
     try {
-      await axios.delete(`${localHost}/admin/${email}`);
-      setAdminList(adminList.filter((admin) => admin.email !== email));
+      if(await axios.delete(`${localHost}/ngo/admin/${id}/${localStorage.getItem('priority')}/${priority}`))
+      {
+        setAdminList(adminList.filter((admin) => admin._id !== id));
+      }
     } catch (error) {
       console.log(`Error: ${error}`);
     }
@@ -61,7 +66,7 @@ function AdminInformation() {
     <>
       <ButtonContainer>
         <Button onClick={toggleForm}>Add Admin</Button>
-      </ButtonContainer> 
+      </ButtonContainer>
       {showForm && (
         <FormContainer>
           <Form onSubmit={handleSubmit}>
@@ -85,6 +90,7 @@ function AdminInformation() {
                 required
               />
             </InputContainer>
+            <SubmitButton type="submit">Submit</SubmitButton>
           </Form>
         </FormContainer>
       )}
@@ -106,7 +112,7 @@ function AdminInformation() {
                   <td>{admin.name}</td>
                   <td>{admin.email}</td>
                   <td>
-                    <Button onClick={() => handleDelete(admin.email)}>Delete</Button>
+                    <RemoveButton onClick={() => handleDelete(admin._id,admin.priority)}>Remove Admin</RemoveButton>
                   </td>
                 </tr>
               ))}
@@ -156,6 +162,22 @@ const Button = styled.button`
     background-color: #0056b3;
   }
   margin-left: 10px;
+`;
+
+const SubmitButton = styled(Button)`
+  background-color: #28a745;
+  &:hover {
+    background-color: #218838;
+  }
+`;
+
+const RemoveButton = styled(Button)`
+  padding: 6px 12px; /* Smaller padding */
+  background-color: #dc3545; /* Red background */
+  border-radius: 20px; /* More rounded edges */
+  &:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
 `;
 
 const Content = styled.div`
