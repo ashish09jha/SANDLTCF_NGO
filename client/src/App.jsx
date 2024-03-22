@@ -16,7 +16,6 @@ import Recent1 from './pages/event-blogs/first/Main';
 import AllVolunteer from "./pages/admin/volunteer/allVolunteer.jsx"
 import AllEvents from "./pages/admin/upcommingEvents/allEvents.jsx";
 import AllMedia from "./pages/admin/media/allMedia.jsx";
-import LandingPage from "./pages/admin/LandingPage/LandingPage.jsx";
 import AllGallery from "./pages/admin/editGallery/allGallery.jsx";
 import AllDonations from "./pages/admin/donation/allDonations.jsx";
 import AllAdmins from "./pages/admin/admin/allAdmins.jsx";
@@ -26,6 +25,7 @@ import Volunteer from "./pages/home/components/Volunteer.jsx";
 import PaymentGateway from "./pages/payment_gateway/paymentGateway.jsx";
 import Testimonials from "./pages/testimonials/Testimonials.jsx";
 import VisitorReview from "./pages/visitorReview/visitorReview.jsx";
+import AdminForm from "./pages/form/adminForm.jsx";
 
 const App = () => {
 
@@ -48,7 +48,6 @@ const App = () => {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/visitorReview" element={<VisitorReview />} />
 
-        <Route path="/landingPage" element={<LandingPage />} />
         <Route path="/editadmin" element={<AllAdmins />} />
         <Route path="/editdonation" element={<AllDonations />} />
         <Route path="/editGallery" element={<AllGallery />} />
@@ -60,6 +59,7 @@ const App = () => {
         <Route path="/editnewsClippings" element={<AllNewsClippings />} />
         <Route path="/pay" element={<PaymentGateway/>}/>
         <Route path="/testinomials" element={<Testimonials/>}/>
+        <Route path="/form" element={<AdminForm/>}/>
       </Routes>
 
     </Router>

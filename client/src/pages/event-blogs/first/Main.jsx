@@ -14,6 +14,11 @@ const Event = () => {
         window.scrollTo(0, 0);
     }, [location]);
 
+    useEffect(()=>{
+        localStorage.removeItem('priority');
+        localStorage.removeItem('name');
+    },[])
+
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const timer = setTimeout(() => {
